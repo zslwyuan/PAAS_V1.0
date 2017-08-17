@@ -1,0 +1,3 @@
+./build/X86/gem5.opt configs/DMA_p/Mem-fpga-2mm.py > tmp
+./build/X86/gem5.opt configs/DMA_p/Mem-fpga-nussinov.py > tmp
+./build/X86/gem5.opt configs/DMA_p/Mem-fpga-floyd.py  > tmp

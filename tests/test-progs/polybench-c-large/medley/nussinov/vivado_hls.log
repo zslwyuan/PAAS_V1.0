@@ -1,0 +1,73 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-57-generic) on Sun Jan 08 03:47:32 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/nussinov'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/nussinov/nossinov_prj0'.
+INFO: [HLS 200-10] Adding design file '../../utilities/benchmark_list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file 'nussinov.c' to the project
+INFO: [HLS 200-10] Adding design file 'nussinov.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/nussinov/nossinov_prj0/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z045ffg900-2'
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'nussinov.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'benchmark_list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.332 ; gain = 12.586 ; free physical = 1128 ; free virtual = 11657
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.332 ; gain = 12.586 ; free physical = 1126 ; free virtual = 11656
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.332 ; gain = 12.586 ; free physical = 1125 ; free virtual = 11654
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.332 ; gain = 12.586 ; free physical = 1125 ; free virtual = 11654
+WARNING: [XFORM 203-503] Cannot unroll loop 'kernel_nussinov_label13' (nussinov.c:85) in function 'kernel_nussinov' completely: variable loop bound.
+WARNING: [XFORM 203-503] Cannot unroll loop 'kernel_nussinov_label12' (nussinov.c:97) in function 'kernel_nussinov' completely: variable loop bound.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (nussinov.c:94:9) to (nussinov.c:95:4) in function 'kernel_nussinov'... converting 4 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 457.328 ; gain = 140.582 ; free physical = 1104 ; free virtual = 11634
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 457.328 ; gain = 140.582 ; free physical = 1112 ; free virtual = 11642
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_nussinov' ...
+WARNING: [SYN 201-107] Renaming port name 'kernel_nussinov/table' to 'kernel_nussinov/table_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_nussinov' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 7.67 seconds; current allocated memory: 57.724 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.09 seconds; current allocated memory: 58.210 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_nussinov' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_nussinov/table_r' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_nussinov' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_nussinov'.
+INFO: [HLS 200-111]  Elapsed time: 0.16 seconds; current allocated memory: 58.945 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 457.328 ; gain = 140.582 ; free physical = 1104 ; free virtual = 11637
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_nussinov.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_nussinov.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_nussinov.
+INFO: [HLS 200-112] Total elapsed time: 8.78 seconds; peak allocated memory: 58.945 MB.

@@ -1,0 +1,12 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Jul  3 2017 04:10:30
+gem5 started Jul  9 2017 11:38:44
+gem5 executing on lty-Satellite-L800, pid 3202
+command line: ./build/X86/gem5.opt configs/DMA_p/Mem-fpga-floyd.py
+
+Global frequency set at 1000000000000 ticks per second
+Beginning simulation!
+info: Entering event queue @ 0.  Starting simulation...
+Exiting @ tick 61993000 because user interrupt received

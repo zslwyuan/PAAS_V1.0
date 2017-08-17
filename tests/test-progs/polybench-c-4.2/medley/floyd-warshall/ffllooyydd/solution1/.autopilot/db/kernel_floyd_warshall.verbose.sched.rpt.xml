@@ -1,0 +1,47 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'kernel_floyd_warshall'" level="0">
+<item name = "Date">Tue May 30 07:11:11 2017
+</item>
+<item name = "Version">2016.4 (Build 1733598 on Wed Dec 14 22:59:20 MST 2016)</item>
+<item name = "Project">ffllooyydd</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">qkintexu</item>
+<item name = "Target device">xqku115-rlf1924-2-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00, 8.47, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">270465, 270465, 270466, 270466, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- kernel_floyd_warshall_label0">270464, 270464, 4226, -, -, 64, no</column>
+<column name=" + kernel_floyd_warshall_label1">4224, 4224, 66, -, -, 64, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

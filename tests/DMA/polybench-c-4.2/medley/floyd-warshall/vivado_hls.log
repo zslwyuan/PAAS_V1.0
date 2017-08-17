@@ -1,0 +1,70 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-59-generic) on Tue Apr 18 00:18:50 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd'.
+INFO: [HLS 200-10] Adding design file '../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file 'floyd-warshall.c' to the project
+INFO: [HLS 200-10] Adding design file 'floyd-warshall.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+WARNING: [HLS 200-40] Cannot find library '/opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs.lib'.
+WARNING: [HLS 200-40] Cannot find library 'xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs'.
+INFO: [HLS 200-10] Setting target device to 'xqku115-rlf1924-2-i'
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'floyd-warshall.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1727 ; free virtual = 11592
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1728 ; free virtual = 11593
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1727 ; free virtual = 11593
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1727 ; free virtual = 11593
+INFO: [XFORM 203-501] Unrolling loop 'kernel_floyd_warshall_label2' (floyd-warshall.c:73) in function 'kernel_floyd_warshall' completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 1701 ; free virtual = 11567
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:10 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 1702 ; free virtual = 11568
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_floyd_warshall' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_floyd_warshall' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.89 seconds; current allocated memory: 71.385 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.79 seconds; current allocated memory: 74.099 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_floyd_warshall' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_floyd_warshall' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_floyd_warshall'.
+INFO: [HLS 200-111]  Elapsed time: 1.09 seconds; current allocated memory: 79.606 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 463.785 ; gain = 147.035 ; free physical = 1659 ; free virtual = 11546
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_floyd_warshall.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_floyd_warshall.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_floyd_warshall.
+INFO: [HLS 200-112] Total elapsed time: 16.28 seconds; peak allocated memory: 79.606 MB.

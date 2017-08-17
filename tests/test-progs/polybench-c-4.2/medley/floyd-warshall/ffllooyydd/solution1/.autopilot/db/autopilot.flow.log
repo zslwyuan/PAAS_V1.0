@@ -1,0 +1,819 @@
+@I [HLS-0] Workspace /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1 opened at Tue May 30 06:58:10 CST 2017
+@I [HLS-100] Execute     config_clock -quiet -name default -period 10 -default=false 
+@I [SYN-201] Setting up clock 'default' with a period of 10ns.
+@I [HLS-100] Command     config_clock returned 0; 0 sec.
+@W [HLS-40] Cannot find library '/opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs.lib'.
+@W [HLS-40] Cannot find library 'xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs'.
+@I [HLS-100] Execute     open_platform DefaultPlatform 
+@I [HLS-100] Command     open_platform returned 0; 0 sec.
+@I [HLS-100] Execute     import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu 
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.lib 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.lib 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.lib 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.02 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_old.lib 
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_vivado.lib 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/dsp48e2.hlp 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -resource  {SLICE 30300} {LUT 242400}    {FF 484800} {DSP48E 1920}   {BRAM 1200}  
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -speed medium 
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command     import_lib returned 0; 0.03 sec.
+@I [HLS-100] Execute     source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu.gen 
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command           ap_source returned 0; 0.12 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.16 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.16 sec.
+@I [HLS-100] Command     ap_source returned 0; 0.16 sec.
+@I [HLS-100] Execute     open_platform DefaultPlatform 
+@I [HLS-100] Command     open_platform returned 0; 0 sec.
+@I [HLS-100] Execute     import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7 
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv7.lib 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_hp.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv.hlp 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_hp.hlp 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Command     import_lib returned 0; 0.03 sec.
+@I [HLS-100] Execute     source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7.gen 
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command       ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command     ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute     set_part xqku115-rlf1924-2-i 
+@I [HLS-100] Execute       add_library xilinx/qkintexu/qkintexu:xqku115:-rlf1924:-2-i 
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         license_isbetapart xqku115 
+@I [HLS-100] Command         license_isbetapart returned 1; 0.02 sec.
+@I [HLS-100] Execute         open_platform DefaultPlatform 
+@I [HLS-100] Command         open_platform returned 0; 0 sec.
+@I [HLS-100] Execute         import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.lib 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.lib 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.lib 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.lib 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.lib 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.lib 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.lib 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_old.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_vivado.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/dsp48e2.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           get_default_platform 
+@I [HLS-100] Command           get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute           config_chip_info -quiet -resource  {SLICE 30300} {LUT 242400}    {FF 484800} {DSP48E 1920}   {BRAM 1200}  
+@I [HLS-100] Command           config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute           config_chip_info -quiet -speed medium 
+@I [HLS-100] Command           config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command         import_lib returned 0; 0.02 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu.gen 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute                 source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command                 ap_source returned 0; 0 sec.
+@I [HLS-100] Execute                 source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command                 ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command               ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command               ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command               ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command               ap_source returned 0; 0.11 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0.14 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.14 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.14 sec.
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -resource  {SLICE 82920} {LUT 663360}    {FF 1326720} {DSP48E 5520}  {BRAM 4320} {SLR 2}  
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -speed medium 
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command       add_library returned 0; 0.19 sec.
+@I [HLS-100] Execute       add_library xilinx/qkintexu/qkintexu_fpv7 
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         open_platform DefaultPlatform 
+@I [HLS-100] Command         open_platform returned 0; 0 sec.
+@I [HLS-100] Execute         import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv7.lib 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_hp.lib 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv.hlp 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute                 source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command                 ap_source returned 0; 0 sec.
+@I [HLS-100] Execute                 source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command                 ap_source returned 0; 0 sec.
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_hp.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         import_lib returned 0; 0.03 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7.gen 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       add_library returned 0; 0.03 sec.
+@I [HLS-10] Setting target device to 'xqku115-rlf1924-2-i'
+@I [HLS-100] Command     set_part returned 0; 0.22 sec.
+@I [HLS-100] Execute     get_default_platform 
+@I [HLS-100] Command     get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute     config_chip_info -quiet -resource  {SLICE 82920} {LUT 663360}    {FF 1326720} {DSP48E 5520}  {BRAM 4320} {SLR 2}  
+@I [HLS-100] Command     config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute     config_chip_info -quiet -speed medium 
+@I [HLS-100] Command     config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command   open_solution returned 0; 0.48 sec.
+@I [HLS-100] Execute   set_part xqku115-rlf1924-2-i -tool vivado 
+@I [HLS-100] Execute     add_library xilinx/qkintexu/qkintexu:xqku115:-rlf1924:-2-i 
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       license_isbetapart xqku115 
+@I [HLS-100] Command       license_isbetapart returned 1; 0 sec.
+@I [HLS-100] Execute       open_platform DefaultPlatform 
+@I [HLS-100] Command       open_platform returned 0; 0 sec.
+@I [HLS-100] Execute       import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.lib 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.lib 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.lib 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.lib 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.lib 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_old.lib 
+@I [HLS-100] Command         ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_vivado.lib 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/dsp48e2.hlp 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Execute         get_default_platform 
+@I [HLS-100] Command         get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -resource  {SLICE 30300} {LUT 242400}    {FF 484800} {DSP48E 1920}   {BRAM 1200}  
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute         config_chip_info -quiet -speed medium 
+@I [HLS-100] Command         config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command       import_lib returned 0; 0.02 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command               ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.11 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.14 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.14 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.14 sec.
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -resource  {SLICE 82920} {LUT 663360}    {FF 1326720} {DSP48E 5520}  {BRAM 4320} {SLR 2}  
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Execute       config_chip_info -quiet -speed medium 
+@I [HLS-100] Command       config_chip_info returned 0; 0 sec.
+@I [HLS-100] Command     add_library returned 0; 0.18 sec.
+@I [HLS-100] Execute     add_library xilinx/qkintexu/qkintexu_fpv7 
+@I [HLS-100] Execute       get_default_platform 
+@I [HLS-100] Command       get_default_platform returned 0; 0 sec.
+@I [HLS-100] Execute       open_platform DefaultPlatform 
+@I [HLS-100] Command       open_platform returned 0; 0 sec.
+@I [HLS-100] Execute       import_lib /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv7.lib 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_hp.lib 
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.02 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv.hlp 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.hlp 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/target_info.tcl 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/xilinx_interface.hlp 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.hlp 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.hlp 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.hlp 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_hp.hlp 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       import_lib returned 0; 0.03 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Command     add_library returned 0; 0.04 sec.
+@I [HLS-100] Command   set_part returned 0; 0.23 sec.
+@I [HLS-100] Execute   create_clock -period 10 -name default 
+@I [HLS-100] Command   create_clock returned 0; 0.01 sec.
+@I [HLS-100] Execute   source ./ffllooyydd/solution1/directives.tcl 
+@I [HLS-100] Execute     set_directive_unroll kernel_floyd_warshall/kernel_floyd_warshall_label2 
+@I [HLS-0] Setting directive 'UNROLL' 
+@I [HLS-100] Command     set_directive_unroll returned 0; 0 sec.
+@I [HLS-100] Execute     set_directive_array_partition -type complete -factor 2 -dim 1 kernel_floyd_warshall path 
+@I [HLS-0] Setting directive 'UNROLL' 
+@I [HLS-0] Setting directive 'ARRAY_PARTITION' partition=positionBooleanCmd variable=positionBooleanTextRequiredpath complete=positionBoolean0type factor=2 dim=1 
+@I [HLS-100] Command     set_directive_array_partition returned 0; 0 sec.
+@I [HLS-100] Command   ap_source returned 0; 0 sec.
+@I [HLS-100] Execute   csynth_design 
+@I [HLS-100] Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -lm=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 
+@W [HLS-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@I [HLS-10] Analyzing design file 'floyd-warshall.c' ... 
+@I [HLS-0] Compiling one TU...
+@I [HLS-0] Handling floyd-warshall.c as C
+@I [HLS-0] Syntax Checking before pre-processing...
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  "floyd-warshall.c"  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.00.o" 
+@I [HLS-100] Command       clang returned 0; 0.16 sec.
+@I [HLS-100] Execute       is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.00.o 
+@I [HLS-100] Command       is_encrypted returned 0; 0 sec.
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "floyd-warshall.c"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c" 
+@I [HLS-100] Command       clang returned 0; 0.13 sec.
+@I [HLS-0] GCC PP time: 0 seconds per iteration
+@I [HLS-0] Setting directive 'UNROLL' 
+@I [HLS-0] Setting directive 'ARRAY_PARTITION' partition=positionBooleanCmd variable=positionBooleanTextRequiredpath complete=positionBoolean0type factor=2 dim=1 
+@I [HLS-100] Execute       list_core -type functional_unit 
+@I [HLS-100] Command       list_core returned 0; 0 sec.
+@I [HLS-0] CDT Preprocessing...
+@I [HLS-0] Marker-Pragma convertor: /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c.ap-line.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c.ap-line.c.CXX 1
+@I [HLS-0] Converting Markers to Pragmas...
+@I [HLS-100] Execute       cdt  "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c.ap-line.c"  -m "kernel_floyd_warshall" -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c.ap-cdt.c" -c --pp --directive /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/solution1.directive --source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/floyd-warshall.c --error /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db --funcunit "AddSub AddSub_DSP AddSubnS DAddSub_fulldsp DAddSub_nodsp DDiv DExp_fulldsp DExp_meddsp DExp_nodsp DLog_fulldsp DLog_meddsp DLog_nodsp DMul_fulldsp DMul_maxdsp DMul_meddsp DMul_nodsp DRSqrt DRecip DSqrt DivnS FAddSub_fulldsp FAddSub_nodsp FDiv FExp_fulldsp FExp_meddsp FExp_nodsp FLog_fulldsp FLog_meddsp FLog_nodsp FMul_fulldsp FMul_maxdsp FMul_meddsp FMul_nodsp FRSqrt_fulldsp FRSqrt_nodsp FRecip_fulldsp FRecip_nodsp FSqrt HAddSub_nodsp HDiv HMul_fulldsp HMul_maxdsp HMul_nodsp HSqrt Mul Mul2S Mul3S Mul4S Mul5S Mul6S Mul_LUT MulnS MuxnS" --ca --gf --pd --p2d /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db --sd --scff /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/.systemc_flag --ad 
+@I [HLS-100] Command       cdt returned 0; 1.5 sec.
+@I [HLS-0] Marker-Pragma convertor: /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pp.0.c.ap-cdt.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pragma.0.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pragma.0.c.ap-line.CXX 0
+@I [HLS-0] Converting Pragmas to Markers...
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Pragma Handling...
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pragma.1.c"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pragma.2.c" 
+@I [HLS-100] Command       clang returned 0; 0.13 sec.
+@I [HLS-0] Processing labels
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain /opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.pragma.2.c"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89  -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -g -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.g.bc" 
+@I [HLS-100] Command       clang returned 0; 0.13 sec.
+@W [HLS-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@I [HLS-10] Analyzing design file '../../utilities/polybench.c' ... 
+@I [HLS-0] Compiling one TU...
+@I [HLS-0] Handling ../../utilities/polybench.c as C
+@I [HLS-0] Syntax Checking before pre-processing...
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  "../../utilities/polybench.c"  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.00.o" 
+@I [HLS-100] Command       clang returned 0; 0.17 sec.
+@I [HLS-100] Execute       is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.00.o 
+@I [HLS-100] Command       is_encrypted returned 0; 0 sec.
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "../../utilities/polybench.c"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c" 
+@I [HLS-100] Command       clang returned 0; 0.14 sec.
+@I [HLS-0] GCC PP time: 0 seconds per iteration
+@I [HLS-0] Setting directive 'UNROLL' 
+@I [HLS-0] Setting directive 'ARRAY_PARTITION' partition=positionBooleanCmd variable=positionBooleanTextRequiredpath complete=positionBoolean0type factor=2 dim=1 
+@I [HLS-100] Execute       list_core -type functional_unit 
+@I [HLS-100] Command       list_core returned 0; 0 sec.
+@I [HLS-0] CDT Preprocessing...
+@I [HLS-0] Marker-Pragma convertor: /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c.ap-line.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c.ap-line.c.CXX 1
+@I [HLS-0] Converting Markers to Pragmas...
+@I [HLS-100] Execute       cdt  "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c.ap-line.c"  -m "kernel_floyd_warshall" -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c.ap-cdt.c" -c --pp --directive /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/solution1.directive --source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/../../utilities/polybench.c --error /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db --funcunit "AddSub AddSub_DSP AddSubnS DAddSub_fulldsp DAddSub_nodsp DDiv DExp_fulldsp DExp_meddsp DExp_nodsp DLog_fulldsp DLog_meddsp DLog_nodsp DMul_fulldsp DMul_maxdsp DMul_meddsp DMul_nodsp DRSqrt DRecip DSqrt DivnS FAddSub_fulldsp FAddSub_nodsp FDiv FExp_fulldsp FExp_meddsp FExp_nodsp FLog_fulldsp FLog_meddsp FLog_nodsp FMul_fulldsp FMul_maxdsp FMul_meddsp FMul_nodsp FRSqrt_fulldsp FRSqrt_nodsp FRecip_fulldsp FRecip_nodsp FSqrt HAddSub_nodsp HDiv HMul_fulldsp HMul_maxdsp HMul_nodsp HSqrt Mul Mul2S Mul3S Mul4S Mul5S Mul6S Mul_LUT MulnS MuxnS" --ca --gf --pd --p2d /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db --sd --scff /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/.systemc_flag --ad 
+@I [HLS-100] Command       cdt returned 0; 1.38 sec.
+@I [HLS-0] Marker-Pragma convertor: /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pp.0.c.ap-cdt.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pragma.0.c /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pragma.0.c.ap-line.CXX 0
+@I [HLS-0] Converting Pragmas to Markers...
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Pragma Handling...
+@I [HLS-0] Source preprocessing
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain "/opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc" -hls -fno-exceptions  -D__llvm__  -CC -E "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pragma.1.c"     -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89   -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h  -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pragma.2.c" 
+@I [HLS-100] Command       clang returned 0; 0.14 sec.
+@I [HLS-0] Processing labels
+@I [HLS-100] Execute       clang  -fno-limit-debug-info -gcc-toolchain /opt/Xilinx/Vivado_HLS/2016.4/lnx64/tools/gcc -hls -hls-analyze-label -hls-analyze-pragma -fno-exceptions  -D__llvm__  -w  "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.pragma.2.c"    -fno-math-errno -c -emit-llvm -O0  -mllvm -disable-llvm-optzns -std=gnu89  -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot" -I "/opt/Xilinx/Vivado_HLS/2016.4/common/technology/autopilot/ap_sysc" -include etc/autopilot_ssdm_op.h -g -o "/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.g.bc" 
+@I [HLS-100] Command       clang returned 0; 0.14 sec.
+@W [HLS-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@W [HLS-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+@I [HLS-10] Validating synthesis directives ...
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/pragma.status.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1045 ; free virtual = 11630
+@I [HLS-0] Linking Release ...
+@I [HLS-100] Execute       llvm-ld /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.bc /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.bc -disable-opt -L/opt/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lm_basic -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o 
+@I [HLS-100] Command       llvm-ld returned 0; 0.08 sec.
+@I [HLS-100] Execute       disassemble /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o 
+@I [HLS-100] Execute         is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.bc 
+@I [HLS-100] Command         is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command       disassemble returned 0; 0.06 sec.
+@I [HLS-0] Disassemble time: 0 seconds per iteration
+@I [HLS-0] Linking Debug ...
+@I [HLS-100] Execute       llvm-ld /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/floyd-warshall.g.bc /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/polybench.g.bc -disable-opt -L/opt/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lm_basic -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g 
+@I [HLS-100] Command       llvm-ld returned 0; 0.06 sec.
+@I [HLS-100] Execute       disassemble /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g 
+@I [HLS-100] Execute         is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.bc 
+@I [HLS-100] Command         is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command       disassemble returned 0; 0.06 sec.
+@I [HLS-0] Disassemble time: 0 seconds per iteration
+@I [HLS-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+@I [HLS-100] Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+@I [HLS-100] Execute         cleanup_all_models 
+@I [HLS-100] Command         cleanup_all_models returned 0; 0 sec.
+@I [HLS-10] Starting code transformations ...
+@I [HLS-100] Execute         transform -promote-dbg-pointer /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.pp.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.pp.0.bc -f 
+@I [HLS-100] Command         transform returned 0; 0.01 sec.
+@I [HLS-100] Execute         llvm-ld /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.pp.0.bc -disable-opt -L/opt/Xilinx/Vivado_HLS/2016.4/lnx64/lib -lfloatconversion -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.0 
+@I [HLS-100] Command         llvm-ld returned 0; 0.06 sec.
+@I [HLS-0] Running Standard Transforms...
+@I [HLS-100] Execute         transform -hls -share-std-xform -always-inline -promote-dbg-pointer -interface-preproc -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -prune-eh -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top kernel_floyd_warshall -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -promote-dbg-pointer -norm-name /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.0.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+@I [HLS-100] Command         transform returned 0; 0.04 sec.
+@I [HLS-100] Execute         disassemble /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1 /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1 
+@I [HLS-100] Execute           is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.06 sec.
+@I [HLS-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+@I [HLS-10] Checking synthesizability ...
+@I [HLS-0] Checking Synthesizability 1/2..
+@I [HLS-100] Execute         transform -hls -syn-check -check-rec-only -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -disaggr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+@I [HLS-100] Command         transform returned 0; 0.03 sec.
+@I [HLS-0] Checking Synthesizability 2/2..
+@I [HLS-100] Execute         transform -syn-check /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.2.prechk.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+@I [HLS-100] Command         transform returned 0; 0.01 sec.
+@I [HLS-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+@I [HLS-0] Compiler optimizing ...
+@I [HLS-0] Share syncheck's 1.bc for syn flow: copy /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.g.1.bc to /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.1.bc
+@I [HLS-0] Presyn 1...
+@I [HLS-100] Execute         transform -hls -tmp /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db -interface-port-rename -type-info -function-uniquify -directive-preproc -mem2reg -dse -dce -disaggr -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -auto-rom-infer -dce -function-uniquify -resource-proc -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -clib-intrinsic-prepare -dce -func-buffer -dce -array-normalize -func-legal -instcombine -gvn -constprop -dce -ptrArgReplace -mem2reg -instcombine -dce -array-seg-normalize -deadargelim -instcombine -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -simplifycfg -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -auto-par -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -duplicate-dataflow-processes -globaldce -instcombine -array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -instcombine -dce -global-constprop -deadargelim -mem2reg -instcombine -simplifycfg -dce -globalopt -constprop -dce -array-promote -constprop -instcombine -dce -ptrArgReplace -mem2reg -instcombine -simplifycfg -dce -mem-intrinsic-preproc -dce -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -instcombine -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -inst-simplify -dce -norm-name -function-inline -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -deadargelim -annotate-dataflow-channels -scalar-propagation -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -norm-name /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.1.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+@I [XFORM-501] Unrolling loop 'kernel_floyd_warshall_label2' (floyd-warshall.c:73) in function 'kernel_floyd_warshall' completely.
+@W [XFORM-104] Completely partitioning array 'path' (floyd-warshall.c:64) accessed through non-constant indices on dimension 1 (floyd-warshall.c:73:1), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+@I [XFORM-101] Partitioning array 'path' (floyd-warshall.c:64) in dimension 1 completely.
+@I [HLS-100] Command         transform returned 0; 4.13 sec.
+@I [HLS-0] Presyn 2...
+@I [HLS-100] Execute         transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -norm-name /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.1.tmp.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+@I [HLS-100] Command         transform returned 0; 555.85 sec.
+@I [HLS-100] Execute         disassemble /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.2 /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.2 
+@I [HLS-100] Execute           is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.2.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.12 sec.
+@I [HLS-111] Finished Pre-synthesis Time (s): cpu = 00:09:31 ; elapsed = 00:09:27 . Memory (MB): peak = 457.336 ; gain = 140.582 ; free physical = 990 ; free virtual = 11581
+@I [HLS-0] Building ssdm...
+@I [HLS-100] Execute         transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -instcombine -dce -reset-lda -loop-simplify -indvars -licm -loop-dep -loop-bound -licm -loop-simplify -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -axi4-lower -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -disaggr -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -bitwidthmin -deadargelim -dce -canonicalize-dataflow -dce -scalar-propagation -deadargelim -globaldce -mem2reg -interface-preproc -interface-gen -deadargelim -directive-preproc -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -bitop-lower -loop-rewind -pointer-simplify -dce -cfgopt -read-loop-dep -dce -bitwidth -loop-dep -norm-name -legalize -cdfg-build /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.2.bc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+@I [HLS-100] Command         transform returned 0; 87.92 sec.
+@I [HLS-100] Execute         disassemble /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.3 /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.3 
+@I [HLS-100] Execute           is_encrypted /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.o.3.bc 
+@I [HLS-100] Command           is_encrypted returned 0; 0 sec.
+@I [HLS-100] Command         disassemble returned 0; 0.11 sec.
+@I [HLS-111] Finished Architecture Synthesis Time (s): cpu = 00:10:59 ; elapsed = 00:10:55 . Memory (MB): peak = 521.336 ; gain = 204.582 ; free physical = 923 ; free virtual = 11516
+@I [HLS-0] Finish building internal data model.
+@I [HLS-100] Command       opt_and_import_c returned 0; 648.37 sec.
+@I [HLS-100] Command     elaborate returned 0; 653.7 sec.
+@I [HLS-100] Execute     autosyn 
+@I [HLS-10] Starting hardware synthesis ...
+@I [HLS-0] Synthesizing C/C++ design ...
+@I [HLS-10] Synthesizing 'kernel_floyd_warshall' ...
+@I [HLS-100] Execute       ap_set_top_model kernel_floyd_warshall 
+@I [HLS-100] Command       ap_set_top_model returned 0; 0 sec.
+@I [HLS-100] Execute       get_model_list kernel_floyd_warshall -filter all-wo-channel -topdown 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-100] Execute       preproc_iomode -model kernel_floyd_warshall 
+@I [HLS-100] Command       preproc_iomode returned 0; 0 sec.
+@I [HLS-100] Execute       get_model_list kernel_floyd_warshall -filter all-wo-channel 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-0] Model list for configure: kernel_floyd_warshall
+@I [HLS-0] Configuring Module : kernel_floyd_warshall ...
+@I [HLS-100] Execute       set_default_model kernel_floyd_warshall 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       apply_spec_resource_limit kernel_floyd_warshall 
+@I [HLS-100] Command       apply_spec_resource_limit returned 0; 0 sec.
+@I [HLS-0] Model list for preprocess: kernel_floyd_warshall
+@I [HLS-0] Preprocessing Module: kernel_floyd_warshall ...
+@I [HLS-100] Execute       set_default_model kernel_floyd_warshall 
+@I [HLS-100] Command       set_default_model returned 0; 0.01 sec.
+@I [HLS-100] Execute       cdfg_preprocess -model kernel_floyd_warshall 
+@I [HLS-100] Command       cdfg_preprocess returned 0; 37.18 sec.
+@I [HLS-100] Execute       rtl_gen_preprocess kernel_floyd_warshall 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0.01 sec.
+@I [HLS-0] Model list for synthesis: kernel_floyd_warshall
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Implementing module 'kernel_floyd_warshall' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       set_default_model kernel_floyd_warshall 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       schedule -model kernel_floyd_warshall 
+@I [SCHED-11] Starting scheduling ...
+@I [SCHED-11] Finished scheduling.
+@I [HLS-100] Command       schedule returned 0; 89.64 sec.
+@I [HLS-111]  Elapsed time: 781.72 seconds; current allocated memory: 217.246 MB.
+@I [HLS-100] Execute       report -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.verbose.sched.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 10.32 sec.
+@I [HLS-100] Execute       db_write -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.sched.adb -f 
+@I [HLS-100] Command       db_write returned 0; 10.5 sec.
+@I [HLS-0] Finish scheduling kernel_floyd_warshall.
+@I [HLS-100] Execute       set_default_model kernel_floyd_warshall 
+@I [HLS-100] Command       set_default_model returned 0; 0 sec.
+@I [HLS-100] Execute       bind -model kernel_floyd_warshall 
+@I [BIND-110] clear=
+@I [BIND-110] debug=
+@I [BIND-110] drf=
+@I [BIND-110] effort=
+@I [BIND-110] fast_refine=
+@I [BIND-110] fu_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] global_opt=
+@I [BIND-110] gsearch=
+@I [BIND-110] help=
+@I [BIND-110] help-hidden=
+@I [BIND-110] min_mem_port=
+@I [BIND-110] min_op=
+@I [BIND-110] minreg=
+@I [BIND-110] ml=
+@I [BIND-110] model=kernel_floyd_warshall
+@I [BIND-110] no_false_path=
+@I [BIND-110] no_min_op=
+@I [BIND-110] normalize=
+@I [BIND-110] quiet=
+@I [BIND-110] refine=
+@I [BIND-110] reg_weight=[ 0.0 -- 1.0 ]
+@I [BIND-110] search=
+@I [BIND-110] tight_delay=
+@I [BIND-110] verbose=
+@I [BIND-110] wFF=
+@I [BIND-110] wFU=
+@I [BIND-110] wMUX=
+@I [BIND-110] wNET=
+@I [BIND-100] Starting micro-architecture generation ...
+@I [BIND-101] Performing variable lifetime analysis.
+@I [BIND-101] Exploring resource sharing.
+@I [BIND-101] Binding ...
+@I [BIND-100] Finished micro-architecture generation.
+@I [HLS-100] Command       bind returned 0; 16.89 sec.
+@I [HLS-111]  Elapsed time: 37.73 seconds; current allocated memory: 258.941 MB.
+@I [HLS-100] Execute       report -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.verbose.bind.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 11.32 sec.
+@I [HLS-100] Execute       db_write -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.bind.adb -f 
+@I [HLS-100] Command       db_write returned 0; 11.01 sec.
+@I [HLS-0] Finish binding kernel_floyd_warshall.
+@I [HLS-100] Execute       get_model_list kernel_floyd_warshall -filter all-wo-channel 
+@I [HLS-100] Command       get_model_list returned 0; 0 sec.
+@I [HLS-0] Preprocessing for RTLGen ...
+@I [HLS-100] Execute       rtl_gen_preprocess kernel_floyd_warshall 
+@I [HLS-100] Command       rtl_gen_preprocess returned 0; 0 sec.
+@I [HLS-0] Model list for RTL generation: kernel_floyd_warshall
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-10] -- Generating RTL for module 'kernel_floyd_warshall' 
+@I [HLS-10] ----------------------------------------------------------------
+@I [HLS-100] Execute       create_rtl_model kernel_floyd_warshall -vendor xilinx -mg_file /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.compgen.tcl 
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_0' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_1' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_2' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_3' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_4' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_5' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_6' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_7' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_8' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_9' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_10' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_11' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_12' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_13' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_14' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_15' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_16' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_17' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_18' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_19' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_20' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_21' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_22' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_23' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_24' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_25' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_26' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_27' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_28' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_29' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_30' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_31' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_32' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_33' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_34' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_35' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_36' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_37' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_38' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_39' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_40' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_41' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_42' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_43' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_44' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_45' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_46' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_47' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_48' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_49' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_50' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_51' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_52' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_53' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_54' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_55' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_56' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_57' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_58' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_59' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_60' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_61' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_62' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on port 'kernel_floyd_warshall/path_63' to 'ap_memory'.
+@I [RTGEN-500] Setting interface mode on function 'kernel_floyd_warshall' to 'ap_ctrl_hs'.
+@I [SYN-210] Renamed object name 'kernel_floyd_warshall_mux_646_32_1' to 'kernel_floyd_warsbkb' due to the length limit 20
+@I [RTGEN-100] Generating core module 'kernel_floyd_warsbkb': 13 instance(s).
+@I [RTGEN-100] Finished creating RTL model for 'kernel_floyd_warshall'.
+@I [HLS-100] Command       create_rtl_model returned 0; 12.77 sec.
+@I [HLS-111]  Elapsed time: 35.12 seconds; current allocated memory: 282.798 MB.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.rtl_wrap.cfg.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       gen_rtl kernel_floyd_warshall -istop -style xilinx -tracefl mytrace -tracefmt vcd -traceopt all -f -lang sc -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/syn/systemc/kernel_floyd_warshall -synmodules kernel_floyd_warshall 
+@I [HLS-100] Command       gen_rtl returned 0; 0.26 sec.
+@I [HLS-100] Execute       gen_rtl kernel_floyd_warshall -istop -style xilinx -f -lang vhdl -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/syn/vhdl/kernel_floyd_warshall 
+@I [HLS-100] Command       gen_rtl returned 0; 0.35 sec.
+@I [HLS-100] Execute       gen_rtl kernel_floyd_warshall -istop -style xilinx -f -lang vlog -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/syn/verilog/kernel_floyd_warshall 
+@I [HLS-100] Command       gen_rtl returned 0; 0.28 sec.
+@I [HLS-100] Execute       export_constraint_db -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.constraint.tcl -f -tool general 
+@I [HLS-100] Command       export_constraint_db returned 0; 0 sec.
+@I [HLS-100] Execute       report -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.design.xml -verbose -f -dv 
+@I [HLS-100] Command       report returned 0; 0.22 sec.
+@I [HLS-100] Execute       report -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.sdaccel.xml -verbose -f -sdaccel 
+@I [HLS-100] Command       report returned 0; 0.41 sec.
+@I [HLS-100] Execute       gen_tb_info kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall -p /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db 
+@I [HLS-100] Command       gen_tb_info returned 0; 0.02 sec.
+@I [HLS-100] Execute       report -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/syn/report/kernel_floyd_warshall_csynth.rpt -f 
+@I [HLS-100] Command       report returned 0; 0.14 sec.
+@I [HLS-100] Execute       report -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/syn/report/kernel_floyd_warshall_csynth.xml -f -x 
+@I [HLS-100] Command       report returned 0; 0.12 sec.
+@I [HLS-100] Execute       report -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.verbose.rpt -verbose -f 
+@I [HLS-100] Command       report returned 0; 11.14 sec.
+@I [HLS-100] Execute       db_write -model kernel_floyd_warshall -o /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.adb -f 
+@I [HLS-100] Command       db_write returned 0; 10.85 sec.
+@I [HLS-100] Execute       sc_get_clocks kernel_floyd_warshall 
+@I [HLS-100] Command       sc_get_clocks returned 0; 0 sec.
+@I [HLS-100] Execute       sc_get_portdomain kernel_floyd_warshall 
+@I [HLS-100] Command       sc_get_portdomain returned 0; 0 sec.
+@I [HLS-0] Model list for RTL component generation: kernel_floyd_warshall
+@I [HLS-0] Handling components in module [kernel_floyd_warshall] ... 
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.compgen.tcl 
+@I [HLS-0] Found component kernel_floyd_warsbkb.
+@I [HLS-0] Append model kernel_floyd_warsbkb
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-0] Append model kernel_floyd_warshall
+@I [HLS-0] Generating RTL model list ...
+@I [HLS-0] All models in this session: kernel_floyd_warsbkb kernel_floyd_warshall
+@I [HLS-0] To file: write model kernel_floyd_warsbkb
+@I [HLS-0] To file: write model kernel_floyd_warshall
+@I [HLS-0] Finished generating RTL model list.
+
+
+@I [HLS-0] RTL Generation done.
+@I [HLS-0] CAS Generation done.
+@I [HLS-0] CBC Generation done.
+@I [HLS-100] Execute       export_ssdm /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/a.export.ll 
+@I [HLS-100] Command       export_ssdm returned 0; 0.02 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/common.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/APCoreGen.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/op.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/op_simcore.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/generic/autopilot/interface.gen 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/virtex.gen 
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx.gen 
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/plb46.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/fsl.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/axi4.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/nativeAXI4.gen 
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/saxilite.gen 
+@I [HLS-100] Command               ap_source returned 0; 0 sec.
+@I [HLS-100] Execute               source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/maxi.gen 
+@I [HLS-100] Command               ap_source returned 0; 0.01 sec.
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/scripts/xilinxcoregen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfft.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.1 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/xfir.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/dds_compiler.gen 
+@I [HLS-100] Command             ap_source returned 0; 0.01 sec.
+@I [HLS-100] Execute             source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/ip/util.gen 
+@I [HLS-100] Command             ap_source returned 0; 0 sec.
+@I [HLS-100] Command           ap_source returned 0; 0.15 sec.
+@I [HLS-100] Execute           source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/dsp48.gen 
+@I [HLS-100] Command           ap_source returned 0; 0 sec.
+@I [HLS-100] Command         ap_source returned 0; 0.15 sec.
+@I [HLS-100] Command       ap_source returned 0; 0.15 sec.
+@I [HLS-100] Execute       source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/qkintexu/qkintexu_fpv7.gen 
+@I [HLS-100] Execute         source /opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/common/xilinx_fpv6.gen 
+@I [HLS-100] Command         ap_source returned 0; 0 sec.
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/global.setting.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0 sec.
+@I [HLS-100] Execute       source /media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1/.autopilot/db/kernel_floyd_warshall.compgen.tcl 
+@I [HLS-100] Command       ap_source returned 0; 0.03 sec.
+@I [HLS-111] Finished generating all RTL models Time (s): cpu = 00:14:27 ; elapsed = 00:15:00 . Memory (MB): peak = 1960.070 ; gain = 1643.316 ; free physical = 145 ; free virtual = 10915
+@I [SYSC-301] Generating SystemC RTL for kernel_floyd_warshall.
+@I [VHDL-304] Generating VHDL RTL for kernel_floyd_warshall.
+@I [VLOG-307] Generating Verilog RTL for kernel_floyd_warshall.
+@I [HLS-100] Command     autosyn returned 0; 244.92 sec.
+@I [HLS-100] Command   csynth_design returned 0; 898.62 sec.
+@I [HLS-100] Command ap_source returned 0; 899.44 sec.
+@I [HLS-100] Execute cleanup_all 
+@I [HLS-100] Command cleanup_all returned 0; 0.3 sec.

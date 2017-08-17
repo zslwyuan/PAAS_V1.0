@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="time_benchmark.sh" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/time_benchmark.sh"/>
+    <originFiles name="run-all.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/run-all.pl"/>
+    <originFiles name="polybench.spec" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/polybench.spec"/>
+    <originFiles name="polybench.h" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/polybench.h"/>
+    <originFiles name="polybench.c" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/polybench.c"/>
+    <originFiles name="polybench.R" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/polybench.R"/>
+    <originFiles name="papi_counters.list" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/papi_counters.list"/>
+    <originFiles name="makefile-gen.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/makefile-gen.pl"/>
+    <originFiles name="header-gen.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/header-gen.pl"/>
+    <originFiles name="floyd-warshall.h" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/floyd-warshall.h"/>
+    <originFiles name="floyd-warshall.c" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/floyd-warshall.c"/>
+    <originFiles name="create_cpped_version.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/create_cpped_version.pl"/>
+    <originFiles name="clean.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/utilities/clean.pl"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

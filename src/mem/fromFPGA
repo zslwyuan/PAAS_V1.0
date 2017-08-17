@@ -1,0 +1,1289 @@
+abstract_mem.cc:    Request *req = pkt->req;
+abstract_mem.cc:    Request *req = pkt->req;
+abstract_mem.cc:    bool isLLSC = pkt->isLLSC();
+abstract_mem.cc:            "0x%x %c\n", A, system()->getMasterName(pkt->req->masterId()),\
+abstract_mem.cc:            pkt->getSize(), pkt->getAddr(), pkt->get<T>(),                \
+abstract_mem.cc:            pkt->req->isUncacheable() ? 'U' : 'C');                       \
+abstract_mem.cc:        switch (pkt->getSize()) {                                       \
+abstract_mem.cc:                    A, system()->getMasterName(pkt->req->masterId()),          \
+abstract_mem.cc:                    pkt->getSize(), pkt->getAddr(),                            \
+abstract_mem.cc:                    pkt->req->isUncacheable() ? 'U' : 'C');                    \
+abstract_mem.cc:            DDUMP(MemoryAccess, pkt->getConstPtr<uint8_t>(), pkt->getSize());  \
+abstract_mem.cc:    if (pkt->cacheResponding()) {
+abstract_mem.cc:                pkt->getAddr());
+abstract_mem.cc:    if (pkt->cmd == MemCmd::CleanEvict || pkt->cmd == MemCmd::WritebackClean) {
+abstract_mem.cc:                pkt->getAddr());
+abstract_mem.cc:    assert(AddrRange(pkt->getAddr(),
+abstract_mem.cc:                     pkt->getAddr() + (pkt->getSize() - 1)).isSubset(range));
+abstract_mem.cc:    uint8_t *hostAddr = pmemAddr + pkt->getAddr() - range.start();
+abstract_mem.cc:    if (pkt->cmd == MemCmd::SwapReq) {
+abstract_mem.cc:        if (pkt->isAtomicOp()) {
+abstract_mem.cc:                memcpy(pkt->getPtr<uint8_t>(), hostAddr, pkt->getSize());
+abstract_mem.cc:                (*(pkt->getAtomicOp()))(hostAddr);
+abstract_mem.cc:            std::vector<uint8_t> overwrite_val(pkt->getSize());
+abstract_mem.cc:            std::memcpy(&overwrite_val[0], pkt->getConstPtr<uint8_t>(),
+abstract_mem.cc:                        pkt->getSize());
+abstract_mem.cc:            std::memcpy(pkt->getPtr<uint8_t>(), hostAddr, pkt->getSize());
+abstract_mem.cc:            if (pkt->req->isCondSwap()) {
+abstract_mem.cc:                if (pkt->getSize() == sizeof(uint64_t)) {
+abstract_mem.cc:                    condition_val64 = pkt->req->getExtraData();
+abstract_mem.cc:                } else if (pkt->getSize() == sizeof(uint32_t)) {
+abstract_mem.cc:                    condition_val32 = (uint32_t)pkt->req->getExtraData();
+abstract_mem.cc:                std::memcpy(hostAddr, &overwrite_val[0], pkt->getSize());
+abstract_mem.cc:            assert(!pkt->req->isInstFetch());
+abstract_mem.cc:            numOther[pkt->req->masterId()]++;
+abstract_mem.cc:    } else if (pkt->isRead()) {
+abstract_mem.cc:        assert(!pkt->isWrite());
+abstract_mem.cc:        if (pkt->isLLSC()) {
+abstract_mem.cc:            memcpy(pkt->getPtr<uint8_t>(), hostAddr, pkt->getSize());
+abstract_mem.cc:        TRACE_PACKET(pkt->req->isInstFetch() ? "IFetch" : "Read");
+abstract_mem.cc:        numReads[pkt->req->masterId()]++;
+abstract_mem.cc:        bytesRead[pkt->req->masterId()] += pkt->getSize();
+abstract_mem.cc:        if (pkt->req->isInstFetch())
+abstract_mem.cc:            bytesInstRead[pkt->req->masterId()] += pkt->getSize();
+abstract_mem.cc:    } else if (pkt->isInvalidate()) {
+abstract_mem.cc:    } else if (pkt->isWrite()) {
+abstract_mem.cc:                memcpy(hostAddr, pkt->getConstPtr<uint8_t>(), pkt->getSize());
+abstract_mem.cc:                        __func__, pkt->getSize(), pkt->getAddr());
+abstract_mem.cc:            assert(!pkt->req->isInstFetch());
+abstract_mem.cc:            numWrites[pkt->req->masterId()]++;
+abstract_mem.cc:            bytesWritten[pkt->req->masterId()] += pkt->getSize();
+abstract_mem.cc:    if (pkt->needsResponse()) {
+abstract_mem.cc:        pkt->makeResponse();
+abstract_mem.cc:    assert(AddrRange(pkt->getAddr(),
+abstract_mem.cc:                     pkt->getAddr() + pkt->getSize() - 1).isSubset(range));
+abstract_mem.cc:    uint8_t *hostAddr = pmemAddr + pkt->getAddr() - range.start();
+abstract_mem.cc:    if (pkt->isRead()) {
+abstract_mem.cc:            memcpy(pkt->getPtr<uint8_t>(), hostAddr, pkt->getSize());
+abstract_mem.cc:        pkt->makeResponse();
+abstract_mem.cc:    } else if (pkt->isWrite()) {
+abstract_mem.cc:            memcpy(hostAddr, pkt->getConstPtr<uint8_t>(), pkt->getSize());
+abstract_mem.cc:        pkt->makeResponse();
+abstract_mem.cc:    } else if (pkt->isPrint()) {
+abstract_mem.cc:            dynamic_cast<Packet::PrintReqState*>(pkt->senderState);
+abstract_mem.cc:              pkt->cmdString());
+abstract_mem.hh:        Request *req = pkt->req;
+abstract_mem.hh:            bool isLLSC = pkt->isLLSC();
+addr_mapper.cc:    Addr orig_addr = pkt->getAddr();
+addr_mapper.cc:    pkt->setAddr(remapAddr(orig_addr));
+addr_mapper.cc:    pkt->setAddr(orig_addr);
+addr_mapper.cc:    Addr orig_addr = pkt->getAddr();
+addr_mapper.cc:    pkt->setAddr(remapAddr(orig_addr));
+addr_mapper.cc:    pkt->setAddr(orig_addr);
+addr_mapper.cc:    Addr orig_addr = pkt->getAddr();
+addr_mapper.cc:    pkt->setAddr(remapAddr(orig_addr));
+addr_mapper.cc:    pkt->setAddr(orig_addr);
+addr_mapper.cc:    Addr orig_addr = pkt->getAddr();
+addr_mapper.cc:    pkt->setAddr(remapAddr(orig_addr));
+addr_mapper.cc:    pkt->setAddr(orig_addr);
+addr_mapper.cc:    Addr orig_addr = pkt->getAddr();
+addr_mapper.cc:    bool needsResponse = pkt->needsResponse();
+addr_mapper.cc:    bool cacheResponding = pkt->cacheResponding();
+addr_mapper.cc:        pkt->pushSenderState(new AddrMapperSenderState(orig_addr));
+addr_mapper.cc:    pkt->setAddr(remapAddr(orig_addr));
+addr_mapper.cc:        pkt->setAddr(orig_addr);
+addr_mapper.cc:            delete pkt->popSenderState();
+addr_mapper.cc:        dynamic_cast<AddrMapperSenderState*>(pkt->senderState);
+addr_mapper.cc:    Addr remapped_addr = pkt->getAddr();
+addr_mapper.cc:    pkt->senderState = receivedState->predecessor;
+addr_mapper.cc:    pkt->setAddr(receivedState->origAddr);
+addr_mapper.cc:        pkt->senderState = receivedState;
+addr_mapper.cc:        pkt->setAddr(remapped_addr);
+bridge.cc:            pkt->cmdString(), pkt->getAddr());
+bridge.cc:    Tick receive_delay = pkt->headerDelay + pkt->payloadDelay;
+bridge.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+bridge.cc:            pkt->cmdString(), pkt->getAddr());
+bridge.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+bridge.cc:        bool expects_response = pkt->needsResponse();
+bridge.cc:            Tick receive_delay = pkt->headerDelay + pkt->payloadDelay;
+bridge.cc:            pkt->headerDelay = pkt->payloadDelay = 0;
+bridge.cc:            pkt->getAddr(), transmitList.size());
+bridge.cc:            pkt->getAddr(), outstandingResponses);
+bridge.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+bridge.cc:    pkt->pushLabel(name());
+bridge.cc:        if (pkt->checkFunctional((*i).pkt)) {
+bridge.cc:            pkt->makeResponse();
+bridge.cc:    pkt->popLabel();
+bridge.cc:        if (pkt->checkFunctional((*i).pkt)) {
+bridge.cc:            pkt->makeResponse();
+cache/base.hh:        MSHR *mshr = mshrQueue.allocate(blockAlign(pkt->getAddr()), blkSize,
+cache/base.hh:                                        allocOnFill(pkt->cmd));
+cache/base.hh:        assert(pkt->isWrite() || pkt->cmd == MemCmd::CleanEvict);
+cache/base.hh:        Addr blk_addr = blockAlign(pkt->getAddr());
+cache/base.hh:            writeBuffer.findMatch(blk_addr, pkt->isSecure());
+cache/base.hh:                    pkt->cmdString(), pkt->getAddr());
+cache/base.hh:        assert(pkt->req->masterId() < system->maxMasters());
+cache/base.hh:        misses[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/base.hh:        pkt->req->incAccessDepth();
+cache/base.hh:        assert(pkt->req->masterId() < system->maxMasters());
+cache/base.hh:        hits[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/blk.hh:        assert(pkt->isLLSC());
+cache/blk.hh:            if (l->intersects(pkt->req))
+cache/blk.hh:        lockList.emplace_front(pkt->req);
+cache/blk.hh:        assert(pkt->isWrite());
+cache/blk.hh:        if (!pkt->isLLSC() && lockList.empty())
+cache/blk.hh:        RequestPtr req = pkt->req;
+cache/blk.hh:        if (pkt->isLLSC()) {
+cache/blk.hh:                if (l->matches(pkt->req)) {
+cache/cache.cc:    assert(pkt->isRequest());
+cache/cache.cc:    int offset = tags->extractBlkOffset(pkt->getAddr());
+cache/cache.cc:    assert(sizeof(uint64_t) >= pkt->getSize());
+cache/cache.cc:    pkt->writeData((uint8_t *)&overwrite_val);
+cache/cache.cc:    pkt->setData(blk_data);
+cache/cache.cc:    if (pkt->req->isCondSwap()) {
+cache/cache.cc:        if (pkt->getSize() == sizeof(uint64_t)) {
+cache/cache.cc:            condition_val64 = pkt->req->getExtraData();
+cache/cache.cc:        } else if (pkt->getSize() == sizeof(uint32_t)) {
+cache/cache.cc:            condition_val32 = (uint32_t)pkt->req->getExtraData();
+cache/cache.cc:        std::memcpy(blk_data, &overwrite_val, pkt->getSize());
+cache/cache.cc:    assert(pkt->isRequest());
+cache/cache.cc:    // assert(!pkt->needsWritable() || blk->isWritable());
+cache/cache.cc:    assert(pkt->getOffset(blkSize) + pkt->getSize() <= blkSize);
+cache/cache.cc:    if (pkt->cmd == MemCmd::SwapReq) {
+cache/cache.cc:    } else if (pkt->isWrite()) {
+cache/cache.cc:        assert(blk->isWritable()||pkt->req->fromFPGA);
+cache/cache.cc:            pkt->writeDataToBlock(blk->data, blkSize);
+cache/cache.cc:                __func__, pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    } else if (pkt->isRead()) {
+cache/cache.cc:        if (pkt->isLLSC()) {
+cache/cache.cc:        assert(pkt->hasRespData());
+cache/cache.cc:        pkt->setDataFromBlock(blk->data, blkSize);
+cache/cache.cc:        if (pkt->fromCache()) {
+cache/cache.cc:            assert(pkt->getSize() == blkSize);
+cache/cache.cc:            if (pkt->needsWritable()) {
+cache/cache.cc:                assert(pkt->cmd == MemCmd::ReadExReq ||
+cache/cache.cc:                       pkt->cmd == MemCmd::SCUpgradeFailReq);
+cache/cache.cc:                assert(!pkt->hasSharers());
+cache/cache.cc:                    pkt->setCacheResponding();
+cache/cache.cc:                       !pkt->hasSharers() &&
+cache/cache.cc:                       pkt->cmd != MemCmd::ReadCleanReq) {
+cache/cache.cc:                        pkt->setCacheResponding();
+cache/cache.cc:                        pkt->setHasSharers();
+cache/cache.cc:                pkt->setHasSharers();
+cache/cache.cc:    } else if (pkt->isUpgrade()) {
+cache/cache.cc:        assert(!pkt->hasSharers());
+cache/cache.cc:            pkt->setCacheResponding();
+cache/cache.cc:        assert(pkt->isInvalidate());
+cache/cache.cc:                __func__, pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    assert(pkt->isRequest());
+cache/cache.cc:    chatty_assert(!(isReadOnly && pkt->isWrite()),
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    if (pkt->req->isUncacheable()) {
+cache/cache.cc:        DPRINTF(Cache, "%s%s addr %#llx uncacheable\n", pkt->cmdString(),
+cache/cache.cc:                pkt->req->isInstFetch() ? " (ifetch)" : "",
+cache/cache.cc:                pkt->getAddr());
+cache/cache.cc:        CacheBlk *old_blk(tags->findBlock(pkt->getAddr(), pkt->isSecure()));
+cache/cache.cc:    ContextID id = pkt->req->hasContextId() ?
+cache/cache.cc:        pkt->req->contextId() : InvalidContextID;
+cache/cache.cc:    blk = tags->accessBlock(pkt->getAddr(), pkt->isSecure(), lat, id);
+cache/cache.cc:    DPRINTF(Cache, "%s%s addr %#llx size %d (%s) %s\n", pkt->cmdString(),
+cache/cache.cc:            pkt->req->isInstFetch() ? " (ifetch)" : "",
+cache/cache.cc:            pkt->getAddr(), pkt->getSize(), pkt->isSecure() ? "s" : "ns",
+cache/cache.cc:    if (pkt->isEviction()) {
+cache/cache.cc:        WriteQueueEntry *wb_entry = writeBuffer.findMatch(pkt->getAddr(),
+cache/cache.cc:                                                          pkt->isSecure());
+cache/cache.cc:            if (pkt->isCleanEviction()) {
+cache/cache.cc:                assert(pkt->cmd == MemCmd::WritebackDirty);
+cache/cache.cc:    if (pkt->isWriteback()) {
+cache/cache.cc:        assert(blkSize == pkt->getSize());
+cache/cache.cc:        if (pkt->cmd == MemCmd::WritebackClean &&
+cache/cache.cc:            mshrQueue.findMatch(pkt->getAddr(), pkt->isSecure())) {
+cache/cache.cc:                    "dropping\n", pkt->getAddr());
+cache/cache.cc:            blk = allocateBlock(pkt->getAddr(), pkt->isSecure(), writebacks);
+cache/cache.cc:            if (pkt->isSecure()) {
+cache/cache.cc:        if (pkt->cmd == MemCmd::WritebackDirty/* || pkt->cmd == MemCmd::FPGAWrite*/) {
+cache/cache.cc:        if (!pkt->hasSharers()) {
+cache/cache.cc:        assert(!pkt->needsResponse());
+cache/cache.cc:        std::memcpy(blk->data, pkt->getConstPtr<uint8_t>(), blkSize);
+cache/cache.cc:    } else if (pkt->cmd == MemCmd::CleanEvict) {
+cache/cache.cc:    } else if (blk && (pkt->needsWritable() ? blk->isWritable() :
+cache/cache.cc:        maintainClusivity(pkt->fromCache(), blk);
+cache/cache.cc:    if (blk == nullptr && pkt->isLLSC() && pkt->isWrite()) {
+cache/cache.cc:        pkt->req->setExtraData(0);
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    assert(pkt->isResponse());
+cache/cache.cc:    const bool forwardAsSnoop = outstandingSnoop.find(pkt->req) ==
+cache/cache.cc:        assert(pkt->cmd == MemCmd::HardPFResp);
+cache/cache.cc:        outstandingSnoop.erase(pkt->req);
+cache/cache.cc:                "%#llx (%s)\n", pkt->getAddr(), pkt->isSecure() ? "s" : "ns");
+cache/cache.cc:    Tick snoop_resp_time = clockEdge(forwardLatency) + pkt->headerDelay;
+cache/cache.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:    if (doFastWrites && (pkt->cmd == MemCmd::WriteReq) &&
+cache/cache.cc:        (pkt->getSize() == blkSize) && (pkt->getOffset(blkSize) == 0)) {
+cache/cache.cc:        pkt->cmd = MemCmd::WriteLineReq;
+cache/cache.cc:    assert(pkt->isRequest());
+cache/cache.cc:	if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:    if (pkt->cacheResponding()) {
+cache/cache.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:                pkt->getAddr(), pkt->isSecure() ? "s" : "ns");
+cache/cache.cc:			assert(pkt->needsWritable() && (!pkt->responderHadWritable()||pkt->req->fromFPGA));
+cache/cache.cc:        snoop_pkt->headerDelay = snoop_pkt->payloadDelay = 0;
+cache/cache.cc:        snoop_pkt->setExpressSnoop();
+cache/cache.cc:        snoop_pkt->setCacheResponding();
+cache/cache.cc:    Tick forward_time = clockEdge(forwardLatency) + pkt->headerDelay;
+cache/cache.cc:    Tick request_time = clockEdge(lat) + pkt->headerDelay;
+cache/cache.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:    bool needsResponse = pkt->needsResponse();
+cache/cache.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:        assert(!pkt->req->isUncacheable());
+cache/cache.cc:            if (!pkt->cmd.isSWPrefetch())
+cache/cache.cc:            pkt->makeTimingResponse();
+cache/cache.cc:            pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:                    __func__, pkt->cmdString(), pkt->getAddr());
+cache/cache.cc:        Addr blk_addr = blockAlign(pkt->getAddr());
+cache/cache.cc:        MSHR *mshr = pkt->req->isUncacheable() ? nullptr :
+cache/cache.cc:            mshrQueue.findMatch(blk_addr, pkt->isSecure());
+cache/cache.cc:        if (pkt->cmd.isSWPrefetch()) {
+cache/cache.cc:            assert(pkt->req->hasPaddr());
+cache/cache.cc:            assert(!pkt->req->isUncacheable());
+cache/cache.cc:                RequestPtr req = new Request(pkt->req->getPaddr(),
+cache/cache.cc:                                             pkt->req->getSize(),
+cache/cache.cc:                                             pkt->req->getFlags(),
+cache/cache.cc:                                             pkt->req->masterId());
+cache/cache.cc:                pf = new Packet(req, pkt->cmd);
+cache/cache.cc:                assert(pf->getAddr() == pkt->getAddr());
+cache/cache.cc:                assert(pf->getSize() == pkt->getSize());
+cache/cache.cc:            pkt->makeTimingResponse();
+cache/cache.cc:                assert(!pkt->isWriteback());
+cache/cache.cc:                if (pkt->cmd == MemCmd::CleanEvict) {
+cache/cache.cc:                            "size %d\n", __func__, pkt->cmdString(),
+cache/cache.cc:                            pkt->getAddr(), pkt->getSize());
+cache/cache.cc:                    assert(pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:                    mshr_hits[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/cache.cc:                                         allocOnFill(pkt->cmd));
+cache/cache.cc:                    if (!pkt->cmd.isSWPrefetch())
+cache/cache.cc:            assert(pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:            if (pkt->req->isUncacheable()) {
+cache/cache.cc:                mshr_uncacheable[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/cache.cc:                mshr_misses[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/cache.cc:            if (pkt->isEviction() ||
+cache/cache.cc:                (pkt->req->isUncacheable() && pkt->isWrite())) {
+cache/cache.cc:                    assert(!pkt->req->isUncacheable());
+cache/cache.cc:                    assert(pkt->needsWritable());
+cache/cache.cc:                if (!pkt->cmd.isSWPrefetch())
+cache/cache.cc:    assert(!cpu_pkt->isEviction());
+cache/cache.cc:	if (cpu_pkt->req->fromFPGA && blkValid && useUpgrades)
+cache/cache.cc:    if (cpu_pkt->req->isUncacheable() ||
+cache/cache.cc:        (!blkValid && cpu_pkt->isUpgrade())) {
+cache/cache.cc:    assert(cpu_pkt->needsResponse());
+cache/cache.cc:        if(tags->replacement_policy.find("PART")==std::string::npos&&!cpu_pkt->req->fromFPGA) assert(needsWritable);
+cache/cache.cc:        if(tags->replacement_policy.find("PART")==std::string::npos&&!cpu_pkt->req->fromFPGA) assert(!blk->isWritable());
+cache/cache.cc:        cmd = cpu_pkt->isLLSC() ? MemCmd::SCUpgradeReq : MemCmd::UpgradeReq;
+cache/cache.cc:    } else if (cpu_pkt->cmd == MemCmd::SCUpgradeFailReq ||
+cache/cache.cc:               cpu_pkt->cmd == MemCmd::StoreCondFailReq) {
+cache/cache.cc:    } else if (cpu_pkt->cmd == MemCmd::WriteLineReq ||
+cache/cache.cc:               cpu_pkt->cmd == MemCmd::InvalidateReq) {
+cache/cache.cc:    PacketPtr pkt = new Packet(cpu_pkt->req, cmd, blkSize);
+cache/cache.cc:    if (cpu_pkt->hasSharers() && !needsWritable) {
+cache/cache.cc:        pkt->setHasSharers();
+cache/cache.cc:                __func__, cpu_pkt->cmdString(), pkt->cmdString(),
+cache/cache.cc:                pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    assert(pkt->getAddr() == blockAlign(pkt->getAddr()));
+cache/cache.cc:    pkt->allocate();
+cache/cache.cc:            __func__, pkt->cmdString(), cpu_pkt->cmdString(), pkt->getAddr(),
+cache/cache.cc:            pkt->getSize());
+cache/cache.cc:    if (pkt->cacheResponding()) {
+cache/cache.cc:                pkt->getAddr(), pkt->isSecure() ? "s" : "ns");
+cache/cache.cc:        assert(pkt->needsWritable() && !pkt->responderHadWritable());
+cache/cache.cc:        if (pkt->isEviction() ||
+cache/cache.cc:            (pkt->req->isUncacheable() && pkt->isWrite())) {
+cache/cache.cc:        PacketPtr bus_pkt = createMissPacket(pkt, blk, pkt->needsWritable());
+cache/cache.cc:                bus_pkt->cmdString(), bus_pkt->getAddr(),
+cache/cache.cc:                bus_pkt->isSecure() ? "s" : "ns");
+cache/cache.cc:        bool is_invalidate = bus_pkt->isInvalidate();
+cache/cache.cc:                "state %i\n", bus_pkt->cmdString(), bus_pkt->getAddr(),
+cache/cache.cc:                bus_pkt->isSecure() ? "s" : "ns",
+cache/cache.cc:            if (pkt->needsResponse()) {
+cache/cache.cc:                assert(bus_pkt->isResponse());
+cache/cache.cc:                if (bus_pkt->isError()) {
+cache/cache.cc:                    pkt->makeAtomicResponse();
+cache/cache.cc:                    pkt->copyError(bus_pkt);
+cache/cache.cc:                } else if (pkt->cmd == MemCmd::WriteLineReq) {
+cache/cache.cc:                                     allocOnFill(pkt->cmd));
+cache/cache.cc:                } else if (bus_pkt->isRead() ||
+cache/cache.cc:                           bus_pkt->cmd == MemCmd::UpgradeResp) {
+cache/cache.cc:                                     allocOnFill(pkt->cmd));
+cache/cache.cc:                    maintainClusivity(pkt->fromCache(), blk);
+cache/cache.cc:                    pkt->makeAtomicResponse();
+cache/cache.cc:    if (pkt->needsResponse()) {
+cache/cache.cc:        pkt->makeAtomicResponse();
+cache/cache.cc:    Addr blk_addr = blockAlign(pkt->getAddr());
+cache/cache.cc:    bool is_secure = pkt->isSecure();
+cache/cache.cc:    CacheBlk *blk = tags->findBlock(pkt->getAddr(), is_secure);
+cache/cache.cc:    pkt->pushLabel(name());
+cache/cache.cc:        && pkt->checkFunctional(&cbpw, blk_addr, is_secure, blkSize,
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), is_secure ? "s" : "ns",
+cache/cache.cc:    pkt->popLabel();
+cache/cache.cc:        pkt->makeResponse();
+cache/cache.cc:        pkt->headerDelay + pkt->payloadDelay;
+cache/cache.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:    assert(pkt->isResponse());
+cache/cache.cc:    panic_if(pkt->headerDelay != 0 && pkt->cmd != MemCmd::HardPFResp,
+cache/cache.cc:    bool is_error = pkt->isError();
+cache/cache.cc:                "cmd: %s\n", pkt->getAddr(), pkt->isSecure() ? "s" : "ns",
+cache/cache.cc:                pkt->cmdString());
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize(),
+cache/cache.cc:            pkt->isSecure() ? "s" : "ns");
+cache/cache.cc:    if (pkt->isWrite()) {
+cache/cache.cc:        assert(pkt->req->isUncacheable());
+cache/cache.cc:    MSHR *mshr = dynamic_cast<MSHR*>(pkt->popSenderState());
+cache/cache.cc:    int stats_cmd_idx = initial_tgt->pkt->cmdToIndex();
+cache/cache.cc:    if (pkt->req->isUncacheable()) {
+cache/cache.cc:        assert(pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:        mshr_uncacheable_lat[stats_cmd_idx][pkt->req->masterId()] +=
+cache/cache.cc:        assert(pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:        mshr_miss_latency[stats_cmd_idx][pkt->req->masterId()] +=
+cache/cache.cc:    Tick forward_time = clockEdge(forwardLatency) + pkt->headerDelay;
+cache/cache.cc:    if (!pkt->hasSharers()) {
+cache/cache.cc:        (pkt->isRead() || pkt->cmd == MemCmd::UpgradeResp);
+cache/cache.cc:    CacheBlk *blk = tags->findBlock(pkt->getAddr(), pkt->isSecure());
+cache/cache.cc:                pkt->getAddr());
+cache/cache.cc:    bool is_invalidate = pkt->isInvalidate();
+cache/cache.cc:    int initial_offset = initial_tgt->pkt->getOffset(blkSize);
+cache/cache.cc:            completion_time = pkt->headerDelay;
+cache/cache.cc:            if (tgt_pkt->cmd.isSWPrefetch()) {
+cache/cache.cc:                delete tgt_pkt->req;
+cache/cache.cc:            from_cache = from_cache || tgt_pkt->fromCache();
+cache/cache.cc:            if (tgt_pkt->cmd == MemCmd::WriteLineReq) {
+cache/cache.cc:                    tgt_pkt->getOffset(blkSize) - initial_offset;
+cache/cache.cc:                    (transfer_offset ? pkt->payloadDelay : 0);
+cache/cache.cc:                assert(!tgt_pkt->req->isUncacheable());
+cache/cache.cc:                assert(tgt_pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:                missLatency[tgt_pkt->cmdToIndex()][tgt_pkt->req->masterId()] +=
+cache/cache.cc:            } else if (pkt->cmd == MemCmd::UpgradeFailResp) {
+cache/cache.cc:                assert(tgt_pkt->cmd == MemCmd::StoreCondReq ||
+cache/cache.cc:                       tgt_pkt->cmd == MemCmd::StoreCondFailReq ||
+cache/cache.cc:                       tgt_pkt->cmd == MemCmd::SCUpgradeFailReq);
+cache/cache.cc:                    pkt->payloadDelay;
+cache/cache.cc:                tgt_pkt->req->setExtraData(0);
+cache/cache.cc:                    pkt->payloadDelay;
+cache/cache.cc:                if (pkt->isRead() && !is_error) {
+cache/cache.cc:                    assert(pkt->getAddr() == tgt_pkt->getAddr());
+cache/cache.cc:                    assert(pkt->getSize() >= tgt_pkt->getSize());
+cache/cache.cc:                    tgt_pkt->setData(pkt->getConstPtr<uint8_t>());
+cache/cache.cc:            tgt_pkt->makeTimingResponse();
+cache/cache.cc:                tgt_pkt->copyError(pkt);
+cache/cache.cc:            if (tgt_pkt->cmd == MemCmd::ReadResp &&
+cache/cache.cc:                tgt_pkt->cmd = MemCmd::ReadRespWithInvalidate;
+cache/cache.cc:                        __func__, tgt_pkt->cmdString(), tgt_pkt->getAddr());
+cache/cache.cc:            tgt_pkt->headerDelay = tgt_pkt->payloadDelay = 0;
+cache/cache.cc:            assert(tgt_pkt->cmd == MemCmd::HardPFReq);
+cache/cache.cc:            delete tgt_pkt->req;
+cache/cache.cc:        schedMemSideSendEvent(clockEdge() + pkt->payloadDelay);
+cache/cache.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr());
+cache/cache.cc:            pkt->getAddr(), blk->isWritable(), blk->isDirty());
+cache/cache.cc:        pkt->setHasSharers();
+cache/cache.cc:    pkt->allocate();
+cache/cache.cc:    std::memcpy(pkt->getPtr<uint8_t>(), blk->data, blkSize);
+cache/cache.cc:    pkt->allocate();
+cache/cache.cc:    DPRINTF(Cache, "%s%s %x Create CleanEvict\n", pkt->cmdString(),
+cache/cache.cc:            pkt->req->isInstFetch() ? " (ifetch)" : "",
+cache/cache.cc:            pkt->getAddr());
+cache/cache.cc:    assert(pkt->isResponse() || pkt->cmd == MemCmd::WriteLineReq);
+cache/cache.cc:    Addr addr = pkt->getAddr();
+cache/cache.cc:    bool is_secure = pkt->isSecure();
+cache/cache.cc:        assert(pkt->hasData());
+cache/cache.cc:        assert(pkt->isRead() || pkt->cmd == MemCmd::WriteLineReq);
+cache/cache.cc:        assert(pkt->hasData() || blk->isValid());
+cache/cache.cc:    if (pkt->cmd == MemCmd::WriteLineReq) {
+cache/cache.cc:        assert(!pkt->hasSharers());
+cache/cache.cc:        assert(!pkt->cacheResponding());
+cache/cache.cc:    if (!pkt->hasSharers()) {
+cache/cache.cc:        if (pkt->cacheResponding()) {
+cache/cache.cc:    if (pkt->isRead()) {
+cache/cache.cc:        assert(pkt->hasData());
+cache/cache.cc:        assert(pkt->getSize() == blkSize);
+cache/cache.cc:        std::memcpy(blk->data, pkt->getConstPtr<uint8_t>(), blkSize);
+cache/cache.cc:        pkt->payloadDelay;
+cache/cache.cc:    assert(req_pkt->isRequest());
+cache/cache.cc:    assert(req_pkt->needsResponse());
+cache/cache.cc:            req_pkt->cmdString(), req_pkt->getAddr(), req_pkt->getSize());
+cache/cache.cc:        pkt = new Packet(req_pkt, false, req_pkt->isRead());
+cache/cache.cc:	if (!(req_pkt->req->isUncacheable() || req_pkt->isInvalidate() ||    pkt->hasSharers())&&warn0)
+cache/cache.cc:		//printf("\nWARNING: ignore cache.cc:1864:assertion (req_pkt->req->isUncacheable() || req_pkt->isInvalidate()|| pkt->hasSharers())\n");
+cache/cache.cc:  //  assert(req_pkt->req->isUncacheable() || req_pkt->isInvalidate() ||
+cache/cache.cc:    //       pkt->hasSharers());
+cache/cache.cc:    pkt->makeTimingResponse();
+cache/cache.cc:    if (pkt->isRead()) {
+cache/cache.cc:        pkt->setDataFromBlock(blk_data, blkSize);
+cache/cache.cc:    if (pkt->cmd == MemCmd::ReadResp && pending_inval) {
+cache/cache.cc:        pkt->cmd = MemCmd::ReadRespWithInvalidate;
+cache/cache.cc:    Tick forward_time = clockEdge(forwardLatency) + pkt->headerDelay;
+cache/cache.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+cache/cache.cc:            __func__, pkt->cmdString(), pkt->getAddr(), pkt->getSize(),
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    assert(pkt->isRequest());
+cache/cache.cc:    bool invalidate = pkt->isInvalidate()||(pkt->req->fromFPGA&&pkt->isWrite());
+cache/cache.cc:    bool M5_VAR_USED needs_writable = pkt->needsWritable();
+cache/cache.cc:	if (!((pkt->req->fromFPGA&&pkt->isWrite())))
+cache/cache.cc:    panic_if(invalidate && pkt->req->isUncacheable(),
+cache/cache.cc:             name(), pkt->cmdString(), pkt->getAddr());
+cache/cache.cc:        bool alreadyResponded = pkt->cacheResponding();
+cache/cache.cc:                pkt->setCacheResponding();
+cache/cache.cc:                pkt->setHasSharers();
+cache/cache.cc:                pkt->setBlockCached();
+cache/cache.cc:            if (!alreadyResponded && pkt->cacheResponding()) {
+cache/cache.cc:                assert(pkt->isResponse());
+cache/cache.cc:	if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:		if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:			if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:		if (blk->isValid()&&pkt->req->fromFPGA&&pkt->isWrite()) {
+cache/cache.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:				if (pkt->req->getVaddr()==140737488314628&&pkt->req->fromFPGA)
+cache/cache.cc:					if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:            assert(pkt->needsResponse());
+cache/cache.cc:			if (!((pkt->req->fromFPGA&&pkt->isWrite())))//if it's a FPGA packet in l1 cache, need not this assertion	
+cache/cache.cc:            	assert(pkt->cacheResponding());					
+cache/cache.cc:                __func__, pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:                "old state is %s\n", __func__, pkt->cmdString(),
+cache/cache.cc:                pkt->getAddr(), pkt->getSize(), blk->print());
+cache/cache.cc:    bool respond = blk->isDirty() && pkt->needsResponse() &&
+cache/cache.cc:        pkt->cmd != MemCmd::InvalidateReq;
+cache/cache.cc://	if (pkt->req->fromFPGA&&name().find("dc")!=std::string::npos&&pkt->isWrite())
+cache/cache.cc:    if (pkt->mustCheckAbove()) {
+cache/cache.cc:                "from lower cache\n", pkt->getAddr(), pkt->cmdString());
+cache/cache.cc:        pkt->setBlockCached();
+cache/cache.cc:    if (pkt->isRead() && !invalidate) {
+cache/cache.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:			if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:        pkt->setHasSharers();
+cache/cache.cc:        if (!pkt->req->isUncacheable())
+cache/cache.cc:        pkt->setCacheResponding();
+cache/cache.cc:            pkt->setResponderHadWritable();
+cache/cache.cc:       /* panic_if(!invalidate && !pkt->hasSharers(),
+cache/cache.cc:                 name(), pkt->cmdString(), pkt->getAddr());*/
+cache/cache.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:            pkt->makeAtomicResponse();
+cache/cache.cc:            if (pkt->hasData())
+cache/cache.cc:                pkt->setDataFromBlock(blk->data, blkSize);
+cache/cache.cc:        assert(pkt->needsResponse());
+cache/cache.cc://	if (pkt->req->fromFPGA&&name().find("dc")!=std::string::npos&&pkt->isWrite())
+cache/cache.cc:        if (!pkt->cacheResponding()) {
+cache/cache.cc:            delete pkt->req;
+cache/cache.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/cache.cc:    if (!inRange(pkt->getAddr())) {
+cache/cache.cc:    bool is_secure = pkt->isSecure();
+cache/cache.cc:    CacheBlk *blk = tags->findBlock(pkt->getAddr(), is_secure);
+cache/cache.cc:    Addr blk_addr = blockAlign(pkt->getAddr());
+cache/cache.cc:    pkt->snoopDelay = std::max<uint32_t>(pkt->snoopDelay,
+cache/cache.cc:    if (mshr && pkt->mustCheckAbove()) {
+cache/cache.cc:                pkt->cmdString(), pkt->getAddr());
+cache/cache.cc:        pkt->setBlockCached();
+cache/cache.cc:                pkt->getAddr(), is_secure ? "s" : "ns");
+cache/cache.cc:        assert(wb_pkt->isEviction());
+cache/cache.cc:        if (pkt->isEviction()) {
+cache/cache.cc:            pkt->setBlockCached();
+cache/cache.cc:                    " %#x\n", pkt->cmdString(), pkt->getAddr());
+cache/cache.cc:        bool respond = (wb_pkt->cmd == MemCmd::WritebackDirty) &&
+cache/cache.cc:            pkt->needsResponse() && pkt->cmd != MemCmd::InvalidateReq;
+cache/cache.cc:        bool have_writable = !wb_pkt->hasSharers();
+cache/cache.cc:        bool invalidate = pkt->isInvalidate();
+cache/cache.cc:        if (!pkt->req->isUncacheable() && pkt->isRead() && !invalidate) {
+cache/cache.cc:            assert(!pkt->needsWritable());
+cache/cache.cc:            pkt->setHasSharers();
+cache/cache.cc:            wb_pkt->setHasSharers();
+cache/cache.cc:            pkt->setCacheResponding();
+cache/cache.cc:                pkt->setResponderHadWritable();
+cache/cache.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+cache/cache.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+cache/cache.cc:            doTimingSupplyResponse(pkt, wb_pkt->getConstPtr<uint8_t>(),
+cache/cache.cc:    pkt->snoopDelay = std::max<uint32_t>(pkt->snoopDelay, snoop_delay +
+cache/cache.cc:    if (!inRange(pkt->getAddr())) {
+cache/cache.cc:    CacheBlk *blk = tags->findBlock(pkt->getAddr(), pkt->isSecure());
+cache/cache.cc:            Addr pf_addr = blockAlign(pkt->getAddr());
+cache/cache.cc:            if (!tags->findBlock(pf_addr, pkt->isSecure()) &&
+cache/cache.cc:                !mshrQueue.findMatch(pf_addr, pkt->isSecure()) &&
+cache/cache.cc:                !writeBuffer.findMatch(pf_addr, pkt->isSecure())) {
+cache/cache.cc:                assert(pkt->req->masterId() < system->maxMasters());
+cache/cache.cc:                mshr_misses[pkt->cmdToIndex()][pkt->req->masterId()]++;
+cache/cache.cc:                delete pkt->req;
+cache/cache.cc:        assert(pkt->isEviction());
+cache/cache.cc:        return pkt->isBlockCached();
+cache/cache.cc:            tgt_pkt->cmdString(), tgt_pkt->getAddr(),
+cache/cache.cc:            tgt_pkt->getSize());
+cache/cache.cc:    if (tgt_pkt->cmd == MemCmd::HardPFReq && forwardSnoops) {
+cache/cache.cc:                    tgt_pkt->getAddr(), tgt_pkt->isSecure()? "s": "ns");
+cache/cache.cc:        assert(!pkt->isWrite());
+cache/cache.cc:    pkt->pushSenderState(mshr);
+cache/cache.cc:        bool pending_modified_resp = !pkt->hasSharers() &&
+cache/cache.cc:            pkt->cacheResponding();
+cache/cache.cc:            tgt_pkt->cmdString(), tgt_pkt->getAddr(),
+cache/cache.cc:            tgt_pkt->getSize());
+cache/cache.cc:   // if (pkt->req->fromFPGA&&pkt->isWrite()) printf("here FPGA : %s\n",name().c_str());
+cache/cache.cc:    if (pkt->isExpressSnoop()) {
+cache/mshr.cc:        if (pkt->needsWritable()) {
+cache/mshr.cc:        if (pkt->isUpgrade() || pkt->cmd == MemCmd::StoreCondReq) {
+cache/mshr.cc:        MSHR *mshr = pkt->findNextSenderState<MSHR>();
+cache/mshr.cc:    bool has_data = pkt->hasData() || pkt->hasRespData();
+cache/mshr.cc:    if (pkt->cmd == MemCmd::UpgradeReq) {
+cache/mshr.cc:        pkt->cmd = MemCmd::ReadExReq;
+cache/mshr.cc:    } else if (pkt->cmd == MemCmd::SCUpgradeReq) {
+cache/mshr.cc:        pkt->cmd = MemCmd::SCUpgradeFailReq;
+cache/mshr.cc:    } else if (pkt->cmd == MemCmd::StoreCondReq) {
+cache/mshr.cc:        pkt->cmd = MemCmd::StoreCondFailReq;
+cache/mshr.cc:        assert(!pkt->hasData());
+cache/mshr.cc:        if (pkt->hasRespData()) {
+cache/mshr.cc:            pkt->allocate();
+cache/mshr.cc:            MSHR *mshr = t.pkt->findNextSenderState<MSHR>();
+cache/mshr.cc:        if (pkt->checkFunctional(t.pkt)) {
+cache/mshr.cc:        t.pkt->print(os, verbosity, "");
+cache/mshr.cc:    assert(pkt->cmd != MemCmd::HardPFReq);
+cache/mshr.cc:         (pkt->needsWritable() &&
+cache/mshr.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+cache/mshr.cc:	if (!(pkt->req->fromFPGA&&pkt->isWrite()))
+cache/mshr.cc:    panic_if(pkt->needsWritable() != pkt->isInvalidate(),
+cache/mshr.cc:             "does not match isInvalidate", name(), pkt->cmdString(),
+cache/mshr.cc:             pkt->getAddr());
+cache/mshr.cc:    if (!inService || (pkt->isExpressSnoop() && downstreamPending)) {
+cache/mshr.cc:        if (pkt->needsWritable()) {
+cache/mshr.cc:    if (pkt->needsWritable()) {
+cache/mshr.cc:    if (isPendingModified() || pkt->isInvalidate()||(pkt->req->fromFPGA&&pkt->isWrite())) {
+cache/mshr.cc:        bool will_respond = isPendingModified() && pkt->needsResponse() &&
+cache/mshr.cc:            pkt->cmd != MemCmd::InvalidateReq;
+cache/mshr.cc:            new Packet(new Request(*pkt->req), pkt->cmd);
+cache/mshr.cc:            pkt->setCacheResponding();
+cache/mshr.cc:            pkt->setResponderHadWritable();
+cache/mshr.cc:        if (pkt->needsWritable()) {
+cache/mshr.cc:    if (!pkt->needsWritable() && !pkt->req->isUncacheable()) {
+cache/mshr.cc:        pkt->setHasSharers();
+cache/mshr.cc:    if (pkt->isPrint()) {
+cache/mshr.cc:        pkt->checkFunctional(this, blkAddr, isSecure, blkSize, nullptr);
+cache/prefetch/base.cc:    Addr addr = pkt->getAddr();
+cache/prefetch/base.cc:    bool fetch = pkt->req->isInstFetch();
+cache/prefetch/base.cc:    bool read = pkt->isRead();
+cache/prefetch/base.cc:    bool inv = pkt->isInvalidate();
+cache/prefetch/base.cc:    bool is_secure = pkt->isSecure();
+cache/prefetch/base.cc:    if (pkt->req->isUncacheable()) return false;
+cache/prefetch/base.cc:    if (pkt->cmd == MemCmd::CleanEvict) return false;
+cache/prefetch/queued.cc:        delete p.pkt->req;
+cache/prefetch/queued.cc:        Addr blk_addr = pkt->getBlockAddr(blkSize);
+cache/prefetch/queued.cc:        bool is_secure = pkt->isSecure();
+cache/prefetch/queued.cc:                if (itr->pkt->getAddr() == blk_addr &&
+cache/prefetch/queued.cc:                    itr->pkt->isSecure() == is_secure) {
+cache/prefetch/queued.cc:                    delete itr->pkt->req;
+cache/prefetch/queued.cc:                if (tagPrefetch && pkt->req->hasPC()) {
+cache/prefetch/queued.cc:                    pf_pkt->req->setPC(pkt->req->getPC());
+cache/prefetch/queued.cc:    DPRINTF(HWPrefetch, "Generating prefetch for %#x.\n", pkt->getAddr());
+cache/prefetch/queued.cc:        if ((*dp).pkt->getAddr() == address &&
+cache/prefetch/queued.cc:            (*dp).pkt->isSecure() == is_secure) return dp;
+cache/prefetch/queued.cc:        if (dp->pkt->getAddr() == address &&
+cache/prefetch/queued.cc:            dp->pkt->isSecure() == is_secure) return dp;
+cache/prefetch/queued.cc:    pf_pkt->allocate();
+cache/prefetch/queued.cc:                            "oldest packet, addr: %#x", it->pkt->getAddr());
+cache/prefetch/queued.cc:        delete it->pkt->req;
+cache/prefetch/stride.cc:    if (!pkt->req->hasPC()) {
+cache/prefetch/stride.cc:    Addr pkt_addr = pkt->getAddr();
+cache/prefetch/stride.cc:    Addr pc = pkt->req->getPC();
+cache/prefetch/stride.cc:    bool is_secure = pkt->isSecure();
+cache/prefetch/stride.cc:    MasterID master_id = useMasterId ? pkt->req->masterId() : 0;
+cache/prefetch/tagged.cc:    Addr blkAddr = pkt->getAddr() & ~(Addr)(blkSize-1);
+cache/queue.hh:        pkt->pushLabel(label);
+cache/queue.hh:                pkt->popLabel();
+cache/queue.hh:        pkt->popLabel();
+cache/tags/base_set_assoc.hh:         Addr addr = pkt->getAddr();
+cache/tags/base_set_assoc.hh:         MasterID master_id = pkt->req->masterId();
+cache/tags/base_set_assoc.hh:         uint32_t task_id = pkt->req->taskId();
+cache/tags/lru.cc:    int set = extractSet(pkt->getAddr());
+cache/tags/part_lru.cc:    int set = extractSet(pkt->getAddr());
+cache/write_queue_entry.cc:        if (pkt->checkFunctional(t.pkt)) {
+cache/write_queue_entry.cc:        t.pkt->print(os, verbosity, "");
+cache/write_queue_entry.cc:    if (pkt->isPrint()) {
+cache/write_queue_entry.cc:        pkt->checkFunctional(this, blkAddr, isSecure, blkSize, nullptr);
+coherent_xbar.cc:	/*if (pkt->req->fromFPGA&&name().find("l2")!=std::string::npos&&pkt->isWrite())
+coherent_xbar.cc:		if (pkt->get<uint32_t>()==146)
+coherent_xbar.cc:    bool is_express_snoop = pkt->isExpressSnoop();
+coherent_xbar.cc:    bool cache_responding = pkt->cacheResponding();
+coherent_xbar.cc:	//if (pkt->req->fromFPGA&&pkt->isWrite()) printf("here FPGA : %s responding? %d\n",name().c_str(),cache_responding);
+coherent_xbar.cc:	if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:		if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:    PortID master_port_id = findPort(pkt->getAddr());
+coherent_xbar.cc:		//if (pkt->req->fromFPGA&&pkt->isWrite()) printf("fail tryTiming FPGA : %s data : %d\n",name().c_str(),pkt->get<uint32_t>());
+coherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:            src_port->name(), pkt->cmdString(), is_express_snoop,
+coherent_xbar.cc:            pkt->getAddr());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+coherent_xbar.cc:    Tick old_header_delay = pkt->headerDelay;
+coherent_xbar.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+coherent_xbar.cc:	//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("11\n");
+coherent_xbar.cc:        assert(pkt->snoopDelay == 0);
+coherent_xbar.cc:		//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("22\n");
+coherent_xbar.cc:        if (snoopFilter&&!pkt->req->fromFPGA) {
+coherent_xbar.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:			//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("33\n");
+coherent_xbar.cc:            pkt->headerDelay += sf_res.second * clockPeriod();
+coherent_xbar.cc:                    pkt->cmdString(), pkt->getAddr(), sf_res.first.size(),
+coherent_xbar.cc:            if (pkt->isEviction()) {
+coherent_xbar.cc:				//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("44\n");
+coherent_xbar.cc:                    pkt->setBlockCached();
+coherent_xbar.cc:					if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:						if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:					if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:						if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:        pkt->headerDelay += pkt->snoopDelay;
+coherent_xbar.cc:        pkt->snoopDelay = 0;
+coherent_xbar.cc:    const bool expect_snoop_resp = !cache_responding && pkt->cacheResponding();
+coherent_xbar.cc:    bool expect_response = pkt->needsResponse() && !pkt->cacheResponding();
+coherent_xbar.cc:    const Addr addr(pkt->getAddr());
+coherent_xbar.cc:    if (sink_packet/*&&(!(pkt->req->fromFPGA&&pkt->isWrite()))*/) {
+coherent_xbar.cc:	//	if (((pkt->req->fromFPGA&&pkt->isWrite()))) printf("name:%s responding?:%d\n",name().c_str(),pkt->cacheResponding());
+coherent_xbar.cc:                pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:			if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:        if (!pointOfCoherency || pkt->isRead() || pkt->isWrite()) {
+coherent_xbar.cc:            if (pkt->cacheResponding()) {
+coherent_xbar.cc:                pkt->setExpressSnoop();
+coherent_xbar.cc:			//if (pkt->req->fromFPGA&&pkt->isWrite()) printf("send to %s FPGA : %s data : %d\n",masterPorts[master_port_id]->name().c_str(),name().c_str(),pkt->get<uint32_t>());
+coherent_xbar.cc:			if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:				if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:            assert(pkt->needsResponse());
+coherent_xbar.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:			if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:        snoopFilter->finishRequest(!success, addr, pkt->isSecure());
+coherent_xbar.cc:        pkt->headerDelay = old_header_delay;
+coherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:                assert(outstandingSnoop.find(pkt->req) ==
+coherent_xbar.cc:                outstandingSnoop.insert(pkt->req);
+coherent_xbar.cc:                assert(routeTo.find(pkt->req) == routeTo.end());
+coherent_xbar.cc:                routeTo[pkt->req] = slave_port_id;
+coherent_xbar.cc:        assert(pkt->needsResponse());
+coherent_xbar.cc:        pkt->makeResponse();
+coherent_xbar.cc:        Tick response_time = clockEdge() + pkt->headerDelay;
+coherent_xbar.cc:        pkt->headerDelay = 0;
+coherent_xbar.cc:		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+coherent_xbar.cc:			if(pkt->isRead()) printf("R"); else printf("W");
+coherent_xbar.cc:    const auto route_lookup = routeTo.find(pkt->req);
+coherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:            src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+coherent_xbar.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+coherent_xbar.cc:    Tick latency = pkt->headerDelay;
+coherent_xbar.cc:    pkt->headerDelay = 0;
+coherent_xbar.cc:            masterPorts[master_port_id]->name(), pkt->cmdString(),
+coherent_xbar.cc:            pkt->getAddr());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:    transDist[pkt->cmdToIndex()]++;
+coherent_xbar.cc:    assert(pkt->isExpressSnoop());
+coherent_xbar.cc:    const bool cache_responding = pkt->cacheResponding();
+coherent_xbar.cc:    assert(pkt->snoopDelay == 0);
+coherent_xbar.cc:        pkt->headerDelay += sf_res.second * clockPeriod();
+coherent_xbar.cc:                pkt->cmdString(), pkt->getAddr(), sf_res.first.size(),
+coherent_xbar.cc:    pkt->headerDelay += pkt->snoopDelay;
+coherent_xbar.cc:    pkt->snoopDelay = 0;
+coherent_xbar.cc:    if (!cache_responding && pkt->cacheResponding()) {
+coherent_xbar.cc:        assert(routeTo.find(pkt->req) == routeTo.end());
+coherent_xbar.cc:        routeTo[pkt->req] = master_port_id;
+coherent_xbar.cc:    assert(master_port_id == findPort(pkt->getAddr()));
+coherent_xbar.cc:    const auto route_lookup = routeTo.find(pkt->req);
+coherent_xbar.cc:    const bool forwardAsSnoop = outstandingSnoop.find(pkt->req) ==
+coherent_xbar.cc:                    src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:                    snoop_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:            src_port->name(), pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+coherent_xbar.cc:    assert(!pkt->isExpressSnoop());
+coherent_xbar.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+coherent_xbar.cc:        outstandingSnoop.erase(pkt->req);
+coherent_xbar.cc:                " FWD RESP\n", src_port->name(), pkt->cmdString(),
+coherent_xbar.cc:                pkt->getAddr());
+coherent_xbar.cc:        Tick latency = pkt->headerDelay;
+coherent_xbar.cc:        pkt->headerDelay = 0;
+coherent_xbar.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+coherent_xbar.cc:            slavePorts[slave_port_id]->name(), pkt->getAddr(),
+coherent_xbar.cc:            pkt->cmdString());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+coherent_xbar.cc:                    slavePorts[slave_port_id]->name(), pkt->cmdString(),
+coherent_xbar.cc:                    pkt->getAddr(), sf_res.first.size(), sf_res.second);
+coherent_xbar.cc:            snoopFilter->finishRequest(false, pkt->getAddr(), pkt->isSecure());
+coherent_xbar.cc:    PortID master_port_id = findPort(pkt->getAddr());
+coherent_xbar.cc:                pkt->cmdString(), pkt->getAddr());
+coherent_xbar.cc:        if (!pointOfCoherency || pkt->isRead() || pkt->isWrite()) {
+coherent_xbar.cc:            assert(pkt->needsResponse());
+coherent_xbar.cc:            pkt->makeResponse();
+coherent_xbar.cc:    if (!system->bypassCaches() && snoopFilter && pkt->isResponse()) {
+coherent_xbar.cc:        assert(!pkt->isResponse());
+coherent_xbar.cc:        pkt->cmd = snoop_response_cmd;
+coherent_xbar.cc:    if (pkt->isResponse()) {
+coherent_xbar.cc:        pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:        pkt_cmd = pkt->cmdToIndex();
+coherent_xbar.cc:    pkt->payloadDelay = response_latency;
+coherent_xbar.cc:            masterPorts[master_port_id]->name(), pkt->getAddr(),
+coherent_xbar.cc:            pkt->cmdString());
+coherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+coherent_xbar.cc:                __func__, masterPorts[master_port_id]->name(), pkt->cmdString(),
+coherent_xbar.cc:                pkt->getAddr(), sf_res.first.size(), sf_res.second);
+coherent_xbar.cc:        pkt->cmd = snoop_response_cmd;
+coherent_xbar.cc:    if (pkt->isResponse()) {
+coherent_xbar.cc:    pkt->payloadDelay = snoop_response_latency;
+coherent_xbar.cc:    MemCmd orig_cmd = pkt->cmd;
+coherent_xbar.cc:        if (!pkt->isResponse())
+coherent_xbar.cc:        assert(pkt->cmd != orig_cmd);
+coherent_xbar.cc:        assert(pkt->cacheResponding());
+coherent_xbar.cc:        snoop_response_cmd = pkt->cmd;
+coherent_xbar.cc:        pkt->cmd = orig_cmd;
+coherent_xbar.cc:    if (!pkt->isPrint()) {
+coherent_xbar.cc:                slavePorts[slave_port_id]->name(), pkt->getAddr(),
+coherent_xbar.cc:                pkt->cmdString());
+coherent_xbar.cc:    if (!pkt->isResponse()) {
+coherent_xbar.cc:                if (pkt->needsResponse())
+coherent_xbar.cc:                    pkt->makeResponse();
+coherent_xbar.cc:        PortID dest_id = findPort(pkt->getAddr());
+coherent_xbar.cc:    if (!pkt->isPrint()) {
+coherent_xbar.cc:                masterPorts[master_port_id]->name(), pkt->getAddr(),
+coherent_xbar.cc:                pkt->cmdString());
+coherent_xbar.cc:            if (pkt->needsResponse())
+coherent_xbar.cc:                pkt->makeResponse();
+coherent_xbar.cc:        if (pkt->isResponse()) {
+coherent_xbar.cc:/*	if (pkt->req->fromFPGA&&pkt->isWrite()) 
+coherent_xbar.cc:		printf("sink_packet FPGA : %s  pkt->cacheResponding() %d\n ",name().c_str(),pkt->cacheResponding());
+coherent_xbar.cc:		printf("%d %d %d %d -- %d %d\n",(pointOfCoherency && pkt->cacheResponding()),
+coherent_xbar.cc:		(pointOfCoherency && !(pkt->isRead() || pkt->isWrite()) &&!pkt->needsResponse()),
+coherent_xbar.cc:		(pkt->isCleanEviction() && pkt->isBlockCached()),
+coherent_xbar.cc:		(pkt->cacheResponding() &&  (!pkt->needsWritable() || pkt->responderHadWritable())),pkt->needsWritable(), pkt->responderHadWritable());
+coherent_xbar.cc:    return (pointOfCoherency && pkt->cacheResponding()) ||
+coherent_xbar.cc:        (pointOfCoherency && !(pkt->isRead() || pkt->isWrite()) &&
+coherent_xbar.cc:         !pkt->needsResponse()) ||
+coherent_xbar.cc:        (pkt->isCleanEviction() && pkt->isBlockCached()) ||
+coherent_xbar.cc:        (pkt->cacheResponding() &&
+coherent_xbar.cc:         (!pkt->needsWritable() || pkt->responderHadWritable()));
+comm_monitor.cc:    assert(pkt->isResponse());
+comm_monitor.cc:    assert(pkt->isRequest());
+comm_monitor.cc:    const bool is_read = pkt->isRead();
+comm_monitor.cc:    const bool is_write = pkt->isWrite();
+comm_monitor.cc:        pkt->needsResponse() && !pkt->cacheResponding());
+comm_monitor.cc:        pkt->pushSenderState(new CommMonitorSenderState(curTick()));
+comm_monitor.cc:        delete pkt->popSenderState();
+comm_monitor.cc:    assert(pkt->isResponse());
+comm_monitor.cc:    bool is_read = pkt->isRead();
+comm_monitor.cc:    bool is_write = pkt->isWrite();
+comm_monitor.cc:        dynamic_cast<CommMonitorSenderState*>(pkt->senderState);
+comm_monitor.cc:        pkt->senderState = received_state->predecessor;
+comm_monitor.cc:            pkt->senderState = received_state;
+dramsim2.cc:    return pkt->cacheResponding() ? 0 : 50000;
+dramsim2.cc:    pkt->pushLabel(name());
+dramsim2.cc:        pkt->checkFunctional(*i);
+dramsim2.cc:    pkt->popLabel();
+dramsim2.cc:    if (pkt->cacheResponding()) {
+dramsim2.cc:    if (pkt->isRead()) {
+dramsim2.cc:            outstandingReads[pkt->getAddr()].push(pkt);
+dramsim2.cc:    } else if (pkt->isWrite()) {
+dramsim2.cc:            outstandingWrites[pkt->getAddr()].push(pkt);
+dramsim2.cc:        DPRINTF(DRAMSim2, "Enqueueing address %lld\n", pkt->getAddr());
+dramsim2.cc:        wrapper.enqueue(pkt->isWrite(), pkt->getAddr());
+dramsim2.cc:    DPRINTF(DRAMSim2, "Access for address %lld\n", pkt->getAddr());
+dramsim2.cc:    bool needsResponse = pkt->needsResponse();
+dramsim2.cc:        assert(pkt->isResponse());
+dramsim2.cc:        Tick time = curTick() + pkt->headerDelay + pkt->payloadDelay;
+dramsim2.cc:        pkt->headerDelay = pkt->payloadDelay = 0;
+dramsim2.cc:                pkt->getAddr());
+mem_checker_monitor.cc:    Addr addr = pkt->getAddr();
+mem_checker_monitor.cc:    unsigned size = pkt->getSize();
+mem_checker_monitor.cc:    Addr addr = pkt->getAddr();
+mem_checker_monitor.cc:    unsigned size = pkt->getSize();
+mem_checker_monitor.cc:    assert(pkt->isRequest());
+mem_checker_monitor.cc:    bool is_read = pkt->isRead() && !pkt->req->isPrefetch();
+mem_checker_monitor.cc:    bool is_write = pkt->isWrite();
+mem_checker_monitor.cc:    unsigned size = pkt->getSize();
+mem_checker_monitor.cc:    Addr addr = pkt->getAddr();
+mem_checker_monitor.cc:    bool expects_response = pkt->needsResponse() && !pkt->cacheResponding();
+mem_checker_monitor.cc:        memcpy(pkt_data.get(), pkt->getConstPtr<uint8_t*>(), size);
+mem_checker_monitor.cc:        pkt->pushSenderState(state);
+mem_checker_monitor.cc:        delete pkt->popSenderState();
+mem_checker_monitor.cc:    assert(pkt->isResponse());
+mem_checker_monitor.cc:    bool is_read = pkt->isRead() && !pkt->req->isPrefetch();
+mem_checker_monitor.cc:    bool is_write = pkt->isWrite();
+mem_checker_monitor.cc:    bool is_failed_LLSC = pkt->isLLSC() && pkt->req->getExtraData() == 0;
+mem_checker_monitor.cc:    unsigned size = pkt->getSize();
+mem_checker_monitor.cc:    Addr addr = pkt->getAddr();
+mem_checker_monitor.cc:        memcpy(pkt_data.get(), pkt->getConstPtr<uint8_t*>(), size);
+mem_checker_monitor.cc:            dynamic_cast<MemCheckerMonitorSenderState*>(pkt->senderState);
+mem_checker_monitor.cc:        pkt->senderState = received_state->predecessor;
+mem_checker_monitor.cc:        pkt->senderState = received_state;
+mport.cc:    if (pkt->cmd == MemCmd::MessageReq) {
+mport.cc:              name(), pkt->cmd.toString(), getMasterPort().name());
+noncoherent_xbar.cc:    assert(!pkt->isExpressSnoop());
+noncoherent_xbar.cc:    PortID master_port_id = findPort(pkt->getAddr());
+noncoherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+noncoherent_xbar.cc:            src_port->name(), pkt->cmdString(), pkt->getAddr());
+noncoherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+noncoherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+noncoherent_xbar.cc:    Tick old_header_delay = pkt->headerDelay;
+noncoherent_xbar.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+noncoherent_xbar.cc:    const bool expect_response = pkt->needsResponse() &&
+noncoherent_xbar.cc:        !pkt->cacheResponding();
+noncoherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+noncoherent_xbar.cc:        pkt->headerDelay = old_header_delay;
+noncoherent_xbar.cc:        assert(routeTo.find(pkt->req) == routeTo.end());
+noncoherent_xbar.cc:        routeTo[pkt->req] = slave_port_id;
+noncoherent_xbar.cc:    const auto route_lookup = routeTo.find(pkt->req);
+noncoherent_xbar.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+noncoherent_xbar.cc:            src_port->name(), pkt->cmdString(), pkt->getAddr());
+noncoherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+noncoherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+noncoherent_xbar.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+noncoherent_xbar.cc:    Tick latency = pkt->headerDelay;
+noncoherent_xbar.cc:    pkt->headerDelay = 0;
+noncoherent_xbar.cc:            slavePorts[slave_port_id]->name(), pkt->getAddr(),
+noncoherent_xbar.cc:            pkt->cmdString());
+noncoherent_xbar.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+noncoherent_xbar.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+noncoherent_xbar.cc:    PortID master_port_id = findPort(pkt->getAddr());
+noncoherent_xbar.cc:    if (pkt->isResponse()) {
+noncoherent_xbar.cc:        pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+noncoherent_xbar.cc:        pkt_cmd = pkt->cmdToIndex();
+noncoherent_xbar.cc:    pkt->payloadDelay = response_latency;
+noncoherent_xbar.cc:    if (!pkt->isPrint()) {
+noncoherent_xbar.cc:                slavePorts[slave_port_id]->name(), pkt->getAddr(),
+noncoherent_xbar.cc:                pkt->cmdString());
+noncoherent_xbar.cc:            if (pkt->needsResponse())
+noncoherent_xbar.cc:                pkt->makeResponse();
+noncoherent_xbar.cc:    PortID dest_id = findPort(pkt->getAddr());
+packet.hh:    void copyError(Packet *pkt) { assert(pkt->isError()); cmd = pkt->cmd; }
+packet.hh:        :  cmd(pkt->cmd), req(pkt->req),
+packet.hh:           addr(pkt->addr), _isSecure(pkt->_isSecure), size(pkt->size),
+packet.hh:           bytesValid(pkt->bytesValid),
+packet.hh:           headerDelay(pkt->headerDelay),
+packet.hh:           payloadDelay(pkt->payloadDelay),
+packet.hh:           senderState(pkt->senderState)
+packet.hh:            flags.set(pkt->flags & COPY_FLAGS);
+packet.hh:        flags.set(pkt->flags & (VALID_ADDR|VALID_SIZE));
+packet.hh:            if (pkt->flags.isSet(STATIC_DATA)) {
+packet.hh:                data = pkt->data;
+packet_queue.cc:        if (p.pkt->getAddr() == addr)
+packet_queue.cc:    pkt->pushLabel(label);
+packet_queue.cc:        found = pkt->checkFunctional(i->pkt);
+packet_queue.cc:    pkt->popLabel();
+packet_queue.cc:            __func__, pkt->cmdString(), pkt->getAddr(), pkt->getSize(), when,
+packet_queue.cc:    assert(!pkt->isExpressSnoop());
+packet_queue.cc:           !(force_order && i->pkt->getAddr() == pkt->getAddr()))
+physical.cc:    assert(pkt->isRequest());
+physical.cc:    Addr addr = pkt->getAddr();
+physical.cc:    assert(pkt->isRequest());
+physical.cc:    Addr addr = pkt->getAddr();
+port.cc:    assert(pkt->isRequest());
+port.cc:    assert(pkt->isRequest());
+port.cc:    assert(pkt->isRequest());
+port.cc:    assert(pkt->isResponse());
+port.cc:    assert(pkt->isRequest());
+port.cc:    assert(pkt->isRequest());
+port.cc:    assert(pkt->isResponse());
+port.cc:    assert(pkt->isRequest());
+ruby/slicc_interface/AbstractController.cc:    pkt->dataDynamic(newData);
+ruby/slicc_interface/AbstractController.cc:    pkt->pushSenderState(s);
+ruby/slicc_interface/AbstractController.cc:    pkt->dataDynamic(newData);
+ruby/slicc_interface/AbstractController.cc:    pkt->pushSenderState(s);
+ruby/slicc_interface/AbstractController.cc:    pkt->dataDynamic(newData);
+ruby/slicc_interface/AbstractController.cc:    pkt->pushSenderState(s);
+ruby/slicc_interface/AbstractController.cc:    assert(pkt->isResponse());
+ruby/slicc_interface/AbstractController.cc:    (*msg).m_addr = pkt->getAddr();
+ruby/slicc_interface/AbstractController.cc:    SenderState *s = dynamic_cast<SenderState *>(pkt->senderState);
+ruby/slicc_interface/AbstractController.cc:    if (pkt->isRead()) {
+ruby/slicc_interface/AbstractController.cc:        (*msg).m_DataBlk.setData(pkt->getPtr<uint8_t>(), 0,
+ruby/slicc_interface/AbstractController.cc:    } else if (pkt->isWrite()) {
+ruby/slicc_interface/AbstractController.cc:    delete pkt->req;
+ruby/slicc_interface/RubyRequest.cc:    Addr wBase = pkt->getAddr();
+ruby/slicc_interface/RubyRequest.cc:    Addr wTail = wBase + pkt->getSize();
+ruby/slicc_interface/RubyRequest.cc:    const uint8_t * pktData = pkt->getConstPtr<uint8_t>();
+ruby/slicc_interface/RubySlicc_Util.hh:    Addr pktLineAddr = makeLineAddress(pkt->getAddr());
+ruby/slicc_interface/RubySlicc_Util.hh:        uint8_t *data = pkt->getPtr<uint8_t>();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned int size_in_bytes = pkt->getSize();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned startByte = pkt->getAddr() - lineAddr;
+ruby/slicc_interface/RubySlicc_Util.hh:    Addr pktLineAddr = makeLineAddress(pkt->getAddr());
+ruby/slicc_interface/RubySlicc_Util.hh:        uint8_t *data = pkt->getPtr<uint8_t>();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned int size_in_bytes = pkt->getSize();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned startByte = pkt->getAddr() - lineAddr;
+ruby/slicc_interface/RubySlicc_Util.hh:    Addr pktLineAddr = makeLineAddress(pkt->getAddr());
+ruby/slicc_interface/RubySlicc_Util.hh:        const uint8_t *data = pkt->getConstPtr<uint8_t>();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned int size_in_bytes = pkt->getSize();
+ruby/slicc_interface/RubySlicc_Util.hh:        unsigned startByte = pkt->getAddr() - lineAddr;
+ruby/structures/RubyMemoryControl.cc:    Addr addr = pkt->getAddr();
+ruby/structures/RubyMemoryControl.cc:    bool is_mem_read = pkt->isRead();
+ruby/structures/RubyMemoryControl.cc:    assert(pkt->isResponse());
+ruby/structures/RubyMemoryControl.cc:        if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:        if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:            if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:        if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:        if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:            if (pkt->checkFunctional(msg)) {
+ruby/structures/RubyMemoryControl.cc:    pkt->pushLabel(memory.name());
+ruby/structures/RubyMemoryControl.cc:    pkt->popLabel();
+ruby/system/CacheRecorder.cc:            pkt->dataStatic(traceRecord->m_data + rec_bytes_read);
+ruby/system/DMASequencer.cc:    Addr paddr = pkt->getAddr();
+ruby/system/DMASequencer.cc:    uint8_t* data =  pkt->getPtr<uint8_t>();
+ruby/system/DMASequencer.cc:    int len = pkt->getSize();
+ruby/system/DMASequencer.cc:    bool write = pkt->isWrite();
+ruby/system/GPUCoalescer.cc:              request->pkt->getAddr(), m_readRequestTable.size(),
+ruby/system/GPUCoalescer.cc:              request->pkt->getAddr(), m_writeRequestTable.size(),
+ruby/system/GPUCoalescer.cc:    Addr line_addr = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:           pkt->req->isLockedRMW() ||
+ruby/system/GPUCoalescer.cc:    Addr line_addr = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:                    pkt->req->getPaddr(), i->second->m_type);
+ruby/system/GPUCoalescer.cc:                    pkt->req->getPaddr(), i->second->m_type);
+ruby/system/GPUCoalescer.cc:    Addr line_addr = makeLineAddress(srequest->pkt->getAddr());
+ruby/system/GPUCoalescer.cc:            request->pkt->req->setExtraData(0);
+ruby/system/GPUCoalescer.cc:            request->pkt->req->setExtraData(1);
+ruby/system/GPUCoalescer.cc:    Addr request_address = pkt->getAddr();
+ruby/system/GPUCoalescer.cc:        request_address = pkt->getAddr();
+ruby/system/GPUCoalescer.cc:        request_line_address = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:        if (pkt->getPtr<uint8_t>()) {
+ruby/system/GPUCoalescer.cc:                memcpy(pkt->getPtr<uint8_t>(),
+ruby/system/GPUCoalescer.cc:                                    pkt->getSize()),
+ruby/system/GPUCoalescer.cc:                       pkt->getSize());
+ruby/system/GPUCoalescer.cc:                data.setData(pkt->getPtr<uint8_t>(),
+ruby/system/GPUCoalescer.cc:                             getOffset(request_address), pkt->getSize());
+ruby/system/GPUCoalescer.cc:                safe_cast<RubyPort::SenderState*>(pkt->senderState);
+ruby/system/GPUCoalescer.cc:    if (pkt->req->isKernel()) {
+ruby/system/GPUCoalescer.cc:        if (pkt->req->isAcquire()){
+ruby/system/GPUCoalescer.cc:        }else if (pkt->req->isRelease()) {
+ruby/system/GPUCoalescer.cc:            if (pkt->req->hasContextId()) {
+ruby/system/GPUCoalescer.cc:                wf_id = pkt->req->contextId();
+ruby/system/GPUCoalescer.cc:    if (pkt->isLLSC()) {
+ruby/system/GPUCoalescer.cc:        if (pkt->isWrite()) {
+ruby/system/GPUCoalescer.cc:            assert(pkt->isRead());
+ruby/system/GPUCoalescer.cc:    } else if (pkt->req->isLockedRMW()) {
+ruby/system/GPUCoalescer.cc:        if (pkt->isWrite()) {
+ruby/system/GPUCoalescer.cc:            assert(pkt->isRead());
+ruby/system/GPUCoalescer.cc:    } else if (pkt->isAtomicOp()) {
+ruby/system/GPUCoalescer.cc:        if (pkt->isRead()) {
+ruby/system/GPUCoalescer.cc:            if (pkt->req->isInstFetch()) {
+ruby/system/GPUCoalescer.cc:                uint32_t flags = pkt->req->getFlags();
+ruby/system/GPUCoalescer.cc:        } else if (pkt->isWrite()) {
+ruby/system/GPUCoalescer.cc:        } else if (pkt->isFlush()) {
+ruby/system/GPUCoalescer.cc:        } else if (pkt->req->isRelease() || pkt->req->isAcquire()) {
+ruby/system/GPUCoalescer.cc:                if (pkt->req->hasContextId()) {
+ruby/system/GPUCoalescer.cc:                    wf_id = pkt->req->contextId();
+ruby/system/GPUCoalescer.cc:    Addr line_addr = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:    } else if (pkt->req->isLockedRMW() ||
+ruby/system/GPUCoalescer.cc:    } else if (pkt->req->hasContextId() && pkt->req->isRelease() &&
+ruby/system/GPUCoalescer.cc:               pkt->req->contextId() !=
+ruby/system/GPUCoalescer.cc:    if (pkt != NULL && pkt->req->hasContextId()) {
+ruby/system/GPUCoalescer.cc:        proc_id = pkt->req->contextId();
+ruby/system/GPUCoalescer.cc:    if (pkt->req->hasPC()) {
+ruby/system/GPUCoalescer.cc:        pc = pkt->req->getPC();
+ruby/system/GPUCoalescer.cc:    // which is pkt->req->isStack()
+ruby/system/GPUCoalescer.cc:    HSASegment accessSegment = reqSegmentToHSASegment(pkt->req);
+ruby/system/GPUCoalescer.cc:    HSAScope accessScope = reqScopeToHSAScope(pkt->req);
+ruby/system/GPUCoalescer.cc:    Addr line_addr = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:    if (pkt->isAtomicOp()) {
+ruby/system/GPUCoalescer.cc:        msg = std::make_shared<RubyRequest>(clockEdge(), pkt->getAddr(),
+ruby/system/GPUCoalescer.cc:                              pkt->getPtr<uint8_t>(),
+ruby/system/GPUCoalescer.cc:                              pkt->getSize(), pc, secondary_type,
+ruby/system/GPUCoalescer.cc:        msg = std::make_shared<RubyRequest>(clockEdge(), pkt->getAddr(),
+ruby/system/GPUCoalescer.cc:                              pkt->getPtr<uint8_t>(),
+ruby/system/GPUCoalescer.cc:                              pkt->getSize(), pc, secondary_type,
+ruby/system/GPUCoalescer.cc:                i, pkt->req->getPaddr());
+ruby/system/GPUCoalescer.cc:    Addr request_address = pkt->getAddr();
+ruby/system/GPUCoalescer.cc:    Addr request_line_address = makeLineAddress(pkt->getAddr());
+ruby/system/GPUCoalescer.cc:        request_address = (pkt->getAddr());
+ruby/system/GPUCoalescer.cc:        if (pkt->getPtr<uint8_t>() &&
+ruby/system/GPUCoalescer.cc:            memcpy(pkt->getPtr<uint8_t>(),
+ruby/system/GPUCoalescer.cc:                                pkt->getSize()),
+ruby/system/GPUCoalescer.cc:                   pkt->getSize());
+ruby/system/GPUCoalescer.cc:                safe_cast<RubyPort::SenderState*>(pkt->senderState);
+ruby/system/GPUCoalescer.cc:             printAddress(srequest->pkt->getAddr()), total_lat);
+ruby/system/RubyPort.cc:    DPRINTF(RubyPort, "Response for address: 0x%#x\n", pkt->getAddr());
+ruby/system/RubyPort.cc:    assert(pkt->isResponse());
+ruby/system/RubyPort.cc:        safe_cast<RubyPort::SenderState *>(pkt->popSenderState());
+ruby/system/RubyPort.cc:            pkt->getAddr(), port->name());
+ruby/system/RubyPort.cc:            if (it->contains(pkt->getAddr())) {
+ruby/system/RubyPort.cc:            pkt->getAddr(), id);
+ruby/system/RubyPort.cc:    if (pkt->cacheResponding())
+ruby/system/RubyPort.cc:    if (pkt->cmd != MemCmd::MemFenceReq) {
+ruby/system/RubyPort.cc:        if (!isPhysMemAddress(pkt->getAddr())) {
+ruby/system/RubyPort.cc:                    "pio address\n", pkt->getAddr());
+ruby/system/RubyPort.cc:            pkt->pushSenderState(new SenderState(this));
+ruby/system/RubyPort.cc:        assert(getOffset(pkt->getAddr()) + pkt->getSize() <=
+ruby/system/RubyPort.cc:        pkt->pushSenderState(new SenderState(this));
+ruby/system/RubyPort.cc:        DPRINTF(RubyPort, "Request %s 0x%x issued\n", pkt->cmdString(),
+ruby/system/RubyPort.cc:                pkt->getAddr());
+ruby/system/RubyPort.cc:    if (pkt->cmd != MemCmd::MemFenceReq) {
+ruby/system/RubyPort.cc:                pkt->getAddr(), RequestStatus_to_string(requestStatus));
+ruby/system/RubyPort.cc:    DPRINTF(RubyPort, "Functional access for address: %#x\n", pkt->getAddr());
+ruby/system/RubyPort.cc:    if (!isPhysMemAddress(pkt->getAddr())) {
+ruby/system/RubyPort.cc:        DPRINTF(RubyPort, "Pio Request for address: 0x%#x\n", pkt->getAddr());
+ruby/system/RubyPort.cc:    assert(pkt->getAddr() + pkt->getSize() <=
+ruby/system/RubyPort.cc:           makeLineAddress(pkt->getAddr()) + RubySystem::getBlockSizeBytes());
+ruby/system/RubyPort.cc:        bool needsResponse = pkt->needsResponse();
+ruby/system/RubyPort.cc:        if (pkt->isRead()) {
+ruby/system/RubyPort.cc:        } else if (pkt->isWrite()) {
+ruby/system/RubyPort.cc:            panic("Unsupported functional command %s\n", pkt->cmdString());
+ruby/system/RubyPort.cc:        if (!accessSucceeded && !pkt->suppressFuncError()) {
+ruby/system/RubyPort.cc:                  pkt->isWrite() ? "write" : "read", pkt->getAddr());
+ruby/system/RubyPort.cc:            pkt->setFunctionalResponseStatus(accessSucceeded);
+ruby/system/RubyPort.cc:    DPRINTF(RubyPort, "Hit callback for %s 0x%x\n", pkt->cmdString(),
+ruby/system/RubyPort.cc:            pkt->getAddr());
+ruby/system/RubyPort.cc:    assert(system->isMemAddr(pkt->getAddr()));
+ruby/system/RubyPort.cc:    assert(pkt->isRequest());
+ruby/system/RubyPort.cc:        safe_cast<RubyPort::SenderState *>(pkt->popSenderState());
+ruby/system/RubyPort.cc:    bool needsResponse = pkt->needsResponse();
+ruby/system/RubyPort.cc:    if (pkt->isLLSC()) {
+ruby/system/RubyPort.cc:        if (pkt->isWrite()) {
+ruby/system/RubyPort.cc:            if (pkt->req->getExtraData() != 0) {
+ruby/system/RubyPort.cc:                pkt->convertScToWrite();
+ruby/system/RubyPort.cc:            pkt->convertLlToRead();
+ruby/system/RubyPort.cc:    if (pkt->isFlush() || pkt->cmd == MemCmd::MemFenceReq) {
+ruby/system/RubyPort.cc:    if (pkt->req->isKernel()) {
+ruby/system/RubyPort.cc:        pkt->makeResponse();
+ruby/system/RubySystem.cc:    Addr address(pkt->getAddr());
+ruby/system/RubySystem.cc:    Addr addr(pkt->getAddr());
+ruby/system/Sequencer.cc:              request->pkt->getAddr(), m_readRequestTable.size(),
+ruby/system/Sequencer.cc:              request->pkt->getAddr(), m_writeRequestTable.size(),
+ruby/system/Sequencer.cc:    Addr line_addr = makeLineAddress(pkt->getAddr());
+ruby/system/Sequencer.cc:            request->pkt->req->setExtraData(0);
+ruby/system/Sequencer.cc:            request->pkt->req->setExtraData(1);
+ruby/system/Sequencer.cc:    Addr request_address(pkt->getAddr());
+ruby/system/Sequencer.cc:        data.setData(pkt->getConstPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                     getOffset(request_address), pkt->getSize());
+ruby/system/Sequencer.cc:    } else if (!pkt->isFlush()) {
+ruby/system/Sequencer.cc:            memcpy(pkt->getPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                   data.getData(getOffset(request_address), pkt->getSize()),
+ruby/system/Sequencer.cc:                   pkt->getSize());
+ruby/system/Sequencer.cc:        } else if (pkt->req->isSwap()) {
+ruby/system/Sequencer.cc:            std::vector<uint8_t> overwrite_val(pkt->getSize());
+ruby/system/Sequencer.cc:            memcpy(&overwrite_val[0], pkt->getConstPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                   pkt->getSize());
+ruby/system/Sequencer.cc:            memcpy(pkt->getPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                   data.getData(getOffset(request_address), pkt->getSize()),
+ruby/system/Sequencer.cc:                   pkt->getSize());
+ruby/system/Sequencer.cc:                         getOffset(request_address), pkt->getSize());
+ruby/system/Sequencer.cc:            data.setData(pkt->getConstPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                         getOffset(request_address), pkt->getSize());
+ruby/system/Sequencer.cc:                pkt->cmdString(), pkt->getAddr());
+ruby/system/Sequencer.cc:            pkt->findNextSenderState<RubyTester::SenderState>();
+ruby/system/Sequencer.cc:        assert(pkt->req);
+ruby/system/Sequencer.cc:        delete pkt->req;
+ruby/system/Sequencer.cc:    if (pkt->isLLSC()) {
+ruby/system/Sequencer.cc:        if (pkt->isWrite()) {
+ruby/system/Sequencer.cc:            assert(pkt->isRead());
+ruby/system/Sequencer.cc:    } else if (pkt->req->isLockedRMW()) {
+ruby/system/Sequencer.cc:        if (pkt->isWrite()) {
+ruby/system/Sequencer.cc:            assert(pkt->isRead());
+ruby/system/Sequencer.cc:        if (pkt->isWrite()) {
+ruby/system/Sequencer.cc:        } else if (pkt->isRead()) {
+ruby/system/Sequencer.cc:            if (pkt->req->isInstFetch()) {
+ruby/system/Sequencer.cc:                    uint32_t flags = pkt->req->getFlags();
+ruby/system/Sequencer.cc:        } else if (pkt->isFlush()) {
+ruby/system/Sequencer.cc:    ContextID proc_id = pkt->req->hasContextId() ?
+ruby/system/Sequencer.cc:        pkt->req->contextId() : InvalidContextID;
+ruby/system/Sequencer.cc:    if (pkt->req->hasPC()) {
+ruby/system/Sequencer.cc:        pc = pkt->req->getPC();
+ruby/system/Sequencer.cc:        std::make_shared<RubyRequest>(clockEdge(), pkt->getAddr(),
+ruby/system/Sequencer.cc:                                      pkt->isFlush() ?
+ruby/system/Sequencer.cc:                                      nullptr : pkt->getPtr<uint8_t>(),
+ruby/system/Sequencer.cc:                                      pkt->getSize(), pc, secondary_type,
+ruby/system/VIPERCoalescer.cc:        if (pkt->req->isKernel()) {
+ruby/system/VIPERCoalescer.cc:            if (pkt->req->isAcquire() && (m_outstanding_inv == 0)) {
+ruby/system/VIPERCoalescer.cc:            if (pkt->req->isRelease()) {
+ruby/system/VIPERCoalescer.cc:                insertKernel(pkt->req->contextId(), pkt);
+ruby/system/VIPERCoalescer.cc:    } else if (pkt->req->isKernel() && pkt->req->isRelease()) {
+ruby/system/VIPERCoalescer.cc:        insertKernel(pkt->req->contextId(), pkt);
+ruby/system/VIPERCoalescer.cc:    } else if (pkt->req->isKernel() && pkt->req->isAcquire()) {
+ruby/system/VIPERCoalescer.cc:    } else if (pkt->req->isAcquire() && pkt->req->isRelease()) {
+ruby/system/VIPERCoalescer.cc:    } else if (pkt->req->isRelease()) {
+ruby/system/VIPERCoalescer.cc:    } else if (pkt->req->isAcquire()) {
+serial_link.cc:            pkt->cmdString(), pkt->getAddr());
+serial_link.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+serial_link.cc:    cycles += Cycles(divCeil(pkt->getSize() * 8, serial_link.num_lanes
+serial_link.cc:            pkt->cmdString(), pkt->getAddr());
+serial_link.cc:        bool expects_response = pkt->needsResponse() &&
+serial_link.cc:            !pkt->cacheResponding();
+serial_link.cc:            pkt->headerDelay = pkt->payloadDelay = 0;
+serial_link.cc:            cycles += Cycles(divCeil(pkt->getSize() * 8,
+serial_link.cc:            pkt->getAddr(), transmitList.size());
+serial_link.cc:            Cycles cycles = Cycles(divCeil(pkt->getSize() * 8,
+serial_link.cc:            pkt->getAddr(), outstandingResponses);
+serial_link.cc:            Cycles cycles = Cycles(divCeil(pkt->getSize() * 8,
+serial_link.cc:    pkt->pushLabel(name());
+serial_link.cc:        if (pkt->checkFunctional((*i).pkt)) {
+serial_link.cc:            pkt->makeResponse();
+serial_link.cc:    pkt->popLabel();
+serial_link.cc:        if (pkt->checkFunctional((*i).pkt)) {
+serial_link.cc:            pkt->makeResponse();
+simple_mem.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+simple_mem.cc:    pkt->pushLabel(name());
+simple_mem.cc:        done = pkt->checkFunctional(p->pkt);
+simple_mem.cc:    pkt->popLabel();
+simple_mem.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+simple_mem.cc:    panic_if(!(pkt->isRead() || pkt->isWrite()),
+simple_mem.cc:             "saw %s to %#llx\n", pkt->cmdString(), pkt->getAddr());
+simple_mem.cc:    Tick receive_delay = pkt->headerDelay + pkt->payloadDelay;
+simple_mem.cc:    pkt->headerDelay = pkt->payloadDelay = 0;
+simple_mem.cc:    Tick duration = pkt->getSize() * bandwidth;
+simple_mem.cc:    bool needsResponse = pkt->needsResponse();
+simple_mem.cc:        assert(pkt->isResponse());
+simple_mem.cc:               i->pkt->getAddr() != pkt->getAddr())
+snoop_filter.cc:            __func__, slave_port.name(), cpkt->getAddr(), cpkt->cmdString());
+snoop_filter.cc:    bool allocate = !cpkt->req->isUncacheable() && slave_port.isSnooping() &&
+snoop_filter.cc:        (cpkt->fromCache()||cpkt->req->fromFPGA);
+snoop_filter.cc:    Addr line_addr = cpkt->getBlockAddr(linesize);
+snoop_filter.cc:    if (cpkt->isSecure()) {
+snoop_filter.cc:    if (cpkt->needsResponse()) {
+snoop_filter.cc:        if (!cpkt->cacheResponding()) {
+snoop_filter.cc:    } else { // if (!cpkt->needsResponse())
+snoop_filter.cc:        assert(cpkt->isEviction());
+snoop_filter.cc:        if (!cpkt->isBlockCached()) {
+snoop_filter.cc:            __func__, cpkt->getAddr(), cpkt->cmdString());
+snoop_filter.cc:    assert(cpkt->isRequest());
+snoop_filter.cc:    Addr line_addr = cpkt->getBlockAddr(linesize);
+snoop_filter.cc:    if (cpkt->isSecure()) {
+snoop_filter.cc:	bool FPGAWrite = cpkt->req->fromFPGA&&cpkt->isWrite();
+snoop_filter.cc:	if (!(cpkt->isWriteback() || cpkt->req->isUncacheable() ||
+snoop_filter.cc:           ((cpkt->isInvalidate()||FPGAWrite) == cpkt->needsWritable()))&&warn3)//fpga
+snoop_filter.cc:		printf("WARNING: ignore assertion:snoop_filter.cc:234  (cpkt->isWriteback() || cpkt->req->isUncacheable() || (cpkt->isInvalidate() == cpkt->needsWritable()))\n");
+snoop_filter.cc:    //assert(cpkt->isWriteback() || cpkt->req->isUncacheable() || (cpkt->isInvalidate() == cpkt->needsWritable()));
+snoop_filter.cc:    if (cpkt->isInvalidate() && !sf_item.requested) {
+snoop_filter.cc:            __func__, rsp_port.name(), req_port.name(), cpkt->getAddr(),
+snoop_filter.cc:            cpkt->cmdString());
+snoop_filter.cc:    assert(cpkt->isResponse());
+snoop_filter.cc:    assert(cpkt->cacheResponding());
+snoop_filter.cc:    if (cpkt->req->isUncacheable() || !req_port.isSnooping()) {
+snoop_filter.cc:    Addr line_addr = cpkt->getBlockAddr(linesize);
+snoop_filter.cc:    if (cpkt->isSecure()) {
+snoop_filter.cc:    if (!cpkt->hasSharers()) {
+snoop_filter.cc:    assert(!cpkt->isWriteback());
+snoop_filter.cc:            __func__, rsp_port.name(), req_port.name(), cpkt->getAddr(),
+snoop_filter.cc:            cpkt->cmdString());
+snoop_filter.cc:    assert(cpkt->isResponse());
+snoop_filter.cc:    assert(cpkt->cacheResponding());
+snoop_filter.cc:    Addr line_addr = cpkt->getBlockAddr(linesize);
+snoop_filter.cc:    if (cpkt->isSecure()) {
+snoop_filter.cc:    if (!cpkt->hasSharers()) {
+snoop_filter.cc:            __func__, slave_port.name(), cpkt->getAddr(), cpkt->cmdString());
+snoop_filter.cc:    assert(cpkt->isResponse());
+snoop_filter.cc:    if (cpkt->req->isUncacheable() || !slave_port.isSnooping())
+snoop_filter.cc:    Addr line_addr = cpkt->getBlockAddr(linesize);
+snoop_filter.cc:    if (cpkt->isSecure()) {
+snoop_filter.cc:     if (!cpkt->hasSharers())
+tport.cc:    if (pkt->cacheResponding())
+tport.cc:    bool needsResponse = pkt->needsResponse();
+tport.cc:        assert(pkt->isResponse());
+xbar.cc:    pkt->headerDelay += offset + header_delay;
+xbar.cc:    panic_if(pkt->headerDelay > SimClock::Int::us,
+xbar.cc:    if (pkt->hasData()) {
+xbar.cc:        pkt->payloadDelay = std::max<Tick>(pkt->payloadDelay,
+xbar.cc:                                           divCeil(pkt->getSize(), width) *
+dram_ctrl.cc:    DPRINTF(DRAM, "recvAtomic: %s 0x%x\n", pkt->cmdString(), pkt->getAddr());
+dram_ctrl.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+dram_ctrl.cc:    if (pkt->hasData()) {
+dram_ctrl.cc:    assert(!pkt->isWrite());
+dram_ctrl.cc:    Addr addr = pkt->getAddr();
+dram_ctrl.cc:                        pkt->getAddr() + pkt->getSize()) - addr;
+dram_ctrl.cc:                        "dram requests\n", pkt->getAddr(), pktCount);
+dram_ctrl.cc:            dram_pkt->burstHelper = burst_helper;
+dram_ctrl.cc:            ++dram_pkt->rankRef.readEntries;
+dram_ctrl.cc:    assert(pkt->isWrite());
+dram_ctrl.cc:    Addr addr = pkt->getAddr();
+dram_ctrl.cc:                        pkt->getAddr() + pkt->getSize()) - addr;
+dram_ctrl.cc:            ++dram_pkt->rankRef.writeEntries;
+dram_ctrl.cc:	//if (pkt->req->fromFPGA) printf("request from FPGA\n");
+dram_ctrl.cc:            pkt->cmdString(), pkt->getAddr(), pkt->getSize());
+dram_ctrl.cc:	//if (!pkt->req->fromFPGA&&pkt->isRead()) printf("fromCPURead addr:%lx\n",pkt->getAddr());
+dram_ctrl.cc:    panic_if(pkt->cacheResponding(), "Should not see packets where cache "
+dram_ctrl.cc:    panic_if(!(pkt->isRead() || pkt->isWrite()),
+dram_ctrl.cc:    unsigned size = pkt->getSize();
+dram_ctrl.cc:    unsigned offset = pkt->getAddr() & (burstSize - 1);
+dram_ctrl.cc:    if (pkt->isRead()) {
+dram_ctrl.cc:        assert(pkt->isWrite());
+dram_ctrl.cc:    --dram_pkt->rankRef.readEntries;
+dram_ctrl.cc:            dram_pkt->rank, dram_pkt->rankRef.readEntries);
+dram_ctrl.cc:    assert(dram_pkt->rankRef.outstandingEvents > 0);
+dram_ctrl.cc:    --dram_pkt->rankRef.outstandingEvents;
+dram_ctrl.cc:    assert((dram_pkt->rankRef.pwrState == PWR_ACT) ||
+dram_ctrl.cc:           (dram_pkt->rankRef.pwrState == PWR_IDLE));
+dram_ctrl.cc:    if (dram_pkt->rankRef.lowPowerEntryReady()) {
+dram_ctrl.cc:        assert(!dram_pkt->rankRef.activateEvent.scheduled());
+dram_ctrl.cc:        assert(!dram_pkt->rankRef.prechargeEvent.scheduled());
+dram_ctrl.cc:        assert(dram_pkt->rankRef.refreshState == REF_IDLE);
+dram_ctrl.cc:                "%d\n", dram_pkt->rank, curTick(), dram_pkt->rankRef.pwrState);
+dram_ctrl.cc:        if (dram_pkt->rankRef.pwrState == PWR_IDLE) {
+dram_ctrl.cc:        dram_pkt->rankRef.powerDownSleep(next_pwr_state, curTick());
+dram_ctrl.cc:    if (dram_pkt->burstHelper) {
+dram_ctrl.cc:        dram_pkt->burstHelper->burstsServiced++;
+dram_ctrl.cc:        if (dram_pkt->burstHelper->burstsServiced ==
+dram_ctrl.cc:            dram_pkt->burstHelper->burstCount) {
+dram_ctrl.cc:            accessAndRespond(dram_pkt->pkt, frontendLatency + backendLatency);
+dram_ctrl.cc:            delete dram_pkt->burstHelper;
+dram_ctrl.cc:            dram_pkt->burstHelper = NULL;
+dram_ctrl.cc:        accessAndRespond(dram_pkt->pkt, frontendLatency + backendLatency);
+dram_ctrl.cc:        if (ranks[dram_pkt->rank]->isAvailable()) {
+dram_ctrl.cc:            if (ranks[dram_pkt->rank]->isAvailable()) {
+dram_ctrl.cc:        const Bank& bank = dram_pkt->bankRef;
+dram_ctrl.cc:        if (dram_pkt->rankRef.isAvailable()) {
+dram_ctrl.cc:            if (bank.openRow == dram_pkt->row) {
+dram_ctrl.cc:                if (bits(earliest_banks, dram_pkt->bankId, dram_pkt->bankId)) {
+dram_ctrl.cc:    DPRINTF(DRAM, "Responding to Address %lld.. ",pkt->getAddr());
+dram_ctrl.cc:    bool needsResponse = pkt->needsResponse();
+dram_ctrl.cc:        assert(pkt->isResponse());
+dram_ctrl.cc:        Tick response_time = curTick() + static_latency + pkt->headerDelay +
+dram_ctrl.cc:                             pkt->payloadDelay;
+dram_ctrl.cc:        pkt->headerDelay = pkt->payloadDelay = 0;
+dram_ctrl.cc:            dram_pkt->addr, dram_pkt->rank, dram_pkt->bank, dram_pkt->row);
+dram_ctrl.cc:    Rank& rank = dram_pkt->rankRef;
+dram_ctrl.cc:    Bank& bank = dram_pkt->bankRef;
+dram_ctrl.cc:    if (bank.openRow == dram_pkt->row) {
+dram_ctrl.cc:        activateBank(rank, bank, act_tick, dram_pkt->row);
+dram_ctrl.cc:    dram_pkt->readyTime = cmd_at + tCL + tBURST;
+dram_ctrl.cc:    assert(dram_pkt->readyTime - busBusyUntil >= tBURST);
+dram_ctrl.cc:            if (dram_pkt->rank == j) {
+dram_ctrl.cc:    activeRank = dram_pkt->rank;
+dram_ctrl.cc:                                 dram_pkt->isRead ? cmd_at + tRTP :
+dram_ctrl.cc:                                 dram_pkt->readyTime + tWR);
+dram_ctrl.cc:        const deque<DRAMPacket*>& queue = dram_pkt->isRead ? readQueue :
+dram_ctrl.cc:            bool same_rank_bank = (dram_pkt->rank == (*p)->rank) &&
+dram_ctrl.cc:                (dram_pkt->bank == (*p)->bank);
+dram_ctrl.cc:            bool same_row = dram_pkt->row == (*p)->row;
+dram_ctrl.cc:    std::string mem_cmd = dram_pkt->isRead ? "RD" : "WR";
+dram_ctrl.cc:    busBusyUntil = dram_pkt->readyTime;
+dram_ctrl.cc:            dram_pkt->addr, dram_pkt->readyTime, busBusyUntil);
+dram_ctrl.cc:    dram_pkt->rankRef.cmdList.push_back(Command(command, dram_pkt->bank,
+dram_ctrl.cc:            timeStampOffset, mem_cmd, dram_pkt->bank, dram_pkt->rank);
+dram_ctrl.cc:        DPRINTF(DRAM, "Auto-precharged bank: %d\n", dram_pkt->bankId);
+dram_ctrl.cc:    if (dram_pkt->isRead) {
+dram_ctrl.cc:        perBankRdBursts[dram_pkt->bankId]++;
+dram_ctrl.cc:        totMemAccLat += dram_pkt->readyTime - dram_pkt->entryTime;
+dram_ctrl.cc:        totQLat += cmd_at - dram_pkt->entryTime;
+dram_ctrl.cc:        perBankWrBursts[dram_pkt->bankId]++;
+dram_ctrl.cc:            assert(dram_pkt->rankRef.isAvailable());
+dram_ctrl.cc:            if (switched_cmd_type && dram_pkt->rank == activeRank) {
+dram_ctrl.cc:            ++dram_pkt->rankRef.outstandingEvents;
+dram_ctrl.cc:            assert(dram_pkt->size <= burstSize);
+dram_ctrl.cc:            assert(dram_pkt->readyTime >= curTick());
+dram_ctrl.cc:                schedule(respondEvent, dram_pkt->readyTime);
+dram_ctrl.cc:                assert(respQueue.back()->readyTime <= dram_pkt->readyTime);
+dram_ctrl.cc:        assert(dram_pkt->rankRef.isAvailable());
+dram_ctrl.cc:        assert(dram_pkt->size <= burstSize);
+dram_ctrl.cc:        if (switched_cmd_type && dram_pkt->rank == activeRank) {
+dram_ctrl.cc:        --dram_pkt->rankRef.writeEntries;
+dram_ctrl.cc:        if (!dram_pkt->rankRef.writeDoneEvent.scheduled()) {
+dram_ctrl.cc:            schedule(dram_pkt->rankRef.writeDoneEvent, dram_pkt->readyTime);
+dram_ctrl.cc:            ++dram_pkt->rankRef.outstandingEvents;
+dram_ctrl.cc:        } else if (dram_pkt->rankRef.writeDoneEvent.when() <
+dram_ctrl.cc:                   dram_pkt-> readyTime) {
+dram_ctrl.cc:            reschedule(dram_pkt->rankRef.writeDoneEvent, dram_pkt->readyTime);
+dram_ctrl.cc:        isInWriteQueue.erase(burstAlign(dram_pkt->addr));
+dram_ctrl.cc:    pkt->pushLabel(memory.name());
+dram_ctrl.cc:    pkt->popLabel();
+dram_ctrl.cc:	//printf("arrivetime : %lu\n",curTick() - pkt->req->getReqBuildTime());
+dram_ctrl.cc:	//memory.reqtime += (curTick() - pkt->req->getReqBuildTime());
+hmc_controller.cc:    assert(!pkt->isExpressSnoop());
+hmc_controller.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+hmc_controller.cc:            src_port->name(), pkt->cmdString(), pkt->getAddr());
+hmc_controller.cc:    unsigned int pkt_size = pkt->hasData() ? pkt->getSize() : 0;
+hmc_controller.cc:    unsigned int pkt_cmd = pkt->cmdToIndex();
+hmc_controller.cc:    Tick old_header_delay = pkt->headerDelay;
+hmc_controller.cc:    Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
+hmc_controller.cc:    const bool expect_response = pkt->needsResponse() &&
+hmc_controller.cc:        !pkt->cacheResponding();
+hmc_controller.cc:                src_port->name(), pkt->cmdString(), pkt->getAddr());
+hmc_controller.cc:        pkt->headerDelay = old_header_delay;
+hmc_controller.cc:        assert(routeTo.find(pkt->req) == routeTo.end());
+hmc_controller.cc:        routeTo[pkt->req] = slave_port_id;

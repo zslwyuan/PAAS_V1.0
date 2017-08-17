@@ -1,0 +1,11 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+    <sourceFile name="">
+        <directive functionName="kernel_2mm" label="kernel_2mm_label4" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+        <directive functionName="kernel_2mm" label="kernel_2mm_label0" functionLabel="">
+            <pragma name="UNROLL"/>
+        </directive>
+    </sourceFile>
+</AutoPilot:ProjectResources>
+

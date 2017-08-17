@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="2mm.c" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/linear-algebra/kernels/2mm/2mm.c"/>
+    <originFiles name="2mm.h" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/linear-algebra/kernels/2mm/2mm.h"/>
+    <originFiles name="benchmark_list" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/benchmark_list"/>
+    <originFiles name="clean.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/clean.pl"/>
+    <originFiles name="create_cpped_version.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/create_cpped_version.pl"/>
+    <originFiles name="header-gen.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/header-gen.pl"/>
+    <originFiles name="makefile-gen.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/makefile-gen.pl"/>
+    <originFiles name="papi_counters.list" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/papi_counters.list"/>
+    <originFiles name="polybench.R" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/polybench.R"/>
+    <originFiles name="polybench.c" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/polybench.c"/>
+    <originFiles name="polybench.h" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/polybench.h"/>
+    <originFiles name="polybench.spec" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/polybench.spec"/>
+    <originFiles name="run-all.pl" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/run-all.pl"/>
+    <originFiles name="time_benchmark.sh" path="/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-large/utilities/time_benchmark.sh"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

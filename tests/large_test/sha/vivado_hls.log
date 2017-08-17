@@ -1,0 +1,61 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-53-generic) on Thu Dec 29 14:20:02 CST 2016
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/hls_lab/CHStone_v1.9_140526/sha'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/hls_lab/CHStone_v1.9_140526/sha/sha'.
+INFO: [HLS 200-10] Adding design file 'block.h' to the project
+INFO: [HLS 200-10] Adding design file 'init.h' to the project
+INFO: [HLS 200-10] Adding design file 'sha.h' to the project
+INFO: [HLS 200-10] Adding design file 'sha_driver.c' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/hls_lab/CHStone_v1.9_140526/sha/sha/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+WARNING: [HLS 200-40] Cannot find library '/opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs.lib'.
+WARNING: [HLS 200-40] Cannot find library 'xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs'.
+INFO: [HLS 200-10] Setting target device to 'xqku115-rlf1924-2-i'
+INFO: [HLS 200-10] Analyzing design file 'sha_driver.c' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 208 ; free virtual = 11219
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 206 ; free virtual = 11219
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 329.363 ; gain = 12.613 ; free physical = 206 ; free virtual = 11219
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 329.363 ; gain = 12.613 ; free physical = 206 ; free virtual = 11219
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label0' (sha_driver.c:91) in function 'sha_transform' completely.
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label1' (sha_driver.c:95) in function 'sha_transform' completely.
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label2' (sha_driver.c:105) in function 'sha_transform' completely.
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label3' (sha_driver.c:109) in function 'sha_transform' completely.
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label4' (sha_driver.c:113) in function 'sha_transform' completely.
+INFO: [XFORM 203-501] Unrolling loop 'sha_transform_label5' (sha_driver.c:117) in function 'sha_transform' completely.
+INFO: [XFORM 203-11] Balancing expressions in function 'sha_transform' (sha_driver.c:86)...750 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 185 ; free virtual = 11198
+WARNING: [XFORM 203-152] Cannot apply array mapping directives with instance name 'buff' (sha_driver.c:86): cannot find another array to be merged with.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 189 ; free virtual = 11202
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'sha_transform' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'sha_transform' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.81 seconds; current allocated memory: 68.530 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 1.69 seconds; current allocated memory: 73.788 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sha_transform' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'sha_transform/buff' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'sha_transform/m' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'sha_transform/n' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'sha_transform' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sha_transform'.
+INFO: [HLS 200-111]  Elapsed time: 2.57 seconds; current allocated memory: 82.087 MB.
+INFO: [RTMG 210-278] Implementing memory 'sha_transform_W_ram' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 120 ; free virtual = 11157
+INFO: [SYSC 207-301] Generating SystemC RTL for sha_transform.
+INFO: [VHDL 208-304] Generating VHDL RTL for sha_transform.
+INFO: [VLOG 209-307] Generating Verilog RTL for sha_transform.
+INFO: [HLS 200-112] Total elapsed time: 23.92 seconds; peak allocated memory: 82.087 MB.

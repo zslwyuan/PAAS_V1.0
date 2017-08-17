@@ -1,0 +1,305 @@
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 15,
+            directory = RubyDirectoryMemory(version = 15, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 15)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 11,
+            directory = RubyDirectoryMemory(version = 11, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 11)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 7,
+            directory = RubyDirectoryMemory(version = 7, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 7)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 3,
+            directory = RubyDirectoryMemory(version = 3, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 3)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 14,
+            directory = RubyDirectoryMemory(version = 14, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 14)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 10,
+            directory = RubyDirectoryMemory(version = 10, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 10)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 6,
+            directory = RubyDirectoryMemory(version = 6, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 6)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 2,
+            directory = RubyDirectoryMemory(version = 2, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 2)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 13,
+            directory = RubyDirectoryMemory(version = 13, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 13)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 9,
+            directory = RubyDirectoryMemory(version = 9, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 9)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 5,
+            directory = RubyDirectoryMemory(version = 5, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 5)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 1,
+            directory = RubyDirectoryMemory(version = 1, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 1)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 12,
+            directory = RubyDirectoryMemory(version = 12, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 12)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 8,
+            directory = RubyDirectoryMemory(version = 8, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 8)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 4,
+            directory = RubyDirectoryMemory(version = 4, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 4)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()
+
+ ##################################################################################################   
+    dir_size = MemorySize('0B')
+    dir_size.value = mem_module_size
+    dir_cntrl = Directory_Controller(version = 0,
+            directory = RubyDirectoryMemory(version = 0, size = dir_size),
+            transitions_per_cycle = options.ports,
+            ruby_system = ruby_system)
+
+    exec("ruby_system.dir_cntrl%d = dir_cntrl" % 0)
+    dir_cntrl_nodes.append(dir_cntrl)
+    # Connect the directory controllers and the network
+    dir_cntrl.requestToDir = MessageBuffer()
+    dir_cntrl.requestToDir.slave = ruby_system.network.master
+    dir_cntrl.responseToDir = MessageBuffer()
+    dir_cntrl.responseToDir.slave = ruby_system.network.master
+    dir_cntrl.responseFromDir = MessageBuffer()
+    dir_cntrl.responseFromDir.master = ruby_system.network.slave
+    dir_cntrl.responseFromMemory = MessageBuffer()

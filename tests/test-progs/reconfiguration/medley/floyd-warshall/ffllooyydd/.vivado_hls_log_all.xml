@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [XFORM 203-104] Completely partitioning array 'path' (floyd-warshall.c:64) accessed through non-constant indices on dimension 1 (floyd-warshall.c:73:1), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:16.669+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:15.952+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:15.941+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:15.931+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:13.433+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:13.425+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:13.418+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:13.407+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:10.886+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:10.879+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library 'xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs'." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:10.643+0800" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Cannot find library '/opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs.lib'." projectName="ffllooyydd" solutionName="solution1" date="2017-05-30T06:58:10.189+0800" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

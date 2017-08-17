@@ -1,0 +1,272 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Dec 20 2016 02:07:36
+gem5 started Dec 22 2016 12:28:01
+gem5 executing on lty-Satellite-L800, pid 3652
+command line: ./build/X86/gem5.opt configs/tuturial/fft.py --ruby --network=garnet2.0 --num-cpus=1 --num-fpgas=1 --num-dirs=2 --num-l2caches=2 --topology=Mesh_XY --mesh-rows=1
+
+1
+2
+2
+Global frequency set at 1000000000000 ticks per second
+Beginning simulation!
+info: Entering event queue @ 0.  Starting simulation...
+info: Increasing stack size by one page.
+ff00    0
+ad85 507b
+d644 27bc
+e3da 1a26
+eaa6 135b
+eeba  f46
+f172  c8e
+f364  a9c
+f4d9  927
+f5fc  804
+f6e5  71b
+f7a4  65c
+f843  5bd
+f8c9  537
+f93d  4c3
+f9a2  45e
+f9fa  406
+fa47  3b9
+fa8c  374
+facb  335
+fb02  2fe
+fb35  2cb
+fb63  29d
+fb8e  272
+fbb5  24b
+fbd8  228
+fbfa  206
+fc18  1e8
+fc35  1cb
+fc50  1b0
+fc69  197
+fc80  180
+fc96  16a
+fcab  155
+fcbf  141
+fcd2  12e
+fce3  11d
+fcf4  10c
+fd04   fc
+fd13   ed
+fd22   de
+fd2f   d1
+fd3d   c3
+fd49   b7
+fd55   ab
+fd61   9f
+fd6c   94
+fd77   89
+fd81   7f
+fd8b   75
+fd95   6b
+fd9e   62
+fda7   59
+fdb0   50
+fdb8   48
+fdc1   3f
+fdc9   37
+fdd0   30
+fdd8   28
+fddf   21
+fde6   1a
+fded   13
+fdf4    c
+fdfa    6
+fe01    0
+fe07 fffa
+fe0d fff4
+fe13 ffee
+fe18 ffe9
+fe1e ffe3
+fe24 ffdd
+fe29 ffd8
+fe2e ffd3
+fe34 ffcd
+fe39 ffc8
+fe3e ffc3
+fe43 ffbe
+fe47 ffba
+fe4c ffb5
+fe51 ffb0
+fe55 ffac
+fe5a ffa7
+fe5e ffa3
+fe63 ff9e
+fe67 ff9a
+fe6b ff96
+fe6f ff92
+fe74 ff8d
+fe78 ff89
+fe7c ff85
+fe80 ff81
+fe84 ff7d
+fe87 ff7a
+fe8b ff76
+fe8f ff72
+fe93 ff6e
+fe96 ff6b
+fe9a ff67
+fe9e ff63
+fea1 ff60
+fea5 ff5c
+fea8 ff59
+feac ff55
+feaf ff52
+feb3 ff4e
+feb6 ff4b
+feba ff47
+febd ff44
+fec0 ff41
+fec4 ff3d
+fec7 ff3a
+feca ff37
+fece ff33
+fed1 ff30
+fed4 ff2d
+fed7 ff2a
+fedb ff26
+fede ff23
+fee1 ff20
+fee4 ff1d
+fee7 ff1a
+feea ff17
+feee ff13
+fef1 ff10
+fef4 ff0d
+fef7 ff0a
+fefa ff07
+fefd ff04
+ff00 ff00
+ff04 fefd
+ff07 fefa
+ff0a fef7
+ff0d fef4
+ff10 fef1
+ff13 feee
+ff17 feea
+ff1a fee7
+ff1d fee4
+ff20 fee1
+ff23 fede
+ff26 fedb
+ff2a fed7
+ff2d fed4
+ff30 fed1
+ff33 fece
+ff37 feca
+ff3a fec7
+ff3d fec4
+ff41 fec0
+ff44 febd
+ff47 feba
+ff4b feb6
+ff4e feb3
+ff52 feaf
+ff55 feac
+ff59 fea8
+ff5c fea5
+ff60 fea1
+ff63 fe9e
+ff67 fe9a
+ff6b fe96
+ff6e fe93
+ff72 fe8f
+ff76 fe8b
+ff7a fe87
+ff7d fe84
+ff81 fe80
+ff85 fe7c
+ff89 fe78
+ff8d fe74
+ff92 fe6f
+ff96 fe6b
+ff9a fe67
+ff9e fe63
+ffa3 fe5e
+ffa7 fe5a
+ffac fe55
+ffb0 fe51
+ffb5 fe4c
+ffba fe47
+ffbe fe43
+ffc3 fe3e
+ffc8 fe39
+ffcd fe34
+ffd3 fe2e
+ffd8 fe29
+ffdd fe24
+ffe3 fe1e
+ffe9 fe18
+ffee fe13
+fff4 fe0d
+fffa fe07
+   0 fe00
+   6 fdfa
+   c fdf4
+  13 fded
+  1a fde6
+  21 fddf
+  28 fdd8
+  30 fdd0
+  37 fdc9
+  3f fdc1
+  48 fdb8
+  50 fdb0
+  59 fda7
+  62 fd9e
+  6b fd95
+  75 fd8b
+  7f fd81
+  89 fd77
+  94 fd6c
+  9f fd61
+  ab fd55
+  b7 fd49
+  c3 fd3d
+  d1 fd2f
+  de fd22
+  ed fd13
+  fc fd04
+ 10c fcf4
+ 11d fce3
+ 12e fcd2
+ 141 fcbf
+ 155 fcab
+ 16a fc96
+ 180 fc80
+ 197 fc69
+ 1b0 fc50
+ 1cb fc35
+ 1e8 fc18
+ 206 fbfa
+ 228 fbd8
+ 24b fbb5
+ 272 fb8e
+ 29d fb63
+ 2cb fb35
+ 2fe fb02
+ 335 facb
+ 374 fa8c
+ 3b9 fa47
+ 406 f9fa
+ 45e f9a2
+ 4c3 f93d
+ 537 f8c9
+ 5bd f843
+ 65c f7a4
+ 71b f6e5
+ 804 f5fc
+ 927 f4d9
+ a9c f364
+ c8e f172
+ f46 eeba
+135a eaa5
+1a26 e3da
+27bc d644
+507b ad85
+Exiting @ tick 1504328500 because target called exit()

@@ -1,0 +1,93 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-53-generic) on Sun Jan 01 22:24:26 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/linear-algebra/kernels/2mm'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/linear-algebra/kernels/2mm/2mmprj'.
+INFO: [HLS 200-10] Adding design file '2mm.c' to the project
+INFO: [HLS 200-10] Adding design file '2mm.h' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/benchmark_list' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Adding test bench file '2mm.c' to the project
+INFO: [HLS 200-10] Adding test bench file '2mm.h' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/benchmark_list' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/linear-algebra/kernels/2mm/2mmprj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z045ffg900-2'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'benchmark_list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '2mm.c' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+WARNING: [HLS 200-40] Directive 'INLINE' cannot be applied: Function 'addD' does not exist in any synthesis source file.
+WARNING: [HLS 200-40] Directive 'INLINE' cannot be applied: Function 'mulD' does not exist in any synthesis source file.
+WARNING: [HLS 200-40] Directive 'UNROLL' cannot be applied: Label 'kernel_2mm_label6' does not exist in function 'kernel_2mm'. 
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 518 ; free virtual = 10393
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 516 ; free virtual = 10391
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.355 ; gain = 12.602 ; free physical = 516 ; free virtual = 10391
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.355 ; gain = 12.602 ; free physical = 516 ; free virtual = 10391
+INFO: [XFORM 203-501] Unrolling loop 'kernel_2mm_label0' (2mm.c:95) in function 'kernel_2mm' completely.
+INFO: [XFORM 203-501] Unrolling loop 'kernel_2mm_label7' (2mm.c:99) in function 'kernel_2mm' completely.
+INFO: [XFORM 203-501] Unrolling loop 'kernel_2mm_label4' (2mm.c:102) in function 'kernel_2mm' completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:15 ; elapsed = 00:00:11 . Memory (MB): peak = 457.336 ; gain = 140.582 ; free physical = 464 ; free virtual = 10342
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:03:42 ; elapsed = 00:03:52 . Memory (MB): peak = 3145.336 ; gain = 2828.582 ; free physical = 133 ; free virtual = 7075
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_2mm' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_2mm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 495.78 seconds; current allocated memory: 2.812 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 208.85 seconds; current allocated memory: 2.886 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_2mm' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_2mm/indata' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_2mm' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel_2mm_mul_32s_32s_32_6' to 'kernel_2mm_mul_32bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel_2mm_mul_32bkb': 87 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_2mm'.
+INFO: [HLS 200-111]  Elapsed time: 293.8 seconds; current allocated memory: 3.353 GB.
+INFO: [RTMG 210-282] Generating pipelined core: 'kernel_2mm_mul_32bkb_MulnS_0'
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:16:24 ; elapsed = 00:17:47 . Memory (MB): peak = 3909.453 ; gain = 3592.699 ; free physical = 122 ; free virtual = 6257
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_2mm.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_2mm.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_2mm.
+INFO: [HLS 200-112] Total elapsed time: 1119.31 seconds; peak allocated memory: 3.353 GB.

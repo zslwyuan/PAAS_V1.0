@@ -1,0 +1,137 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-59-generic) on Tue May 30 06:58:09 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd'.
+INFO: [HLS 200-10] Adding design file '../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file 'floyd-warshall.h' to the project
+INFO: [HLS 200-10] Adding design file 'floyd-warshall.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/medley/floyd-warshall/ffllooyydd/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+WARNING: [HLS 200-40] Cannot find library '/opt/Xilinx/Vivado_HLS/2016.4/common/technology/xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs.lib'.
+WARNING: [HLS 200-40] Cannot find library 'xilinx/Defense-grade Kintex UltraScale FPGAs/Defense-grade Kintex UltraScale FPGAs'.
+INFO: [HLS 200-10] Setting target device to 'xqku115-rlf1924-2-i'
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'floyd-warshall.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1045 ; free virtual = 11630
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.340 ; gain = 12.586 ; free physical = 1044 ; free virtual = 11630
+INFO: [XFORM 203-501] Unrolling loop 'kernel_floyd_warshall_label2' (floyd-warshall.c:73) in function 'kernel_floyd_warshall' completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'path' (floyd-warshall.c:64) accessed through non-constant indices on dimension 1 (floyd-warshall.c:73:1), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+INFO: [XFORM 203-101] Partitioning array 'path' (floyd-warshall.c:64) in dimension 1 completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:09:31 ; elapsed = 00:09:27 . Memory (MB): peak = 457.336 ; gain = 140.582 ; free physical = 990 ; free virtual = 11581
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:10:59 ; elapsed = 00:10:55 . Memory (MB): peak = 521.336 ; gain = 204.582 ; free physical = 923 ; free virtual = 11516
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_floyd_warshall' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_floyd_warshall' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 781.72 seconds; current allocated memory: 217.246 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 37.73 seconds; current allocated memory: 258.941 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_floyd_warshall' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_2' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_3' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_4' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_5' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_6' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_7' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_8' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_9' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_10' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_11' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_12' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_13' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_14' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_15' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_16' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_17' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_18' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_19' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_20' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_21' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_22' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_23' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_24' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_25' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_26' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_27' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_28' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_29' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_30' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_31' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_32' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_33' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_34' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_35' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_36' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_37' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_38' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_39' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_40' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_41' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_42' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_43' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_44' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_45' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_46' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_47' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_48' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_49' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_50' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_51' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_52' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_53' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_54' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_55' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_56' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_57' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_58' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_59' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_60' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_61' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_62' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_floyd_warshall/path_63' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_floyd_warshall' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel_floyd_warshall_mux_646_32_1' to 'kernel_floyd_warsbkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel_floyd_warsbkb': 13 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_floyd_warshall'.
+INFO: [HLS 200-111]  Elapsed time: 35.12 seconds; current allocated memory: 282.798 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:14:27 ; elapsed = 00:15:00 . Memory (MB): peak = 1960.070 ; gain = 1643.316 ; free physical = 145 ; free virtual = 10915
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_floyd_warshall.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_floyd_warshall.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_floyd_warshall.
+INFO: [HLS 200-112] Total elapsed time: 900.09 seconds; peak allocated memory: 282.798 MB.

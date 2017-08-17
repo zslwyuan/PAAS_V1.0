@@ -1,0 +1,72 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-53-generic) on Mon Jan 02 21:18:58 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/heat-3d'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/heat-3d/heat_prj'.
+INFO: [HLS 200-10] Adding design file '../../utilities/benchmark_list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file 'heat-3d.c' to the project
+INFO: [HLS 200-10] Adding design file 'heat-3d.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/heat-3d/heat_prj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z045ffg900-2'
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'heat-3d.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'benchmark_list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1528 ; free virtual = 10802
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1526 ; free virtual = 10801
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1524 ; free virtual = 10799
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 1524 ; free virtual = 10799
+INFO: [XFORM 203-501] Unrolling loop 'kernel_heat_3d_label8' (heat-3d.c:73) in function 'kernel_heat_3d' completely.
+INFO: [XFORM 203-501] Unrolling loop 'kernel_heat_3d_label7' (heat-3d.c:83) in function 'kernel_heat_3d' completely.
+INFO: [XFORM 203-11] Balancing expressions in function 'kernel_heat_3d' (heat-3d.c:64)...168 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 1499 ; free virtual = 10774
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:16 ; elapsed = 00:00:12 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 1490 ; free virtual = 10765
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_heat_3d' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_heat_3d' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 14.27 seconds; current allocated memory: 86.335 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 4.03 seconds; current allocated memory: 94.003 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_heat_3d' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_heat_3d/A' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_heat_3d' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_heat_3d'.
+INFO: [HLS 200-111]  Elapsed time: 3.28 seconds; current allocated memory: 106.146 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 521.332 ; gain = 204.582 ; free physical = 1370 ; free virtual = 10700
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_heat_3d.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_heat_3d.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_heat_3d.
+INFO: [HLS 200-112] Total elapsed time: 31.42 seconds; peak allocated memory: 106.146 MB.

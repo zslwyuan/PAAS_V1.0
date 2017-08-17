@@ -1,0 +1,79 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'lty' on host 'lty-Satellite-L800' (Linux_x86_64 version 4.4.0-53-generic) on Tue Jan 03 01:30:19 CST 2017
+INFO: [HLS 200-10] On os Ubuntu 16.04.1 LTS
+INFO: [HLS 200-10] In directory '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/jacobi-2d'
+INFO: [HLS 200-10] Opening project '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/jacobi-2d/jacobi_prj'.
+INFO: [HLS 200-10] Adding design file '../../utilities/benchmark_list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/clean.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/create_cpped_version.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/header-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file 'jacobi-2d.c' to the project
+INFO: [HLS 200-10] Adding design file 'jacobi-2d.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/makefile-gen.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/papi_counters.list' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.R' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.c' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.h' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/polybench.spec' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/run-all.pl' to the project
+INFO: [HLS 200-10] Adding design file '../../utilities/time_benchmark.sh' to the project
+INFO: [HLS 200-10] Opening solution '/media/lty/SSD/Experiment-tmp/final1027/tests/test-progs/polybench-c-4.2/stencils/jacobi-2d/jacobi_prj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z045ffg900-2'
+WARNING: [HLS 200-40] Skipped source file 'time_benchmark.sh'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'run-all.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'polybench.spec'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file '../../utilities/polybench.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'polybench.R'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'papi_counters.list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'makefile-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'jacobi-2d.c' ... 
+WARNING: [HLS 200-40] Skipped source file 'header-gen.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'create_cpped_version.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'clean.pl'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+WARNING: [HLS 200-40] Skipped source file 'benchmark_list'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 593 ; free virtual = 10798
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 592 ; free virtual = 10798
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 592 ; free virtual = 10798
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:11 ; elapsed = 00:00:07 . Memory (MB): peak = 329.336 ; gain = 12.586 ; free physical = 591 ; free virtual = 10797
+INFO: [XFORM 203-501] Unrolling loop 'kernel_jacobi_2d_label0' (jacobi-2d.c:72) in function 'kernel_jacobi_2d' completely.
+INFO: [XFORM 203-501] Unrolling loop 'kernel_jacobi_2d_label1' (jacobi-2d.c:75) in function 'kernel_jacobi_2d' completely.
+INFO: [XFORM 203-11] Balancing expressions in function 'kernel_jacobi_2d' (jacobi-2d.c:62)...704 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 457.332 ; gain = 140.582 ; free physical = 560 ; free virtual = 10766
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:37 ; elapsed = 00:00:33 . Memory (MB): peak = 521.332 ; gain = 204.582 ; free physical = 491 ; free virtual = 10699
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel_jacobi_2d' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel_jacobi_2d' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 55.97 seconds; current allocated memory: 157.678 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 21.18 seconds; current allocated memory: 178.713 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel_jacobi_2d' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel_jacobi_2d/A' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel_jacobi_2d' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel_jacobi_2d_mul_34ns_32s_65_6' to 'kernel_jacobi_2d_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'kernel_jacobi_2d_am_addmul_8ns_7ns_8ns_14_1' to 'kernel_jacobi_2d_cud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'kernel_jacobi_2d_am_addmul_8ns_7ns_8ns_15_1' to 'kernel_jacobi_2d_dEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel_jacobi_2d_bkb': 176 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'kernel_jacobi_2d_cud': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'kernel_jacobi_2d_dEe': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel_jacobi_2d'.
+INFO: [HLS 200-111]  Elapsed time: 14.45 seconds; current allocated memory: 211.600 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'kernel_jacobi_2d_bkb_MulnS_0'
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:01:45 ; elapsed = 00:02:05 . Memory (MB): peak = 665.344 ; gain = 348.594 ; free physical = 256 ; free virtual = 10548
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel_jacobi_2d.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel_jacobi_2d.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel_jacobi_2d.
+INFO: [HLS 200-112] Total elapsed time: 125.31 seconds; peak allocated memory: 211.600 MB.
