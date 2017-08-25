@@ -159,8 +159,7 @@ VL_INLINE_OPT void Vour::_sequent__TOP__1(Vour__Syms* __restrict vlSymsp) {
 		vlTOPp->our__DOT__r_read_enable = 1U;
 		__Vdly__our__DOT__read_cnt = VL_ULL(0);
 	    } else {
-		if (VL_UNLIKELY((VL_ULL(2) == vlTOPp->our__DOT__state))) {
-		    VL_WRITEF("WAIT_READ");
+		if ((VL_ULL(2) == vlTOPp->our__DOT__state)) {
 		    if ((VL_ULL(1) == vlTOPp->read_ready)) {
 			__Vdly__our__DOT__temp_tag = 1U;
 			__Vdlyvval__our__DOT__r_data__v0 

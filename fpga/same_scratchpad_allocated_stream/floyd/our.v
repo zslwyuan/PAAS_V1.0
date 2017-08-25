@@ -210,7 +210,7 @@ integer i;
 		        end
 		        else if (state == WAIT_READ)
 		        begin
-					$write("WAIT_READ");
+				//	$write("WAIT_READ");
 					
 		            if (read_ready == 1)
 		            begin
