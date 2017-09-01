@@ -29,7 +29,6 @@
             "slave": {
                 "peer": [
                     "system.l2cache.mem_side", 
-                    "system.axibus.master[0]", 
                     "system.cpu.interrupts.int_master", 
                     "system.system_port"
                 ], 
@@ -62,160 +61,6 @@
         "load_offset": 0, 
         "work_begin_exit_count": 0, 
         "p_state_clk_gate_min": 1000, 
-        "fpga": {
-            "ModuleName": "same_scratchpad_allocated_stream/2mm/obj_dir/Vour", 
-            "do_statistics_insts": true, 
-            "fpga_bus_addr": 281470681743360, 
-            "numThreads": 1, 
-            "reg_lat": 42000, 
-            "itb": {
-                "baseaddress_control_fpga": 3221225472, 
-                "name": "itb", 
-                "fpga_bus_addr": 2147483648, 
-                "size_control_fpga": 4096, 
-                "eventq_index": 0, 
-                "cxx_class": "X86ISA::TLB", 
-                "walker": {
-                    "name": "walker", 
-                    "p_state_clk_gate_min": 1000, 
-                    "p_state_clk_gate_bins": 20, 
-                    "cxx_class": "X86ISA::Walker", 
-                    "clk_domain": "system.fpga.clk_domain", 
-                    "power_model": null, 
-                    "system": "system", 
-                    "eventq_index": 0, 
-                    "default_p_state": "UNDEFINED", 
-                    "p_state_clk_gate_max": 1000000000000, 
-                    "path": "system.fpga.itb.walker", 
-                    "type": "X86PagetableWalker", 
-                    "num_squash_per_cycle": 4
-                }, 
-                "path": "system.fpga.itb", 
-                "type": "X86TLB", 
-                "size": 64
-            }, 
-            "Reconfigurable": 0, 
-            "system": "system", 
-            "show_address": 0, 
-            "ACP": 0, 
-            "function_trace": false, 
-            "do_checkpoint_insts": true, 
-            "cxx_class": "FpgaCPU", 
-            "max_loads_all_threads": 0, 
-            "p_state_clk_gate_min": 1000, 
-            "clk_domain": {
-                "name": "clk_domain", 
-                "clock": [
-                    6667
-                ], 
-                "init_perf_level": 0, 
-                "voltage_domain": {
-                    "name": "voltage_domain", 
-                    "eventq_index": 0, 
-                    "voltage": [
-                        "1.0"
-                    ], 
-                    "cxx_class": "VoltageDomain", 
-                    "path": "system.fpga.clk_domain.voltage_domain", 
-                    "type": "VoltageDomain"
-                }, 
-                "eventq_index": 0, 
-                "cxx_class": "SrcClockDomain", 
-                "path": "system.fpga.clk_domain", 
-                "type": "SrcClockDomain", 
-                "domain_id": -1
-            }, 
-            "num_output_fpga": 15, 
-            "function_trace_start": 0, 
-            "cpu_id": -1, 
-            "checker": null, 
-            "size_control_fpga": 232, 
-            "eventq_index": 0, 
-            "default_p_state": "UNDEFINED", 
-            "p_state_clk_gate_max": 1000000000000, 
-            "Reconfiguration_time": 0, 
-            "do_quiesce": true, 
-            "type": "FpgaCPU", 
-            "profile": 0, 
-            "num_input_fpga": 13, 
-            "icache_port": {
-                "peer": "system.axibus.slave[0]", 
-                "role": "MASTER"
-            }, 
-            "p_state_clk_gate_bins": 20, 
-            "fpga": true, 
-            "interrupts": [], 
-            "dcache_port": {
-                "peer": "system.axibus.slave[1]", 
-                "role": "MASTER"
-            }, 
-            "socket_id": 0, 
-            "power_model": null, 
-            "max_insts_all_threads": 0, 
-            "path": "system.fpga", 
-            "noL1": 0, 
-            "max_loads_any_thread": 0, 
-            "baseaddress_control_fpga": 3221225472, 
-            "dma": {
-                "peer": "system.axibus.slave[2]", 
-                "role": "MASTER"
-            }, 
-            "switched_out": false, 
-            "workload": [], 
-            "name": "fpga", 
-            "dma_size": 20408, 
-            "dtb": {
-                "baseaddress_control_fpga": 3221225472, 
-                "name": "dtb", 
-                "fpga_bus_addr": 2147483648, 
-                "size_control_fpga": 4096, 
-                "eventq_index": 0, 
-                "cxx_class": "X86ISA::TLB", 
-                "walker": {
-                    "name": "walker", 
-                    "p_state_clk_gate_min": 1000, 
-                    "p_state_clk_gate_bins": 20, 
-                    "cxx_class": "X86ISA::Walker", 
-                    "clk_domain": "system.fpga.clk_domain", 
-                    "power_model": null, 
-                    "system": "system", 
-                    "eventq_index": 0, 
-                    "default_p_state": "UNDEFINED", 
-                    "p_state_clk_gate_max": 1000000000000, 
-                    "path": "system.fpga.dtb.walker", 
-                    "type": "X86PagetableWalker", 
-                    "num_squash_per_cycle": 4
-                }, 
-                "path": "system.fpga.dtb", 
-                "type": "X86TLB", 
-                "size": 64
-            }, 
-            "simpoint_start_insts": [], 
-            "max_insts_any_thread": 0, 
-            "progress_interval": 0, 
-            "branchPred": null, 
-            "control_port": {
-                "peer": "system.l2bus.master[0]", 
-                "role": "SLAVE"
-            }, 
-            "isa": [
-                {
-                    "eventq_index": 0, 
-                    "path": "system.fpga.isa", 
-                    "type": "X86ISA", 
-                    "name": "isa", 
-                    "cxx_class": "X86ISA::ISA"
-                }
-            ], 
-            "dma_available": 1, 
-            "tracer": {
-                "eventq_index": 0, 
-                "path": "system.fpga.tracer", 
-                "type": "ExeTracer", 
-                "name": "tracer", 
-                "cxx_class": "Trace::ExeTracer"
-            }
-        }, 
         "memories": [
             "system.mem_ctrl"
         ], 
@@ -264,7 +109,7 @@
         "cache_line_size": 64, 
         "boot_osflags": "a", 
         "system_port": {
-            "peer": "system.membus.slave[3]", 
+            "peer": "system.membus.slave[2]", 
             "role": "MASTER"
         }, 
         "mem_ctrl": {
@@ -494,7 +339,7 @@
                     "max_stack_size": 67108864, 
                     "name": "workload", 
                     "cmd": [
-                        "tests/DMA/polybench-c-4.2/2mm-fpga"
+                        "tests/test-progs/polybench-c-4.2/2mm-fpga"
                     ], 
                     "errout": "cerr", 
                     "useArchPT": false, 
@@ -1062,7 +907,7 @@
                 "p_state_clk_gate_max": 1000000000000, 
                 "io_bypass_tail": 0, 
                 "mem_side": {
-                    "peer": "system.l2bus.slave[0]", 
+                    "peer": "system.l2bus.slave[1]", 
                     "role": "MASTER"
                 }, 
                 "type": "Cache", 
@@ -1147,7 +992,7 @@
                 "write_buffers": 8, 
                 "response_latency": 4, 
                 "cxx_class": "Cache", 
-                "size": 32768, 
+                "size": 16384, 
                 "tags": {
                     "name": "tags", 
                     "p_state_clk_gate_min": 1000, 
@@ -1164,7 +1009,7 @@
                     "hit_latency": 4, 
                     "block_size": 64, 
                     "type": "LRU", 
-                    "size": 32768
+                    "size": 16384
                 }, 
                 "clk_domain": "system.clk_domain", 
                 "max_miss_count": 0, 
@@ -1173,7 +1018,7 @@
                 "p_state_clk_gate_max": 1000000000000, 
                 "io_bypass_tail": 3221229568, 
                 "mem_side": {
-                    "peer": "system.l2bus.slave[1]", 
+                    "peer": "system.l2bus.slave[2]", 
                     "role": "MASTER"
                 }, 
                 "type": "Cache", 
@@ -1217,7 +1062,7 @@
             "interrupts": [
                 {
                     "int_master": {
-                        "peer": "system.membus.slave[2]", 
+                        "peer": "system.membus.slave[1]", 
                         "role": "MASTER"
                     }, 
                     "name": "interrupts", 
@@ -1316,12 +1161,48 @@
             "LQEntries": 32
         }, 
         "multi_thread": false, 
-        "axibus": {
-            "point_of_coherency": false, 
+        "fpga": {
+            "profile": 0, 
+            "ModuleName": "same_scratchpad_allocated/2mm/obj_dir/Vour", 
+            "do_statistics_insts": true, 
+            "fpga_bus_addr": 281470681743360, 
+            "numThreads": 1, 
+            "reg_lat": 42000, 
+            "itb": {
+                "baseaddress_control_fpga": 3221225472, 
+                "name": "itb", 
+                "fpga_bus_addr": 2147483648, 
+                "size_control_fpga": 4096, 
+                "eventq_index": 0, 
+                "cxx_class": "X86ISA::TLB", 
+                "walker": {
+                    "name": "walker", 
+                    "p_state_clk_gate_min": 1000, 
+                    "p_state_clk_gate_bins": 20, 
+                    "cxx_class": "X86ISA::Walker", 
+                    "clk_domain": "system.fpga.clk_domain", 
+                    "power_model": null, 
+                    "system": "system", 
+                    "eventq_index": 0, 
+                    "default_p_state": "UNDEFINED", 
+                    "p_state_clk_gate_max": 1000000000000, 
+                    "path": "system.fpga.itb.walker", 
+                    "type": "X86PagetableWalker", 
+                    "num_squash_per_cycle": 4
+                }, 
+                "path": "system.fpga.itb", 
+                "type": "X86TLB", 
+                "size": 64
+            }, 
+            "Reconfigurable": 0, 
             "system": "system", 
-            "response_latency": 1, 
-            "cxx_class": "CoherentXBar", 
-            "forward_latency": 1, 
+            "show_address": 0, 
+            "ACP": 1, 
+            "function_trace": false, 
+            "do_checkpoint_insts": true, 
+            "cxx_class": "FpgaCPU", 
+            "max_loads_all_threads": 0, 
+            "fpga": true, 
             "clk_domain": {
                 "name": "clk_domain", 
                 "clock": [
@@ -1335,53 +1216,97 @@
                         "1.0"
                     ], 
                     "cxx_class": "VoltageDomain", 
-                    "path": "system.axibus.clk_domain.voltage_domain", 
+                    "path": "system.fpga.clk_domain.voltage_domain", 
                     "type": "VoltageDomain"
                 }, 
                 "eventq_index": 0, 
                 "cxx_class": "SrcClockDomain", 
-                "path": "system.axibus.clk_domain", 
+                "path": "system.fpga.clk_domain", 
                 "type": "SrcClockDomain", 
                 "domain_id": -1
             }, 
-            "width": 4, 
+            "num_output_fpga": 15, 
+            "function_trace_start": 0, 
+            "cpu_id": -1, 
+            "checker": null, 
+            "size_control_fpga": 232, 
             "eventq_index": 0, 
             "default_p_state": "UNDEFINED", 
             "p_state_clk_gate_max": 1000000000000, 
-            "master": {
-                "peer": [
-                    "system.membus.slave[1]"
-                ], 
+            "Reconfiguration_time": 0, 
+            "do_quiesce": true, 
+            "type": "FpgaCPU", 
+            "p_state_clk_gate_min": 1000, 
+            "num_input_fpga": 13, 
+            "p_state_clk_gate_bins": 20, 
+            "Protocol_shakehand": 0, 
+            "interrupts": [], 
+            "dcache_port": {
+                "peer": "system.l2bus.slave[0]", 
                 "role": "MASTER"
             }, 
-            "type": "CoherentXBar", 
-            "frontend_latency": 1, 
-            "slave": {
-                "peer": [
-                    "system.fpga.icache_port", 
-                    "system.fpga.dcache_port", 
-                    "system.fpga.dma"
-                ], 
+            "socket_id": 0, 
+            "power_model": null, 
+            "max_insts_all_threads": 0, 
+            "path": "system.fpga", 
+            "noL1": 0, 
+            "max_loads_any_thread": 0, 
+            "baseaddress_control_fpga": 3221225472, 
+            "switched_out": false, 
+            "workload": [], 
+            "name": "fpga", 
+            "dma_size": 0, 
+            "dtb": {
+                "baseaddress_control_fpga": 3221225472, 
+                "name": "dtb", 
+                "fpga_bus_addr": 2147483648, 
+                "size_control_fpga": 4096, 
+                "eventq_index": 0, 
+                "cxx_class": "X86ISA::TLB", 
+                "walker": {
+                    "name": "walker", 
+                    "p_state_clk_gate_min": 1000, 
+                    "p_state_clk_gate_bins": 20, 
+                    "cxx_class": "X86ISA::Walker", 
+                    "clk_domain": "system.fpga.clk_domain", 
+                    "power_model": null, 
+                    "system": "system", 
+                    "eventq_index": 0, 
+                    "default_p_state": "UNDEFINED", 
+                    "p_state_clk_gate_max": 1000000000000, 
+                    "path": "system.fpga.dtb.walker", 
+                    "type": "X86PagetableWalker", 
+                    "num_squash_per_cycle": 4
+                }, 
+                "path": "system.fpga.dtb", 
+                "type": "X86TLB", 
+                "size": 64
+            }, 
+            "simpoint_start_insts": [], 
+            "max_insts_any_thread": 0, 
+            "progress_interval": 0, 
+            "branchPred": null, 
+            "control_port": {
+                "peer": "system.l2bus.master[0]", 
                 "role": "SLAVE"
             }, 
-            "p_state_clk_gate_min": 1000, 
-            "snoop_filter": {
-                "name": "snoop_filter", 
-                "system": "system", 
-                "max_capacity": 33554432, 
+            "isa": [
+                {
+                    "eventq_index": 0, 
+                    "path": "system.fpga.isa", 
+                    "type": "X86ISA", 
+                    "name": "isa", 
+                    "cxx_class": "X86ISA::ISA"
+                }
+            ], 
+            "dma_available": 0, 
+            "tracer": {
                 "eventq_index": 0, 
-                "cxx_class": "SnoopFilter", 
-                "path": "system.axibus.snoop_filter", 
-                "type": "SnoopFilter", 
-                "lookup_latency": 0
-            }, 
-            "power_model": null, 
-            "path": "system.axibus", 
-            "snoop_response_latency": 1, 
-            "name": "axibus", 
-            "p_state_clk_gate_bins": 20, 
-            "disenable_snoopFilter": 0, 
-            "use_default_range": false
+                "path": "system.fpga.tracer", 
+                "type": "ExeTracer", 
+                "name": "tracer", 
+                "cxx_class": "Trace::ExeTracer"
+            }
         }, 
         "l2bus": {
             "point_of_coherency": false, 
@@ -1405,6 +1330,7 @@
             "frontend_latency": 1, 
             "slave": {
                 "peer": [
+                    "system.fpga.dcache_port", 
                     "system.cpu.icache.mem_side", 
                     "system.cpu.dcache.mem_side"
                 ], 

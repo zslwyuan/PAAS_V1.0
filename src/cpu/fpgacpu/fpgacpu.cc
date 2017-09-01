@@ -121,7 +121,7 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
       dcachePort(this), controlPort(this,p),dmaPort(this,p->system), ifetch_pkt(NULL), dcache_pkt(NULL),
       previousCycle(0),fetchEvent(this,false,-51), releaseEvent(this), dequeueEvent(this),baseaddress_control_fpga(p->baseaddress_control_fpga),size_control_fpga(p->size_control_fpga),
 	  moduleName(p->ModuleName),show_address(p->show_address),dma_available(p->dma_available),dma_size(p->dma_size),ACP(p->ACP),Reconfigurable(p->Reconfigurable),
-	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this)
+	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand)
 	  
 {
     _status = Idle;
@@ -232,7 +232,6 @@ FpgaCPU::switchOut()
 {
     SimpleExecContext& t_info = *threadInfo[curThread];
     M5_VAR_USED SimpleThread* thread = t_info.thread;
-
     BaseSimpleCPU::switchOut();
 
     assert(!fetchEvent.scheduled());
@@ -704,7 +703,7 @@ FpgaCPU::finishTranslation(WholeTranslationState *state)
 	//if (tmp) printf("FPGA TRANSFINI\n");
     _status = BaseSimpleCPU::Running;
 
-	if (ACP)
+	if (0)//(ACP)
 	{
     	assert(!dcachePort.acpSendEvent.scheduled());
     	// delay processing of returned data until next CPU clock edge
@@ -828,8 +827,8 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
 	inputArray[bit_WriteReady] = 0;
 	//if (tmp) printf("FPGA CLK\n");
 	//if (ReadEnable) printf("detect read %lu\n",outputArray[bit_ReadAddr]);
-
-    if (((ReadEnable && (outputArray[bit_FinishRead] || edge_RENA)) || readFault)&&already_reset)
+	
+    if (((ReadEnable && (outputArray[bit_FinishRead] || edge_RENA || (Protocol_shakehand&&ReadReady))) || readFault)&&already_reset)
     {
 		//tmp=1;
 	//	printf("FPGA Req\n");
@@ -1160,7 +1159,7 @@ FpgaCPU::DcachePort::recvTimingResp(PacketPtr pkt)
 
     // The timing CPU is not really ticked, instead it relies on the
     // memory system (fetch and load/store) to set the pace.
-	if (cpu->ACP)
+	if (0)//(cpu->ACP)
 	{
 		if (!acpRecvEvent.scheduled()) {
 		    // Delay processing of returned data until next CPU clock edge

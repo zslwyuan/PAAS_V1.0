@@ -573,10 +573,11 @@ class FpgaCPU : public BaseSimpleCPU
 	int ACP;
 	int tmp;
 	int already_reset;
-	int Reconfigurable;
+	int Reconfigurable;	
 	Tick Reconfiguration_time;
 	void reconfiguration();
 	EventWrapper<FpgaCPU, &FpgaCPU::reconfiguration> reconfigurationEvent;
+	int Protocol_shakehand;
 };
 
 #endif // __CPU_FPGA_HH__
