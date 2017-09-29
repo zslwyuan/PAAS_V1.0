@@ -163,11 +163,11 @@ class Cache : public BaseCache
      */
     class MemSidePort : public CacheMasterPort
     {
-      private:
 
+      public:
         /** The cache-specific queue. */
         CacheReqPacketQueue _reqQueue;
-
+      private:
         SnoopRespPacketQueue _snoopRespQueue;
 
         // a pointer to our specific cache implementation

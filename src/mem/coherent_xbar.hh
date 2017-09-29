@@ -407,6 +407,10 @@ class CoherentXBar : public BaseXBar
 
     virtual void regStats();
 	int disenable_snoopFilter;
+        unsigned long long io_bypass;
+        unsigned long long io_bypass_head;
+        unsigned long long io_bypass_tail;
+
 };
 
 #endif //__MEM_COHERENT_XBAR_HH__

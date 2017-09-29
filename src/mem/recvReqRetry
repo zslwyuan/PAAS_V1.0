@@ -1,0 +1,8 @@
+port.hh:    bool isSnooping() const { return _masterPort->isSnooping(); }
+port.hh:        _masterPort->recvRangeChange();
+port.cc:    return _masterPort->recvAtomicSnoop(pkt);
+port.cc:    return _masterPort->recvFunctionalSnoop(pkt);
+port.cc:    return _masterPort->recvTimingResp(pkt);
+port.cc:    _masterPort->recvTimingSnoopReq(pkt);
+port.cc:    _masterPort->recvReqRetry();
+port.cc:    _masterPort->recvRetrySnoopResp();

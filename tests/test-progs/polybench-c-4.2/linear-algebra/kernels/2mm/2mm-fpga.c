@@ -139,7 +139,7 @@ p0[6]=1;
 //  printf("%d %d %d %d\n",indata[1],indata[1001],indata[2222],indata[3211]);
   /* Prevent dead-code elimination. All live-out data must be printed
      by the function call in argument. */
-//  polybench_prevent_dce(print_array(ni, nl,  D));
+  polybench_prevent_dce(print_array(ni, nl,  D));
 
   /* Be clean. *//*
   POLYBENCH_FREE_ARRAY(tmp);

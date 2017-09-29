@@ -63,7 +63,10 @@
 CoherentXBar::CoherentXBar(const CoherentXBarParams *p)
     : BaseXBar(p), system(p->system), snoopFilter(p->snoop_filter),
       snoopResponseLatency(p->snoop_response_latency),
-      pointOfCoherency(p->point_of_coherency),disenable_snoopFilter(p->disenable_snoopFilter)
+      pointOfCoherency(p->point_of_coherency),disenable_snoopFilter(p->disenable_snoopFilter),
+      io_bypass(p->io_bypass),
+          io_bypass_head(p->io_bypass_head),
+          io_bypass_tail(p->io_bypass_tail)
 {
     // create the ports based on the size of the master and slave
     // vector ports, and the presence of the default port, the ports
@@ -156,6 +159,7 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
 		if (pkt->get<uint32_t>()==146)
 			printf("FPGA -- %s -- 0\n",name().c_str());
 	}*/
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
     bool is_express_snoop = pkt->isExpressSnoop();
     bool cache_responding = pkt->cacheResponding();
 	//if (pkt->req->fromFPGA&&pkt->isWrite()) printf("here FPGA : %s responding? %d\n",name().c_str(),cache_responding);
@@ -170,6 +174,13 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
 
     // test if the crossbar should be considered occupied for the current
     // port, and exclude express snoops from the check
+
+        if (IOBYPASS) {
+                                assert(routeTo.find(pkt->req) == routeTo.end());
+                routeTo[pkt->req] = slave_port_id;
+                                return masterPorts[master_port_id]->sendTimingReq(pkt);
+                }
+
     if (!is_express_snoop && !reqLayers[master_port_id]->tryTiming(src_port)) {
 		//if (pkt->req->fromFPGA&&pkt->isWrite()) printf("fail tryTiming FPGA : %s data : %d\n",name().c_str(),pkt->get<uint32_t>());
     
@@ -200,7 +211,7 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
     Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
 	//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("11\n");
 
-    if (!system->bypassCaches()) {
+    if (!system->bypassCaches()&&!IOBYPASS) {
         assert(pkt->snoopDelay == 0);
 		//if ((name().find("membus")!=std::string::npos)&&pkt->req->fromFPGA&&pkt->isWrite())	printf("22\n");
         // the packet is a memory-mapped request and should be
@@ -303,7 +314,17 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
 				if(pkt->isRead()) printf("R"); else printf("W");
 				printf("Bus5\n");
 			}
-
+                        if (IOBYPASS)
+                        {
+                                if (pkt->isRead())
+                                {
+                                        printf("%s BUS recv a READ pkt to FPGA 1@ addr:%lu\n",name().c_str(),pkt->req->getVaddr());
+                                }
+                                else
+                                {
+                                        printf("%s BUS recv a WRITE pkt to FPGA 1@ addr:%lu\n",name().c_str(),pkt->req->getVaddr());
+                                }
+                        }
             success = masterPorts[master_port_id]->sendTimingReq(pkt);
         } else {
             // no need to forward, turn this packet around and respond
@@ -315,9 +336,9 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
         }
     }
 
-    if (snoopFilter && !system->bypassCaches()) {
-		if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
-		{
+    if (snoopFilter && !system->bypassCaches()&&!IOBYPASS) {
+                if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+                {
 			if(pkt->isRead()) printf("R"); else printf("W");
 			printf("Bus6\n");
 		}
@@ -387,7 +408,7 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
         assert(success);
 
         pkt->makeResponse();
-        if (snoopFilter && !system->bypassCaches()) {
+        if (snoopFilter && !system->bypassCaches() && !IOBYPASS) {
             // let the snoop filter inspect the response and update its state
             snoopFilter->updateResponse(pkt, *slavePorts[slave_port_id]);
         }
@@ -409,6 +430,8 @@ CoherentXBar::recvTimingReq(PacketPtr pkt, PortID slave_port_id)
 bool
 CoherentXBar::recvTimingResp(PacketPtr pkt, PortID master_port_id)
 {
+
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
     // determine the source port based on the id
     MasterPort *src_port = masterPorts[master_port_id];
 
@@ -418,6 +441,18 @@ CoherentXBar::recvTimingResp(PacketPtr pkt, PortID master_port_id)
     const PortID slave_port_id = route_lookup->second;
     assert(slave_port_id != InvalidPortID);
     assert(slave_port_id < respLayers.size());
+
+        if (IOBYPASS)
+        {
+                Tick xbar_delay = responseLatency * clockPeriod();
+
+                calcPacketTiming(pkt, xbar_delay);
+                routeTo.erase(route_lookup);
+                Tick latency = pkt->headerDelay;
+                pkt->headerDelay = 0;
+                slavePorts[slave_port_id]->schedTimingResp(pkt, curTick() + latency + responseLatency * clockPeriod());
+                return true;
+        }
 
     // test if the crossbar should be considered occupied for the
     // current port
@@ -444,7 +479,7 @@ CoherentXBar::recvTimingResp(PacketPtr pkt, PortID master_port_id)
     // determine how long to be crossbar layer is busy
     Tick packetFinishTime = clockEdge(Cycles(1)) + pkt->payloadDelay;
 
-    if (snoopFilter && !system->bypassCaches()) {
+    if (snoopFilter && !system->bypassCaches() && !IOBYPASS) {
         // let the snoop filter inspect the response and update its state
         snoopFilter->updateResponse(pkt, *slavePorts[slave_port_id]);
     }
@@ -668,9 +703,9 @@ CoherentXBar::forwardTiming(PacketPtr pkt, PortID exclude_slave_port_id,
 {
     DPRINTF(CoherentXBar, "%s for %s address %x size %d\n", __func__,
             pkt->cmdString(), pkt->getAddr(), pkt->getSize());
-
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
     // snoops should only happen if the system isn't bypassing caches
-    assert(!system->bypassCaches());
+    assert(!system->bypassCaches() && !IOBYPASS);
 
     unsigned fanout = 0;
 
@@ -722,8 +757,8 @@ CoherentXBar::recvAtomic(PacketPtr pkt, PortID slave_port_id)
 
     MemCmd snoop_response_cmd = MemCmd::InvalidCmd;
     Tick snoop_response_latency = 0;
-
-    if (!system->bypassCaches()) {
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
+    if (!system->bypassCaches()&&!IOBYPASS) {
         // forward to all snoopers but the source
         std::pair<MemCmd, Tick> snoop_result;
         if (snoopFilter) {
@@ -782,7 +817,7 @@ CoherentXBar::recvAtomic(PacketPtr pkt, PortID slave_port_id)
 
 
     // if lower levels have replied, tell the snoop filter
-    if (!system->bypassCaches() && snoopFilter && pkt->isResponse()) {
+    if (!system->bypassCaches() && !IOBYPASS && snoopFilter && pkt->isResponse()) {
         snoopFilter->updateResponse(pkt, *slavePorts[slave_port_id]);
     }
 
@@ -857,6 +892,7 @@ CoherentXBar::forwardAtomic(PacketPtr pkt, PortID exclude_slave_port_id,
                            PortID source_master_port_id,
                            const std::vector<QueuedSlavePort*>& dests)
 {
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
     // the packet may be changed on snoops, record the original
     // command to enable us to restore it between snoops so that
     // additional snoops can take place properly
@@ -865,7 +901,7 @@ CoherentXBar::forwardAtomic(PacketPtr pkt, PortID exclude_slave_port_id,
     Tick snoop_response_latency = 0;
 
     // snoops should only happen if the system isn't bypassing caches
-    assert(!system->bypassCaches());
+    assert(!system->bypassCaches() && !IOBYPASS);
 
     unsigned fanout = 0;
 
@@ -933,8 +969,8 @@ CoherentXBar::recvFunctional(PacketPtr pkt, PortID slave_port_id)
                 slavePorts[slave_port_id]->name(), pkt->getAddr(),
                 pkt->cmdString());
     }
-
-    if (!system->bypassCaches()) {
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
+    if (!system->bypassCaches() && !IOBYPASS) {
         // forward to all snoopers but the source
         forwardFunctional(pkt, slave_port_id);
     }
@@ -986,8 +1022,9 @@ CoherentXBar::recvFunctionalSnoop(PacketPtr pkt, PortID master_port_id)
 void
 CoherentXBar::forwardFunctional(PacketPtr pkt, PortID exclude_slave_port_id)
 {
+        bool IOBYPASS = (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail));
     // snoops should only happen if the system isn't bypassing caches
-    assert(!system->bypassCaches());
+    assert(!system->bypassCaches() && !IOBYPASS);
 
     for (const auto& p: snoopPorts) {
         // we could have gotten this request from a snooping master

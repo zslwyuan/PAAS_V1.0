@@ -1,0 +1,11 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Sep 28 2017 22:13:19
+gem5 started Sep 28 2017 22:15:23
+gem5 executing on eelty, pid 22715
+command line: ./build/X86/gem5.opt configs/for_bus/L2-fpga-2mm.py
+
+Global frequency set at 1000000000000 ticks per second
+Beginning simulation!
+info: Entering event queue @ 0.  Starting simulation...

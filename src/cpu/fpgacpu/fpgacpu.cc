@@ -1336,14 +1336,19 @@ FpgaCPU::recvFunctional(PacketPtr pkt)
 bool
 FpgaCPU::recvTimingReq(PacketPtr pkt)
 {
+        //printf("FPGA recv REQ @ addr %lu\n",pkt->req->getVaddr());
     for (int x = 0; x < pendingDelete.size(); x++)
         delete pendingDelete[x];
     pendingDelete.clear();
-
+/*
     if (retryReq)
+        {
+                printf("FPGA on retry\n");
         return false;
+        }
 
     if (isBusy) {
+                printf("FPGA begins retry\n");
         retryReq = true;
         return false;
     }
@@ -1355,10 +1360,10 @@ FpgaCPU::recvTimingReq(PacketPtr pkt)
         Tick duration = latency;
         if (duration != 0) {
             schedule(releaseEvent, curTick() + duration);
-            isBusy = true;
+           // isBusy = true;
         }
     }
-
+*/
     bool needsResponse = pkt->needsResponse();
     recvAtomic(pkt);
     if (needsResponse) {
@@ -1367,9 +1372,10 @@ FpgaCPU::recvTimingReq(PacketPtr pkt)
         if (!retryResp && !dequeueEvent.scheduled())
             schedule(dequeueEvent, packetQueue.back().tick);
     } else {
-        pendingDelete.push_back(pkt);			if (dma_available)
-			{	
-				if (fpgadma!=nullptr) delete fpgadma;
+                pendingDelete.push_back(pkt);
+                        if (dma_available)
+                        {
+                                if (fpgadma!=nullptr) delete fpgadma;
 	 			fpgadma = new FPGADma(this,dmaPort, MemoryRange*MemorySize, 64, 8,Request::UNCACHEABLE);
 			}
     }

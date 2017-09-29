@@ -306,7 +306,7 @@ Cache::access(PacketPtr pkt, CacheBlk *&blk, Cycles &lat,
     DPRINTF(CacheVerbose, "%s for %s addr %#llx size %d\n", __func__,
             pkt->cmdString(), pkt->getAddr(), pkt->getSize());
 
-    if (pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) {
+    if (pkt->req->isUncacheable()) {
         DPRINTF(Cache, "%s%s addr %#llx uncacheable\n", pkt->cmdString(),
                 pkt->req->isInstFetch() ? " (ifetch)" : "",
                 pkt->getAddr());
@@ -606,14 +606,69 @@ Cache::recvTimingReq(PacketPtr pkt)
     // Just forward the packet if caches are disabled.
     if (system->bypassCaches()) {
         // @todo This should really enqueue the packet rather
+        /*	if (pkt->isRead())
+                {
+                        printf("cache recv a READ pkt to FPGA @ addr:%lu\n",pkt->req->getVaddr());
+                }
+                else
+                {
+                        printf("cache recv a WRITE pkt to FPGA @ addr:%lu\n",pkt->req->getVaddr());
+                }*/
         bool M5_VAR_USED success = memSidePort->sendTimingReq(pkt);
         assert(success);
         return true;
     }
-    promoteWholeLineWrites(pkt);
 
-	if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
-	{
+
+    promoteWholeLineWrites(pkt);
+    if ((io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) {
+        // @todo This should really enqueue the packet rather
+        /*
+                if (pkt->isRead())
+                {
+                        printf("cache recv a READ pkt to FPGA @ addr:%lu\n",pkt->req->getVaddr());
+                }
+                else
+                {
+                        printf("cache recv a WRITE pkt to FPGA @ addr:%lu\n",pkt->req->getVaddr());
+                }*/
+                bool M5_VAR_USED success = memSidePort->sendTimingReq(pkt);
+        //	printf("success: %d\n",success);
+                if (!success)
+                {
+                /*	((MemSidePort*)memSidePort)->_reqQueue.schedSendTiming(pkt,clockEdge(forwardLatency) + pkt->headerDelay);
+                        ((MemSidePort*)memSidePort)->_reqQueue.waitingOnRetry=true;		*/
+                        if (io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))
+                                allocateWriteBuffer(pkt, clockEdge(forwardLatency) + pkt->headerDelay);
+                        Tick next_pf_time = MaxTick;
+						if (prefetcher) {
+						    // Don't notify on SWPrefetch
+						    if (!pkt->cmd.isSWPrefetch())
+						        next_pf_time = prefetcher->notify(pkt);
+						}
+                        if (next_pf_time != MaxTick)
+                                schedMemSideSendEvent(next_pf_time);
+                        return false;
+                }
+                return true;
+    }
+    else
+    {
+            if (io_bypass)
+            if (!pkt->req->fromFPGA)
+            {
+                    if (pkt->isRead())
+                    {
+            //		printf("cache recv a READ pkt from CPU @ addr:%lu\n",pkt->req->getVaddr());
+                    }
+                    else
+                    {
+            //		printf("cache recv a WRITE pkt from CPU @ addr:%lu\n",pkt->req->getVaddr());
+                    }
+            }
+    }
+    if (pkt->req->getVaddr()==SHOWADDRESS&&pkt->req->fromFPGA&&SHOW)
+    {
 		printf("%s recv1\n",name().c_str());
 	}
 
@@ -729,7 +784,7 @@ Cache::recvTimingReq(PacketPtr pkt)
         // should never be satisfying an uncacheable access as we
         // flush and invalidate any existing block as part of the
         // lookup
-        assert(!(pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))));
+        assert(!(pkt->req->isUncacheable()));
 
         // hit (for all other request types)
 
@@ -769,7 +824,7 @@ Cache::recvTimingReq(PacketPtr pkt)
         Addr blk_addr = blockAlign(pkt->getAddr());
         // ignore any existing MSHR if we are dealing with an
         // uncacheable request
-        MSHR *mshr = (pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) ? nullptr :
+        MSHR *mshr = (pkt->req->isUncacheable()) ? nullptr :
             mshrQueue.findMatch(blk_addr, pkt->isSecure());
 
         // Software prefetch handling:
@@ -784,7 +839,7 @@ Cache::recvTimingReq(PacketPtr pkt)
         if (pkt->cmd.isSWPrefetch()) {
             assert(needsResponse);
             assert(pkt->req->hasPaddr());
-            assert(!(pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))));
+            assert(!(pkt->req->isUncacheable()));
 
             // There's no reason to add a prefetch as an additional target
             // to an existing MSHR. If an outstanding request is already
@@ -868,21 +923,21 @@ Cache::recvTimingReq(PacketPtr pkt)
         } else {
             // no MSHR
             assert(pkt->req->masterId() < system->maxMasters());
-            if ((pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail)))) {
+            if ((pkt->req->isUncacheable())) {
                 mshr_uncacheable[pkt->cmdToIndex()][pkt->req->masterId()]++;
             } else {
                 mshr_misses[pkt->cmdToIndex()][pkt->req->masterId()]++;
             }
 
             if (pkt->isEviction() ||
-                ((pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) && pkt->isWrite())) {
+                ((pkt->req->isUncacheable()) && pkt->isWrite())) {
                 // We use forward_time here because there is an
                 // uncached memory write, forwarded to WriteBuffer.
                 allocateWriteBuffer(pkt, forward_time);
             } else {
                 if (blk && blk->isValid()) {
                     // should have flushed and have no valid block
-                    assert(!(pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))));
+                    assert(!(pkt->req->isUncacheable()));
 
                     // If we have a write miss to a valid block, we
                     // need to mark the block non-readable.  Otherwise
@@ -1055,7 +1110,7 @@ Cache::recvAtomic(PacketPtr pkt)
         // deal with the packets that go through the write path of
         // the cache, i.e. any evictions and uncacheable writes
         if (pkt->isEviction() ||
-            ((pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) && pkt->isWrite())) {
+            ((pkt->req->isUncacheable()) && pkt->isWrite())) {
             lat += ticksToCycles(memSidePort->sendAtomic(pkt));
             return lat * clockPeriod();
         }
@@ -1290,8 +1345,9 @@ Cache::recvTimingResp(PacketPtr pkt)
 
     // if this is a write, we should be looking at an uncacheable
     // write
-    if (pkt->isWrite()) {
-        assert((pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))));
+    if (pkt->isWrite()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) {
+        assert((pkt->req->isUncacheable())||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail)));
+                //printf("cache recv a RESP pkt from FPGA @ addr:%lu\n",pkt->req->getVaddr());
         handleUncacheableWriteResp(pkt);
         return;
     }
@@ -1312,7 +1368,7 @@ Cache::recvTimingResp(PacketPtr pkt)
     int stats_cmd_idx = initial_tgt->pkt->cmdToIndex();
     Tick miss_latency = curTick() - initial_tgt->recvTime;
 
-    if ((pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail)))) {
+    if ((pkt->req->isUncacheable())) {
         assert(pkt->req->masterId() < system->maxMasters());
         mshr_uncacheable_lat[stats_cmd_idx][pkt->req->masterId()] +=
             miss_latency;
@@ -1420,7 +1476,7 @@ Cache::recvTimingResp(PacketPtr pkt)
                 completion_time += clockEdge(responseLatency) +
                     (transfer_offset ? pkt->payloadDelay : 0);
 
-                assert(!(tgt_pkt->req->isUncacheable()||(io_bypass&&(tgt_pkt->req->getVaddr()>=io_bypass_head)&&(tgt_pkt->req->getVaddr()<=io_bypass_tail))));
+                assert(!(tgt_pkt->req->isUncacheable()));
 
                 assert(tgt_pkt->req->masterId() < system->maxMasters());
                 missLatency[tgt_pkt->cmdToIndex()][tgt_pkt->req->masterId()] +=
@@ -1942,7 +1998,7 @@ Cache::handleSnoop(PacketPtr pkt, CacheBlk *blk, bool is_timing,
     // have the invalidate flag, and we need a suitable way of dealing
     // with this case
 	if (!((pkt->req->fromFPGA&&pkt->isWrite())))
-    panic_if(invalidate && (pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))),
+    panic_if(invalidate && (pkt->req->isUncacheable()),
              "%s got an invalidating uncacheable snoop request %s to %#llx",
              name(), pkt->cmdString(), pkt->getAddr());
 
@@ -2289,7 +2345,7 @@ Cache::recvTimingSnoopReq(PacketPtr pkt)
         bool have_writable = !wb_pkt->hasSharers();
         bool invalidate = pkt->isInvalidate();
 
-        if (!(pkt->req->isUncacheable()||(io_bypass&&(pkt->req->getVaddr()>=io_bypass_head)&&(pkt->req->getVaddr()<=io_bypass_tail))) && pkt->isRead() && !invalidate) {
+        if (!(pkt->req->isUncacheable()) && pkt->isRead() && !invalidate) {
             assert(!pkt->needsWritable());
             pkt->setHasSharers();
             wb_pkt->setHasSharers();
@@ -2770,12 +2826,12 @@ void
 Cache::CacheReqPacketQueue::sendDeferredPacket()
 {
     // sanity check
-    assert(!waitingOnRetry);
+   // assert(!waitingOnRetry);
 
     // there should never be any deferred request packets in the
     // queue, instead we resly on the cache to provide the packets
     // from the MSHR queue or write queue
-    assert(deferredPacketReadyTime() == MaxTick);
+  //  assert(deferredPacketReadyTime() == MaxTick);
 
     // check for request packets (requests & writebacks)
     QueueEntry* entry = cache.getNextQueueEntry();
@@ -2810,3 +2866,8 @@ MemSidePort::MemSidePort(const std::string &_name, Cache *_cache,
       _snoopRespQueue(*_cache, *this, _label), cache(_cache)
 {
 }
+
+
+
+
+

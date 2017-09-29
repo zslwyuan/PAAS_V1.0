@@ -187,8 +187,12 @@ BaseXBar::Layer<SrcType,DstType>::tryTiming(SrcType* src_port)
         // the port should not be waiting already
 		if ((std::find(waitingForLayer.begin(), waitingForLayer.end(),
                          src_port) != waitingForLayer.end() )&&(name().find("topbus")!=std::string::npos)) {waitingForLayer.push_back(src_port);return false;}
+
+        /*	if ((std::find(waitingForLayer.begin(), waitingForLayer.end(),src_port) != waitingForLayer.end() ))
+                                {waitingForLayer.erase((std::find(waitingForLayer.begin(), waitingForLayer.end(),src_port)),(std::find(waitingForLayer.begin(), waitingForLayer.end(),src_port)+1));return false;}
+
         assert(std::find(waitingForLayer.begin(), waitingForLayer.end(),
-                         src_port) == waitingForLayer.end());
+                         src_port) == waitingForLayer.end());*/
 
         // put the port at the end of the retry list waiting for the
         // layer to be freed up (and in the case of a busy peer, for

@@ -63,7 +63,12 @@ void
 PacketQueue::retry()
 {
     DPRINTF(PacketQueue, "Queue %s received retry\n", name());
-    assert(waitingOnRetry);
+    //if (transmitList.front().pkt->req->getVaddr)
+        if (!waitingOnRetry)
+        {
+                printf("%s try to retry a pkt @ addr:%lu\n",name().c_str(),transmitList.front().pkt->req->getVaddr());
+        }
+        //assert(waitingOnRetry);
     waitingOnRetry = false;
     sendDeferredPacket();
 }
@@ -190,7 +195,7 @@ void
 PacketQueue::sendDeferredPacket()
 {
     // sanity checks
-    assert(!waitingOnRetry);
+ //   assert(!waitingOnRetry);
     assert(deferredPacketReady());
 
     DeferredPacket dp = transmitList.front();
@@ -219,7 +224,7 @@ PacketQueue::sendDeferredPacket()
 void
 PacketQueue::processSendEvent()
 {
-    assert(!waitingOnRetry);
+ //   assert(!waitingOnRetry);
     sendDeferredPacket();
 }
 

@@ -24,8 +24,10 @@
                 ], 
                 "role": "MASTER"
             }, 
+            "io_bypass_tail": 0, 
             "type": "CoherentXBar", 
             "frontend_latency": 3, 
+            "io_bypass": 0, 
             "slave": {
                 "peer": [
                     "system.l2cache.mem_side", 
@@ -48,6 +50,7 @@
             "power_model": null, 
             "path": "system.membus", 
             "snoop_response_latency": 4, 
+            "io_bypass_head": 0, 
             "name": "membus", 
             "p_state_clk_gate_bins": 20, 
             "disenable_snoopFilter": 0, 
@@ -68,7 +71,7 @@
         "clk_domain": {
             "name": "clk_domain", 
             "clock": [
-                376
+                500
             ], 
             "init_perf_level": 0, 
             "voltage_domain": {
@@ -213,7 +216,7 @@
             "prefetcher": null, 
             "system": "system", 
             "write_buffers": 8, 
-            "response_latency": 12, 
+            "response_latency": 20, 
             "cxx_class": "Cache", 
             "size": 131072, 
             "tags": {
@@ -229,7 +232,7 @@
                 "cxx_class": "LRU", 
                 "p_state_clk_gate_max": 1000000000000, 
                 "path": "system.l2cache.tags", 
-                "hit_latency": 12, 
+                "hit_latency": 20, 
                 "block_size": 64, 
                 "type": "LRU", 
                 "size": 131072
@@ -248,7 +251,7 @@
             "io_bypass": 0, 
             "writeback_clean": false, 
             "p_state_clk_gate_min": 1000, 
-            "hit_latency": 12, 
+            "hit_latency": 20, 
             "tgts_per_mshr": 12, 
             "demand_mshr_reserve": 1, 
             "power_model": null, 
@@ -879,7 +882,7 @@
                 "prefetcher": null, 
                 "system": "system", 
                 "write_buffers": 8, 
-                "response_latency": 4, 
+                "response_latency": 2, 
                 "cxx_class": "Cache", 
                 "size": 32768, 
                 "tags": {
@@ -891,11 +894,11 @@
                     "clk_domain": "system.clk_domain", 
                     "power_model": null, 
                     "sequential_access": false, 
-                    "assoc": 8, 
+                    "assoc": 2, 
                     "cxx_class": "LRU", 
                     "p_state_clk_gate_max": 1000000000000, 
                     "path": "system.cpu.icache.tags", 
-                    "hit_latency": 4, 
+                    "hit_latency": 2, 
                     "block_size": 64, 
                     "type": "LRU", 
                     "size": 32768
@@ -914,7 +917,7 @@
                 "io_bypass": 0, 
                 "writeback_clean": false, 
                 "p_state_clk_gate_min": 1000, 
-                "hit_latency": 4, 
+                "hit_latency": 2, 
                 "tgts_per_mshr": 20, 
                 "demand_mshr_reserve": 1, 
                 "power_model": null, 
@@ -930,7 +933,7 @@
                 "name": "icache", 
                 "p_state_clk_gate_bins": 20, 
                 "sequential_access": false, 
-                "assoc": 8
+                "assoc": 2
             }, 
             "path": "system.cpu", 
             "numRobs": 1, 
@@ -990,7 +993,7 @@
                 "prefetcher": null, 
                 "system": "system", 
                 "write_buffers": 8, 
-                "response_latency": 4, 
+                "response_latency": 2, 
                 "cxx_class": "Cache", 
                 "size": 16384, 
                 "tags": {
@@ -1002,11 +1005,11 @@
                     "clk_domain": "system.clk_domain", 
                     "power_model": null, 
                     "sequential_access": false, 
-                    "assoc": 8, 
+                    "assoc": 2, 
                     "cxx_class": "LRU", 
                     "p_state_clk_gate_max": 1000000000000, 
                     "path": "system.cpu.dcache.tags", 
-                    "hit_latency": 4, 
+                    "hit_latency": 2, 
                     "block_size": 64, 
                     "type": "LRU", 
                     "size": 16384
@@ -1025,7 +1028,7 @@
                 "io_bypass": 1, 
                 "writeback_clean": false, 
                 "p_state_clk_gate_min": 1000, 
-                "hit_latency": 4, 
+                "hit_latency": 2, 
                 "tgts_per_mshr": 20, 
                 "demand_mshr_reserve": 1, 
                 "power_model": null, 
@@ -1041,7 +1044,7 @@
                 "name": "dcache", 
                 "p_state_clk_gate_bins": 20, 
                 "sequential_access": false, 
-                "assoc": 8
+                "assoc": 2
             }, 
             "commitToDecodeDelay": 1, 
             "smtIQPolicy": "Partitioned", 
@@ -1163,7 +1166,7 @@
         "multi_thread": false, 
         "fpga": {
             "profile": 0, 
-            "ModuleName": "same_scratchpad_allocated/2mm/obj_dir/Vour", 
+            "ModuleName": "./2mm/obj_dir/Vour", 
             "do_statistics_insts": true, 
             "fpga_bus_addr": 281470681743360, 
             "numThreads": 1, 
@@ -1206,7 +1209,7 @@
             "clk_domain": {
                 "name": "clk_domain", 
                 "clock": [
-                    6667
+                    3333
                 ], 
                 "init_perf_level": 0, 
                 "voltage_domain": {
@@ -1326,8 +1329,10 @@
                 ], 
                 "role": "MASTER"
             }, 
+            "io_bypass_tail": 3221229568, 
             "type": "CoherentXBar", 
             "frontend_latency": 1, 
+            "io_bypass": 1, 
             "slave": {
                 "peer": [
                     "system.fpga.dcache_port", 
@@ -1350,6 +1355,7 @@
             "power_model": null, 
             "path": "system.l2bus", 
             "snoop_response_latency": 1, 
+            "io_bypass_head": 3221225472, 
             "name": "l2bus", 
             "p_state_clk_gate_bins": 20, 
             "disenable_snoopFilter": 0, 

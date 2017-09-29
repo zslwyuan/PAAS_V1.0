@@ -85,6 +85,13 @@ class BaseXBar(MemObject):
     use_default_range = Param.Bool(False, "Perform address mapping for " \
                                        "the default port")
 
+
+    io_bypass = Param.Int(0, "bypass the io signal to FPGA")
+
+    io_bypass_head = Param.UInt64(0, "head of the range of the virtual address owned by FPGA")
+
+    io_bypass_tail = Param.UInt64(0, "tail of the range of the virtual address owned by FPGA")
+
 class NoncoherentXBar(BaseXBar):
     type = 'NoncoherentXBar'
     cxx_header = "mem/noncoherent_xbar.hh"

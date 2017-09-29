@@ -101,8 +101,12 @@ class PacketQueue : public Drainable
     /** Label to use for print request packets label stack. */
     const std::string label;
 
+  public:
+
     /** Remember whether we're awaiting a retry. */
     bool waitingOnRetry;
+
+  protected:
 
     /** Check whether we have a packet ready to go on the transmit list. */
     bool deferredPacketReady() const
