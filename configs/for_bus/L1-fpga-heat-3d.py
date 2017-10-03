@@ -98,6 +98,9 @@ system.fpga[0].dcache = L1DCache(opts)
 
 
 system.l2bus = L2XBar()
+system.l2bus.io_bypass_tail = 0xc0000000+4096
+system.l2bus.io_bypass_head = 0xc0000000
+system.l2bus.io_bypass = 1
 system.cpu.icache.connectCPU(system.cpu)
 system.cpu.dcache.connectCPU(system.cpu)
 system.cpu.dcache.io_bypass = 1

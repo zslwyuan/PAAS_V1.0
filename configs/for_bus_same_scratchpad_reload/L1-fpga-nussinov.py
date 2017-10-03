@@ -119,6 +119,9 @@ system.fpga[0].ModuleName = 'same_scratchpad_reload/nussinov/obj_dir/Vour'
 system.fpga[0].control_port = system.topbus.master 
 
 system.l2bus = L2XBar()
+system.l2bus.io_bypass = 1
+system.l2bus.io_bypass_head = 0xc0000000
+system.l2bus.io_bypass_tail = 0xc0000000+4096
 # Create a memory bus, a coherent crossbar, in this case
 
 

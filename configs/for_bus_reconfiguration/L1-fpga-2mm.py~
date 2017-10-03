@@ -65,7 +65,7 @@ isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()
 
 # Default to running 'hello', use the compiled ISA to find the binary
 #binary = 'tests/test-progs/polybench-c-4.2/2mm_ref'
-binary = 'tests/test-progs/polybench-c-4.2/floyd-fpga'
+binary = 'tests/test-progs/reconfiguration/2mm-fpga'
 # Check if there was a binary passed in via the command line and error if
 # there are too many arguments
 if len(args) == 1:
@@ -101,6 +101,10 @@ system.fpga[0].dcache = L1DCache(opts)
 
 
 system.l2bus = L2XBar()
+system.l2bus.io_bypass = 1
+system.l2bus.io_bypass_head = 0xc0000000
+system.l2bus.io_bypass_tail = 0xc0000000+4096
+system.l2bus.io_bypass_tail = 0xc0000000+4096
 system.cpu.icache.connectCPU(system.cpu)
 system.cpu.dcache.connectCPU(system.cpu)
 system.cpu.dcache.io_bypass = 1
@@ -113,11 +117,12 @@ system.cpu.itb.baseaddress_control_fpga = 0xc0000000
 system.cpu.dtb.fpga_bus_addr = 0xffff00000000
 system.cpu.itb.fpga_bus_addr = 0xffff00000000
 
-
 system.fpga[0].clk_domain = SrcClockDomain(clock='300MHz')
 system.fpga[0].clk_domain.voltage_domain = VoltageDomain()
 system.fpga[0].fpga_bus_addr = 0xffff00000000
-system.fpga[0].ModuleName = 'same_scratchpad_allocated/floyd/obj_dir/Vour'
+system.fpga[0].ModuleName = './2mm/obj_dir/Vour;./nussinov/obj_dir/Vour'
+system.fpga[0].Reconfigurable = 1
+system.fpga[0].Reconfiguration_time = '1ms'
 system.fpga[0].control_port = system.l2bus.master 
 #4096
 
@@ -148,6 +153,7 @@ if m5.defines.buildEnv['TARGET_ISA'] == "x86":
     system.cpu.interrupts[0].pio = system.membus.master
     system.cpu.interrupts[0].int_master = system.membus.slave
     system.cpu.interrupts[0].int_slave = system.membus.master
+
 
 # Connect the system up to the membus
 system.system_port = system.membus.slave
