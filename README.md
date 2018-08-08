@@ -13,10 +13,10 @@ with unique features for system simulation and exploration:
     f) Parallized simulation and reconfigurability of FPGA-based accelerator
 
 
-![image](https://raw.githubusercontent.com/zslwyuan/PAAS_V1.0/blob/master/C-HDL_Architecture_Interaction.gif)
+![image](https://github.com/zslwyuan/PAAS_V1.0/blob/master/C-HDL_Architecture_Interaction.gif)
 
 
-![image](https://raw.githubusercontent.com/zslwyuan/PAAS_V1.0/blob/master/One_of_Architecure_Examples.gif)
+![image](https://github.com/zslwyuan/PAAS_V1.0/blob/master/One_of_Architecure_Examples.gif)
 
 
 If you have questions or ask for a manual, please send mail to tliang@connect.ust.hk
