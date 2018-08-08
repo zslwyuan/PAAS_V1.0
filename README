@@ -11,8 +11,13 @@ with unique features for system simulation and exploration:
     d) Capabilities of accelerators for exploiting both fine-grained and coarse-grained memory access
     e) Support of flexible architecture (eg. accelerator coherency port)
     f) Parallized simulation and reconfigurability of FPGA-based accelerator
+    
 ![image](https://github.com/zslwyuan/PAAS_V1.0/blob/master/C-HDL_Architecture_Interaction.gif)
+
+
 ![image](https://github.com/zslwyuan/PAAS_V1.0/blob/master/One_of_Architecure_Examples.gif)
+
+
 If you have questions or ask for a manual, please send mail to tliang@connect.ust.hk
 
 Enjoy using PAAS and please share your modifications and extensions.
