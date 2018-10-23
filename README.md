@@ -2,7 +2,7 @@ This is Processor Accelerator Architecture Simulator (PAAS) for heterogeneous co
 which has been presented in 2017 27th International Conference on Field Programmable Logic and Applications (FPL).
 The related paper can be checked on IEEE Xplore: https://ieeexplore.ieee.org/document/8056775/.
 
-[For the detailed manual, please click.](https://github.com/zslwyuan/PAAS_V1.0/blob/master/User-Manual-PAAS.pdf)
+[For the detailed **MANUAL**, please click.](https://github.com/zslwyuan/PAAS_V1.0/blob/master/User-Manual-PAAS.pdf)
 
 PAAS integrates gem5 and Verilator and further develops the infrastructure of the two simulators to provide system designers 
 with unique features for system simulation and exploration:
