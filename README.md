@@ -12,7 +12,7 @@ with unique features for system simulation and exploration:
     b) Shared virtual address space between accelerators and CPUs
     c) Runtime control of accelerators
     d) Capabilities of accelerators for exploiting both fine-grained and coarse-grained memory access
-    e) Support of flexible architecture (eg. accelerator coherency port)
+    e) Support of flexible architecture (eg. ACP (accelerator coherency port) and CAPI (Coherent Accelerator Processor Interface))
     f) Parallized simulation and reconfigurability of FPGA-based accelerator
 
 
