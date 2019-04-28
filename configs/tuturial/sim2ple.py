@@ -35,17 +35,17 @@ system.cpu[2].icache_port = system.membus.slave
 system.cpu[2].dcache_port = system.membus.slave
 
 system.cpu[0].createInterruptController()
-system.cpu[0].interrupts.pio = system.membus.master
-system.cpu[0].interrupts.int_master = system.membus.slave
-system.cpu[0].interrupts.int_slave = system.membus.master
+system.cpu[0].interrupts[0].pio = system.membus.master
+system.cpu[0].interrupts[0].int_master = system.membus.slave
+system.cpu[0].interrupts[0].int_slave = system.membus.master
 system.cpu[1].createInterruptController()
-system.cpu[1].interrupts.pio = system.membus.master
-system.cpu[1].interrupts.int_master = system.membus.slave
-system.cpu[1].interrupts.int_slave = system.membus.master
+system.cpu[1].interrupts[0].pio = system.membus.master
+system.cpu[1].interrupts[0].int_master = system.membus.slave
+system.cpu[1].interrupts[0].int_slave = system.membus.master
 system.cpu[2].createInterruptController()
-system.cpu[2].interrupts.pio = system.membus.master
-system.cpu[2].interrupts.int_master = system.membus.slave
-system.cpu[2].interrupts.int_slave = system.membus.master
+system.cpu[2].interrupts[0].pio = system.membus.master
+system.cpu[2].interrupts[0].int_master = system.membus.slave
+system.cpu[2].interrupts[0].int_slave = system.membus.master
 system.system_port = system.membus.slave
 
 system.cpu[1].control_port = system.membus.master
