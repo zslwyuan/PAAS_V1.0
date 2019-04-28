@@ -22,9 +22,9 @@ system.cpu[0].icache_port = system.membus.slave
 system.cpu[0].dcache_port = system.membus.slave
 
 system.cpu[0].createInterruptController()
-system.cpu[0].interrupts.pio = system.membus.master
-system.cpu[0].interrupts.int_master = system.membus.slave
-system.cpu[0].interrupts.int_slave = system.membus.master
+system.cpu[0].interrupts[0].pio = system.membus.master
+system.cpu[0].interrupts[0].int_master = system.membus.slave
+system.cpu[0].interrupts[0].int_slave = system.membus.master
 
 system.mem_ctrl = DDR3_1600_x64()
 system.mem_ctrl.range = system.mem_ranges[0]
