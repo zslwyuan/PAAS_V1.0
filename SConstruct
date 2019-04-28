@@ -651,8 +651,8 @@ if main['GCC'] or main['CLANG']:
     main.Append(CCFLAGS=['-fno-strict-aliasing'])
     # Enable -Wall and -Wextra and then disable the few warnings that
     # we consistently violate
-    main.Append(CCFLAGS=['-Wall', '-Wundef', '-Wextra',
-                         '-Wno-sign-compare', '-Wno-unused-parameter'])
+    # main.Append(CCFLAGS=['-Wall', '-Wundef', '-Wextra',
+    #                      '-Wno-sign-compare', '-Wno-unused-parameter'])
     # We always compile using C++11
     main.Append(CXXFLAGS=['-std=c++11'])
 else:
