@@ -2,6 +2,8 @@ This is Processor Accelerator Architecture Simulator (PAAS) for heterogeneous co
 which has been presented in 2017 27th International Conference on Field Programmable Logic and Applications (FPL).
 **The related paper can be checked on IEEE Xplore: https://ieeexplore.ieee.org/document/8056775/.**
 
+If it is hard for you to make PAAS work on your system, a virtual machine is provided on Google Drive **[here](https://drive.google.com/file/d/1T5gSaiogInrezYAyY7vWnW-27FYITbb4/view?usp=sharing)**, and you can run the PAAS directly in the virtual machine.
+
 [For the detailed **MANUAL**, please click.](https://github.com/zslwyuan/PAAS_V1.0/blob/master/User-Manual-PAAS.pdf)
 If you still have some other problems, please do not hesitate to contact us: tliang@connect.ust.hk
 
