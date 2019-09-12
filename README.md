@@ -31,7 +31,9 @@ Enjoy using PAAS and please share your modifications and extensions.
 Compared to gem5, there are things of original gem5 have been modified, so please note them:
 
 'AllMemory'     in     params.py 
+
 'translate'     in     tlb.cc
+
 fpga part       in     the directories: ./src/mem, ./src/arch, ./src/cpu
 
 Some examples of designs can be found in ./configs and hope them will help you undenstand the basic description of archtecture.
