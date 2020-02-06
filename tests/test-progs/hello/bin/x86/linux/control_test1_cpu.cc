@@ -28,6 +28,7 @@ int main()
 		int flag = 1;		
 		for (u=0;u<20;u++)
 		if (p0[0] != getpid()*getpid()) {flag=0;break;}
+                if (!flag) printf("error %d FPGA occupied by TaskHash %d\n",getpid(), p0[0]);
 		if (flag){p0[8] = 1;printf("get %d\n",getpid());break;}		
 	}
 	//unsigned long long* p0 = new unsigned long long[10];//Contro Port
@@ -38,7 +39,7 @@ int main()
 	{
 		if (n%2000000==0)
 		{
-			if (p0[0] != getpid()*getpid()) printf("error %d\n",getpid());
+			if (p0[0] != getpid()*getpid()) printf("error %d FPGA occupied by TaskHash %d\n",getpid(), p0[0]);
 			for (i=0;i<199;i++)	p1[i]=(unsigned long long)((i*171133321)+n)%123912;
 			p0[1] = (unsigned long long)p1;//ReadBase
 			p0[2] = (unsigned long long)p2;//WriteBase
@@ -54,7 +55,7 @@ int main()
 			{
 				p0[6] = 1;
 				while (p0[6]);
-			}if (p0[0] != getpid()*getpid()) printf("error %d\n",getpid());
+			}if (p0[0] != 0) printf("FPGA end error %d The FPGA is still occupied by TaskHash %lu\n",getpid(), p0[0]);
 			printf("--A-- %d\n",getpid());
 			for (i=0;i<198;i++)printf("%d: %llu ",i,p2[i]);printf("\n");
 			printf("%lld ",p3[n]);
