@@ -785,7 +785,13 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
 	
 	if (outputArray[bit_Done]) 
 	{
-		RunState = 0;
+		
+                if (TaskHash && RunState)
+                {
+		        printf("FPGA released from TaskHash %lu\n", TaskHash);
+		        TaskHash = 0;
+                }
+                RunState = 0;
 		if (dma_available)
 		{
 			fpgadma->startFill(fpgadma->startAddr,MemoryRange*MemorySize,1,nullptr);
@@ -1455,12 +1461,14 @@ FpgaCPU::FpgaCPUControlPort::getAddrRanges() const
 void
 FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 {
-//	printf("regid  %lu\n",regid);
-//	printf("val    %lu\n",val);
+//	printf("    FPGA regid  %lu\n",regid);
+//	printf("    FPGA val    %lu\n",val);
 
     switch (regid)
     {
-		case 0: TaskHash=val;//if (!OccupyFPGA&&val) {TaskHash=val;OccupyFPGA=1;}
+		case 0: // TaskHash=val;
+                        if (!TaskHash&&val) {TaskHash=val;printf("FPGA occupied by TaskHash %lu\n",val);}
+                        else printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
 				break;
         case 1: ReadBase = val;inputArray[bit_ReadBase] = val; break;
 		case 2: WriteBase = val;inputArray[bit_WriteBase] = val; break;
