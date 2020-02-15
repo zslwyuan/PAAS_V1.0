@@ -29,6 +29,7 @@
 # Authors: Nathan Binkert
 
 Import('*')
+DebugFlag('Accel')
 
 need_simple_base = False
 if 'FpgaCPU' in env['CPU_MODELS']:

@@ -95,7 +95,7 @@ if options.ruby:
 
     for i in xrange(options.num_fpgas):
         ruby_port = system.ruby._cpu_ports[i+np]
-
+	system.fpga[i].ModuleName = "FpgaModule"
         system.fpga[i].icache_port = ruby_port.slave
         system.fpga[i].dcache_port = ruby_port.slave
         system.fpga[i].itb.walker.port = ruby_port.slave

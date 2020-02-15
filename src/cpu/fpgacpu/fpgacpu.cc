@@ -1,3 +1,5 @@
+// Updated by Ajumal
+
 #include "arch/locked_mem.hh"
 #include "arch/mmapped_ipr.hh"
 #include "arch/utility.hh"
@@ -10,6 +12,8 @@
 #include "debug/Drain.hh"
 #include "debug/ExecFaulting.hh"
 #include "debug/SimpleCPU.hh"
+#include "debug/Accel.hh"
+
 #include "mem/packet.hh"
 #include "mem/packet_access.hh"
 #include "params/FpgaCPU.hh"
@@ -88,6 +92,7 @@ void
 FpgaCPU::init()
 {
     BaseSimpleCPU::init();
+	DPRINTF(Accel, "Initializing the FpgaCPU (Started by NITK)\n");
 	if (controlPort.isConnected())
 		controlPort.sendRangeChange();
 	else
@@ -99,7 +104,7 @@ FpgaCPU::init()
 void
 FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)
 {
-   // cout << "FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)"  << endl;
+    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)");
     pkt = _pkt;
     cpu->schedule(this, t);
 }
@@ -108,7 +113,7 @@ FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)
 void
 FpgaCPU::FpgaCPUPort::TickEvent::schedule(WholeTranslationState *_state, Tick t)
 {
-   // cout << "FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)"  << endl;
+    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(WholeTranslationState *_state, Tick t)");
     state = _state;
     cpu->schedule(this, t);
 }

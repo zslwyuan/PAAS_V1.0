@@ -10,15 +10,15 @@ default: Vour
 # Perl executable (from $PERL)
 PERL = perl
 # Path to Verilator kit (from $VERILATOR_ROOT)
-VERILATOR_ROOT = /media/lty/share/Internship/verilator
+VERILATOR_ROOT = /usr/share/verilator
 # Path to SystemPerl kit top (from $SYSTEMPERL)
 SYSTEMPERL = 
 # Path to SystemPerl kit includes (from $SYSTEMPERL_INCLUDE)
 SYSTEMPERL_INCLUDE = 
 # SystemC include directory with systemc.h (from $SYSTEMC_INCLUDE)
-SYSTEMC_INCLUDE ?= /home/lty/Downloads/systemc-2.3.1/include
+SYSTEMC_INCLUDE ?= 
 # SystemC library directory with libsystemc.a (from $SYSTEMC_LIBDIR)
-SYSTEMC_LIBDIR ?= /home/lty/Downloads/systemc-2.3.1/lib-linux64
+SYSTEMC_LIBDIR ?= 
 
 ### Switches...
 # SystemPerl output mode?  0/1 (from --sp)

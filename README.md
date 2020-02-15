@@ -2,8 +2,6 @@ This is Processor Accelerator Architecture Simulator (PAAS) for heterogeneous co
 which has been presented in 2017 27th International Conference on Field Programmable Logic and Applications (FPL).
 **The related paper can be checked on IEEE Xplore: https://ieeexplore.ieee.org/document/8056775/.**
 
-If it is hard for you to make PAAS work on your system, a **virtual machine** is provided on Google Drive **[here](https://drive.google.com/file/d/1ytHKjMjpw8JMwXfhBGAAmV7TOyZaPlJr/view?usp=sharing)**, and you can run the PAAS directly in the virtual machine (password is gem5lab)(project shortcut is in the desktop)
-
 [For the detailed **MANUAL**, please click.](https://github.com/zslwyuan/PAAS_V1.0/blob/master/User-Manual-PAAS.pdf)
 If you still have some other problems, please do not hesitate to contact us: tliang@connect.ust.hk
 
@@ -31,9 +29,7 @@ Enjoy using PAAS and please share your modifications and extensions.
 Compared to gem5, there are things of original gem5 have been modified, so please note them:
 
 'AllMemory'     in     params.py 
-
 'translate'     in     tlb.cc
-
 fpga part       in     the directories: ./src/mem, ./src/arch, ./src/cpu
 
 Some examples of designs can be found in ./configs and hope them will help you undenstand the basic description of archtecture.
