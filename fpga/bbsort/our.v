@@ -1,4 +1,5 @@
 /* verilator lint_off PINCONNECTEMPTY */
+// Commented by Ajumal
 module our (
   input wire clk, 
 
@@ -20,10 +21,14 @@ module our (
   output wire[63:0] write_size,
   output wire[63:0] read_size_output,
   output wire[31:0] write_data);
-  
+	// input is always wire and output can be wire or register
+	// output wire[31:0] write_data : Its an output of fpga with 32bit and datatype net (continuously drive wire)
+	// output wire done : single bit output
+	//  input wire[63:0] write_ready :  64 bit input of datatype wire
 	parameter ADDR_WID = 5;
-	parameter DATA_WID = 32;
-	reg[63:0] read_cnt;
+	parameter DATA_WID = 32; // constant is defined as parameter with value =32
+	
+	reg[63:0] read_cnt; //  Register with 64 bit zise
 	reg[63:0] write_cnt;
 	reg[63:0] state;
     reg r_read_enable;
@@ -35,11 +40,11 @@ module our (
 	reg[63:0] r_write_addr;
 	reg[63:0] r_write_size;
 	reg[63:0] r_read_size_output;
-    reg[DATA_WID-1:0] r_data[32-1:0];
+	reg[DATA_WID-1:0] r_data[32-1:0]; // 2D like a matrix
     reg[31:0] r_write_data;
 	//reg[63:0] tmp[0:8];
 	//reg[63:0] ans[0:2];
-    assign read_enable=r_read_enable;
+    assign read_enable=r_read_enable; // LHS should be a wire and it reflects the value instantly!
 	assign write_enable=r_write_enable;
 	assign finish_read=r_finish_read;
 	assign finish_write=r_finish_write;
@@ -51,7 +56,7 @@ module our (
     assign done=r_done;
 
 
-	parameter IDLE = 64'd0;
+	parameter IDLE = 64'd0; // like a variable it is, value is 64 bit decimal 0
 	parameter READY_READ = 64'd1;
 	parameter WAIT_READ = 64'd2;
 	parameter DEAL_READ = 64'd3;
@@ -72,7 +77,7 @@ module our (
 	wire[ADDR_WID-1:0] addr0,addr1;
 	wire ce0,we0,ce1,we1;
 	reg r_next;
-	wire next=r_next;
+	wire next=r_next; // reflect the changes in r_next instantly in next also (liek assign)
 	wire next_out;
 	wire[DATA_WID-1:0] q0,q1,d0,d1;
 	reg[DATA_WID-1:0] r_q0,r_q1;
@@ -99,13 +104,14 @@ bubblesort sss(
         .m(1),
         .n(1),
         .ap_return()
-);
+); // calling a module(see bubblesort.v for implementation), it will implement a fresh copy of bubblesort module in the fpga
 
-    always @(posedge clk)
-    begin
-		    if (reset)
+	always @(posedge clk) // in all positive edge of clk cycle, output value should change
+	begin
+		if (reset) // if reset == 1
 		    begin
-		        state<=INIT;
+			    state<=INIT; /* non blocking(<=) statement: values assigns at an instant of time,
+					where as blocking(=) assigns the values one by one but in the same clock */
 		        read_cnt<=0;
 		        write_cnt<=0;
 		        r_read_enable<=0;
@@ -138,7 +144,7 @@ bubblesort sss(
 					r_finish_read<=0;
 		            if (read_ready == 1)
 		            begin
-    					r_data[read_cnt[ADDR_WID-1:0]]<=read_data;
+				    r_data[read_cnt[ADDR_WID-1:0]]<=read_data; 
 		                state<= DEAL_READ;
 					end
 		        end
