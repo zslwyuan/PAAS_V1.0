@@ -5,7 +5,9 @@
 // 
 // ===========================================================
 
-`timescale 1 ns / 1 ps 
+// Commented by Ajumal NITK
+
+`timescale 1 ns / 1 ps  // time period when simulates
 /* verilator lint_off WIDTH */
 /* verilator lint_off UNUSED */
 (* CORE_GENERATION_INFO="bubblesort,hls_ip_2016_4,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xqku115-rlf1924-2-i,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=4.782000,HLS_SYN_LAT=223,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=136,HLS_SYN_LUT=224}" *)
@@ -107,7 +109,7 @@ wire   [0:0] ap_CS_fsm_state5;
 wire   [31:0] tmp1_fu_211_p2;
 reg   [4:0] ap_NS_fsm;
 
-// power-on initialization
+// power-on initialization: It executes only one time
 initial begin
  ap_CS_fsm = 5'b1;
 end
