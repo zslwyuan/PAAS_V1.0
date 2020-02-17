@@ -1,0 +1,3 @@
+scons CPU_MODELS="AtomicSimpleCPU,MinorCPU,O3CPU,TimingSimpleCPU,FpgaCPU" PROTOCOLS="MOESI_CMP_token" build/X86/gem5.opt
+
+./build/X86/gem5.opt --debug-flags=Accel configs/tuturial/bbsort-2cpu.py --ruby --num-cpus=2 --num-fpgas=1

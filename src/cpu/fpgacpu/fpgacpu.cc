@@ -92,7 +92,7 @@ void
 FpgaCPU::init()
 {
     BaseSimpleCPU::init();
-	DPRINTF(Accel, "Initializing the FpgaCPU (Started by NITK)\n");
+	DPRINTF(Accel, "********************************Initializing the FpgaCPU (Started by NITK)\n");
 	if (controlPort.isConnected())
 		controlPort.sendRangeChange();
 	else
@@ -104,7 +104,7 @@ FpgaCPU::init()
 void
 FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)
 {
-    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)");
+    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)\n");
     pkt = _pkt;
     cpu->schedule(this, t);
 }
@@ -113,7 +113,7 @@ FpgaCPU::FpgaCPUPort::TickEvent::schedule(PacketPtr _pkt, Tick t)
 void
 FpgaCPU::FpgaCPUPort::TickEvent::schedule(WholeTranslationState *_state, Tick t)
 {
-    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(WholeTranslationState *_state, Tick t)");
+    DPRINTF(Accel, "FpgaCPU::FpgaCPUPort::TickEvent::schedule(WholeTranslationState *_state, Tick t)\n");
     state = _state;
     cpu->schedule(this, t);
 }
@@ -206,6 +206,7 @@ FpgaCPU::drainResume()
 
             // Fetch if any threads active
             if (!fetchEvent.scheduled()) {
+                DPRINTF(Accel, "Active thread is getting fetched in the next cycle\n");
                 schedule(fetchEvent, nextCycle());
             }
         } else {
@@ -377,6 +378,7 @@ FpgaCPU::suspendContext(ThreadID thread_num)
         _status = Idle;
 
         if (fetchEvent.scheduled()) {
+            DPRINTF(Accel, "Suspending the fetch event\n");
             deschedule(fetchEvent);
         }
     }
@@ -1409,6 +1411,7 @@ void
 FpgaCPU::dequeue()
 {
     assert(!packetQueue.empty());
+    // DPRINTF(Accel, "Trying to dequeue \n");
     DeferredPacket deferred_pkt = packetQueue.front();
 
     retryResp = !controlPort.sendTimingResp(deferred_pkt.pkt);
@@ -1468,12 +1471,17 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 {
 //	printf("    FPGA regid  %lu\n",regid);
 //	printf("    FPGA val    %lu\n",val);
-
+    // DPRINTF(Accel, "***************Setting up registers***************\n");
     switch (regid)
     {
 		case 0: // TaskHash=val;
-                        if (!TaskHash&&val) {TaskHash=val;printf("FPGA occupied by TaskHash %lu\n",val);}
-                        else printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
+                        if (!TaskHash&&val) {
+                            TaskHash=val;printf("FPGA occupied by TaskHash %lu\n",val);
+                        }
+                        else {
+                            DPRINTF(Accel, "***********************Instead of rejecting put it in queue\n");
+                            printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
+                        }
 				break;
         case 1: ReadBase = val;inputArray[bit_ReadBase] = val; break;
 		case 2: WriteBase = val;inputArray[bit_WriteBase] = val; break;
