@@ -1,3 +1,4 @@
 build/*
 m5out/*
 *.pyc
+.vscode

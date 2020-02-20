@@ -1323,6 +1323,8 @@ FpgaCPU::printAddr(Addr a)
 Tick
 FpgaCPU::recvAtomic(PacketPtr pkt)
 {
+    // We are finding the register number by dividing the offset of array by 8
+    // because long long is 8 byte (address will be in bytes)
 	Addr offset = (pkt->getAddr() - ControlAddr)>>3;
 	uint64_t reg = offset;
 	uint64_t val = htog(getFPGAReg(reg));
@@ -1476,16 +1478,24 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
     // DPRINTF(Accel, "***************Setting up registers***************\n");
     switch (regid)
     {
-		case 0: // TaskHash=val;
+		case 0:{
+            uint64_t tempval = val>>32;
+            uint64_t size = val<<32;
+            size = size>>32;
+            val = tempval;
                         if (!TaskHash&&val) {
-                            TaskHash=val;printf("FPGA occupied by TaskHash %lu\n",val);
+                            TaskHash=val;
+                            printf("FPGA occupied by TaskHash %lu\n",val);
                         }
                         else {
-                            DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait (Ajumal)\n", val);
+                            DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
+                            , val, size);
                             TaskHashes.push_back(val);
+                            // TaskHashes = sort
                             // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
 				break;
+        }
         case 1: ReadBase = val;inputArray[bit_ReadBase] = val; break;
 		case 2: WriteBase = val;inputArray[bit_WriteBase] = val; break;
         case 3: 
@@ -1513,7 +1523,7 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
             if (val == 0 && !TaskHashes.empty()){
                 // while(TaskHash);
                 uint64_t temp=TaskHashes.front();
-                printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",TaskHash);
+                printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",temp);
                 TaskHashes.pop_front();
                 TaskHash = temp;
             }

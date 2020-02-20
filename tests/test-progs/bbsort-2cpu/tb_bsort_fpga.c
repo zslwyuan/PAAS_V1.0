@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <new>
 #include <unistd.h>
+#include <stdint.h>
 
 using namespace std;
 int number_array[20];//Read Area
@@ -31,9 +32,16 @@ int main()
 		// the simulation from this error.
 	} */
 	// new method after implementing TaskHashes queue in fpga
-	p0[0] = getpid()*getpid();
+	uint32_t size = 20;
+	uint32_t pid = getpid()*getpid();
+	uint64_t r =0;
+	r=r| pid;
+	r=r<<32;
+	r=r|size;
+	p0[0] = r;
 	// p0[13] = 0; 	
-	while(p0[0] == getpid()*getpid()); // Wait for FPGA
+	printf("p00=%lu      pid=%lu    what=%d\n",p0[0],getpid()*getpid(), (p0[0] == getpid()*getpid()) );
+	while(p0[0] != getpid()*getpid()); // Wait for FPGA
 	p0[8] = 1;// Try to occupy the FPGA
 	p0[1] = (unsigned long long)number_array;//ReadBase
 	p0[2] = (unsigned long long)number_array;//WriteBase
