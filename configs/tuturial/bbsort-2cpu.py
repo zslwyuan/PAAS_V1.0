@@ -38,11 +38,11 @@ numThreads = 1
 
 process1 = LiveProcess()
 process1.pid = 1100;
-process1.cmd = ['tests/test-progs/bbsort-2cpu/a.out']
+process1.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga']
 
 process2 = LiveProcess()
 process2.pid = 1101;
-process2.cmd = ['tests/test-progs/bbsort-2cpu/a.out']
+process2.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga']
 
 (CPUClass, test_mem_mode, FutureClass) = Simulation.setCPUClass(options)
 CPUClass.numThreads = numThreads

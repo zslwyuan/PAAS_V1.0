@@ -796,7 +796,9 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
                 if (TaskHash && RunState)
                 {
 		        printf("FPGA released from TaskHash %lu\n", TaskHash);
-		        TaskHash = 0;
+                // Updated by Ajumal, because our TaskHash updation is happening
+                // at the time of releasing the FPGA explicitly
+		        // TaskHash = 0;
                 }
                 RunState = 0;
 		if (dma_available)
@@ -1479,8 +1481,9 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                             TaskHash=val;printf("FPGA occupied by TaskHash %lu\n",val);
                         }
                         else {
-                            DPRINTF(Accel, "***********************Instead of rejecting put it in queue\n");
-                            printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
+                            DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait (Ajumal)\n", val);
+                            TaskHashes.push_back(val);
+                            // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
 				break;
         case 1: ReadBase = val;inputArray[bit_ReadBase] = val; break;
@@ -1502,10 +1505,23 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 					break;
 				}
 		case 7: Terminate = val;break;
-		case 8: {OccupyFPGA = val;printf("occupy and configure FPGA with bitstream %lu\n",val);break;}
+		case 8: {
+            OccupyFPGA = val;
+            printf("occupy and configure FPGA with bitstream %lu\n",val);
+            printf("\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
+            TaskHashes.empty(), TaskHash, TaskHashes.front(), val);
+            if (val == 0 && !TaskHashes.empty()){
+                // while(TaskHash);
+                uint64_t temp=TaskHashes.front();
+                printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",TaskHash);
+                TaskHashes.pop_front();
+                TaskHash = temp;
+            }
+            break;}
 		case 9: fatal("The register ReturnValue can be set by only FPGA but not CPU\n");/*ReturnValue = val;*/break;
 		case 10: inputArray[bit_In0]=val;break;
 		case 11: inputArray[bit_In1]=val;break;
+        default: printf("\n\n\n\n That was an error \n\n\n\n\n"); break;
     }
 	if (regid==4||regid==5)
 	{

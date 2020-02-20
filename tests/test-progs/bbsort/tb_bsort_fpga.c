@@ -32,7 +32,6 @@ int main()
 	p0[6] = 0;//RunState
 	p0[6]=1;
 	while(p0[6]);
-	p0[8] = 0; 
 
  //  a = bubblesort(number_array,m , n);
    printf("------Sorted Array-------\n");
@@ -40,5 +39,6 @@ int main()
    {
     printf("%d \n", number_array[i]);
    }
+   p0[8] = 0; 
   return 0;
 }

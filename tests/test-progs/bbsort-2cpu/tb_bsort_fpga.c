@@ -20,6 +20,7 @@ int main()
    int m=20; int n=20; int a;
 
 	p0 =(unsigned long long *) new((unsigned long long *)0xc0000000) unsigned long long[10];//Contro Port
+	/* old method of waiting for FPGA
 	while(1){
 		while(p0[8]);
 		p0[0] = getpid()*getpid();
@@ -28,9 +29,12 @@ int main()
 		// Two processes might try to control the FPGA at the same time which might turn
 		// to the situation that two processes occupy the FPGA at the same time. These lines will prevent
 		// the simulation from this error.
-	}
-	// p0[0] = getpid()*getpid();	
-	// p0[8] = 1;
+	} */
+	// new method after implementing TaskHashes queue in fpga
+	p0[0] = getpid()*getpid();
+	// p0[13] = 0; 	
+	while(p0[0] == getpid()*getpid()); // Wait for FPGA
+	p0[8] = 1;// Try to occupy the FPGA
 	p0[1] = (unsigned long long)number_array;//ReadBase
 	p0[2] = (unsigned long long)number_array;//WriteBase
 	p0[3] = getpid();//CurrentThreadID
@@ -50,5 +54,6 @@ int main()
     printf("%d \n", number_array[i]);
    }
    p0[8] = 0; 
+   
    return 0;
 }
