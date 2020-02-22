@@ -42,7 +42,11 @@ process1.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga']
 
 process2 = LiveProcess()
 process2.pid = 1101;
-process2.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga']
+process2.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga2']
+
+process3 = LiveProcess()
+process3.pid = 1102;
+process3.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga1']
 
 (CPUClass, test_mem_mode, FutureClass) = Simulation.setCPUClass(options)
 CPUClass.numThreads = numThreads
@@ -76,6 +80,9 @@ system.cpu[0].createThreads()
 if np>1:
     system.cpu[1].workload = process2
     system.cpu[1].createThreads()
+if np>2:
+    system.cpu[2].workload = process3
+    system.cpu[2].createThreads()
 
 system.piobus = IOXBar()
 

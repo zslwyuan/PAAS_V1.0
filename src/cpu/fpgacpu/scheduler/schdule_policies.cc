@@ -35,10 +35,10 @@
 
 
 
-void shortestJob(list<pair<uint64_t,uint64_t>> *TaskHashes)
+void shortestJob(list<pair<uint64_t,uint64_t>> &TaskHashes)
 { 
 
-  TaskHashes.sort([](uint64_t const& a, uint64_t const& b) {
+  TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
       return a.second < b.second;
 });
 

@@ -31,11 +31,7 @@
  *          Basavaraj Talawar <basavaraj@nitk.edu.in>
  */
 
-
-#include"job.hh"
 #include<list>
-
-
 
 void shortestJob(list<pair<uint64_t,uint64_t>> &TaskHashes);
 

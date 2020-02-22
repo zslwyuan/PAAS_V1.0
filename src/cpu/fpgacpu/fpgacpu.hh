@@ -92,7 +92,7 @@ class FpgaCPU : public BaseSimpleCPU
     uint64_t inputArray_last[4096];
     uint64_t outputArray_last[4096];
     // Array to queue the TaskHashes which requests the FPGA
-    std::list<uint64_t> TaskHashes;
+    std::list< std::pair<uint64_t, uint64_t> > TaskHashes;
     uint64_t CurrentThreadID;
     uint64_t MemoryRange;
     uint64_t MemorySize;

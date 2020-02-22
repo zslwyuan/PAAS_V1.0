@@ -48,6 +48,16 @@
 using namespace std;
 using namespace TheISA;
 
+
+void shortestJob(list<pair<uint64_t,uint64_t>> &TaskHashes)
+{ 
+
+  TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
+      return a.second < b.second;
+});
+
+ 
+}
 // following part is for communication between two processes
 // ------------------------------------------------------------------------------------
 
@@ -1490,7 +1500,11 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                         else {
                             DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
                             , val, size);
-                            TaskHashes.push_back(val);
+                            TaskHashes.push_back(make_pair(val, size));
+                            shortestJob(TaskHashes);
+                            for (auto it:TaskHashes){
+                                cout<<it.first<<"  "<<it.second<<endl;
+                            }
                             // TaskHashes = sort
                             // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
@@ -1518,16 +1532,17 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 		case 8: {
             OccupyFPGA = val;
             printf("occupy and configure FPGA with bitstream %lu\n",val);
-            printf("\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
-            TaskHashes.empty(), TaskHash, TaskHashes.front(), val);
+            DPRINTF(Accel, "\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
+            TaskHashes.empty(), TaskHash, TaskHashes.front().first, val);
             if (val == 0 && !TaskHashes.empty()){
                 // while(TaskHash);
-                uint64_t temp=TaskHashes.front();
+                uint64_t temp=TaskHashes.front().first;
                 printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",temp);
                 TaskHashes.pop_front();
                 TaskHash = temp;
             }
-            break;}
+            break;
+            }
 		case 9: fatal("The register ReturnValue can be set by only FPGA but not CPU\n");/*ReturnValue = val;*/break;
 		case 10: inputArray[bit_In0]=val;break;
 		case 11: inputArray[bit_In1]=val;break;

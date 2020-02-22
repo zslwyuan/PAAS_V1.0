@@ -32,7 +32,7 @@ int main()
 		// the simulation from this error.
 	} */
 	// new method after implementing TaskHashes queue in fpga
-	uint32_t size = 20;
+	uint32_t size = 40;
 	uint32_t pid = getpid()*getpid();
 	uint64_t r =0;
 	r=r| pid;
