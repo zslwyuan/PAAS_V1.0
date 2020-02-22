@@ -31,18 +31,47 @@
  */
 
 
-#include"schedule_policies.h"
+#include"schedule_policies.hh"
 #include<job.h>
+//std::sort(list.begin(), list.end(), [](const std::pair<int, string> &x,const std::pair<int, string> &y)
+//{
+ //   return x.second < y.second;
+//});
 
-bool compare(Job i1, Job i2) 
+
+void sortList(List<uint_64> &TaskHashes)
 { 
-    return (i1.size < i2.size); 
-} 
-void shortestJob(vector<Job> &v)
+uint_64 val;
+uint_32 tempval,size;
+
+List<pair<uint_32,uint_32>> PairList ;
+
+for(auto it:TaskHashes)
+{           val= *it;
+
+            tempval = val>>32;
+            uint64_t size = val<<32;
+            size = size>>32;
+            val = tempval;
+          
+PairList.push_back(make_pair(size,val));
+
+}
+PairList.sort();
+
+for(auto it1:PairList)
 {
-sort(v.begin(),v.end(),compare);
+
+val = it1.second;
+size =it1.first;
+val=val<<32;
+val=val|size;
+TaskHashes.push_back(val);
 
 }
 
+
+ 
+}
 
 

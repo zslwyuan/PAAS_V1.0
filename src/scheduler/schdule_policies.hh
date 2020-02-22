@@ -41,11 +41,11 @@ analyseJobs // figuring out the priority sorting
 
 
 #include"job.hh"
-#include<vector>
+#include<list>
 #include<algorithm>
 
 
-void shortestJob(vector<Job > &v);
+void sortList(list<uint_64> &TaskHashes);
 
 
 
