@@ -71,6 +71,8 @@
 #include "sim/sim_exit.hh"
 #include "sim/system.hh"
 
+#include "debug/Accel.hh"
+
 // Hack
 #include "sim/stat_control.hh"
 
@@ -679,7 +681,7 @@ void
 BaseCPU::serialize(CheckpointOut &cp) const
 {
     SERIALIZE_SCALAR(instCnt);
-
+    DPRINTF(Accel, "At serialize \n");
     if (!_switchedOut) {
         /* Unlike _pid, _taskId is not serialized, as they are dynamically
          * assigned unique ids that are only meaningful for the duration of
@@ -716,6 +718,7 @@ BaseCPU::unserialize(CheckpointIn &cp)
 void
 BaseCPU::scheduleInstStop(ThreadID tid, Counter insts, const char *cause)
 {
+    DPRINTF(Accel, "Inst stop at local tick \n");
     const Tick now(comInstEventQueue[tid]->getCurTick());
     Event *event(new LocalSimLoopExitEvent(cause, 0));
 

@@ -153,7 +153,7 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
 		//now the size of DMA can be set by register in the function setFPGAReg()
 	 	//fpgadma = new FPGADma(this,dmaPort, MemoryRange*MemorySize, 64, 8,Request::UNCACHEABLE);
 	}
-
+    // Initial address is setting with value 0
     memset(inputArray,0,sizeof(inputArray));
     memset(outputArray,0,sizeof(outputArray));
 }
@@ -249,7 +249,7 @@ FpgaCPU::switchOut()
     SimpleExecContext& t_info = *threadInfo[curThread];
     M5_VAR_USED SimpleThread* thread = t_info.thread;
     BaseSimpleCPU::switchOut();
-
+    DPRINTF(Accel, "Swithich out \n");
     assert(!fetchEvent.scheduled());
     assert(_status == BaseSimpleCPU::Running || _status == Idle);
     assert(!t_info.stayAtPC);
@@ -392,7 +392,8 @@ FpgaCPU::suspendContext(ThreadID thread_num)
             deschedule(fetchEvent);
         }
     }
-
+    // Checking wheteher they are suspended or not
+    // then make the cpu in lowpowermode.
     BaseCPU::suspendContext(thread_num);
 }
 
@@ -560,6 +561,7 @@ Fault
 FpgaCPU::initiateMemRead(Addr addr, unsigned size,
                           Request::Flags flags)
 {
+    DPRINTF(Accel, "Inside initiateMemRead function \n");
     Fault fault;
     const int asid = 0;
     ThreadID tid = CurrentThreadID;
@@ -1425,7 +1427,7 @@ void
 FpgaCPU::dequeue()
 {
     assert(!packetQueue.empty());
-    // DPRINTF(Accel, "Trying to dequeue \n");
+    DPRINTF(Accel, "Trying to dequeue \n");
     DeferredPacket deferred_pkt = packetQueue.front();
 
     retryResp = !controlPort.sendTimingResp(deferred_pkt.pkt);

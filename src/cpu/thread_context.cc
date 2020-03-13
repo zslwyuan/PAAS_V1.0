@@ -53,6 +53,8 @@
 #include "params/BaseCPU.hh"
 #include "sim/full_system.hh"
 
+#include "debug/Accel.hh"
+
 void
 ThreadContext::compare(ThreadContext *one, ThreadContext *two)
 {
@@ -203,7 +205,8 @@ void
 takeOverFrom(ThreadContext &ntc, ThreadContext &otc)
 {
     assert(ntc.getProcessPtr() == otc.getProcessPtr());
-
+    // New and old thread context
+    DPRINTF(Accel, "Inside takeoverFrom function \n");
     ntc.setStatus(otc.status());
     ntc.copyArchRegs(&otc);
     ntc.setContextId(otc.contextId());
