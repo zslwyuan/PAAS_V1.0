@@ -57,6 +57,7 @@
 #include "cpu/simple/exec_context.hh"
 #include <string>
 #include <signal.h>
+#include "learning_gem5/hello_object.hh"
 #define TEXT_SZ 100
 
 using namespace std;
@@ -65,6 +66,8 @@ class FpgaCPU : public BaseSimpleCPU
 {
 
   public:
+
+  const HelloObject* hello;
 	
 	int noL1 = 0;
 

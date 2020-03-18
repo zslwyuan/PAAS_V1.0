@@ -51,6 +51,10 @@ system = System(cpu = [DerivO3CPU() for i in xrange(np)],
                 cache_line_size = 64)
 
 system.fpga = [FpgaCPU() for i in xrange(options.num_fpgas)]
+# Assign the hello object to the fpga
+# time_to_process = Time to process one process 
+# (inProcTime+sorting+outProcTime)
+system.fpga.hello_object = HelloObject(time_to_process = '2us')
 system.voltage_domain = VoltageDomain(voltage = options.sys_voltage)
 system.clk_domain = SrcClockDomain(clock =  options.sys_clock,
                              voltage_domain = system.voltage_domain)

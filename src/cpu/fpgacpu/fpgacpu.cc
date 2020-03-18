@@ -136,7 +136,8 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
       dcachePort(this), controlPort(this,p),dmaPort(this,p->system), ifetch_pkt(NULL), dcache_pkt(NULL),
       previousCycle(0),fetchEvent(this,false,-51), releaseEvent(this), dequeueEvent(this),baseaddress_control_fpga(p->baseaddress_control_fpga),size_control_fpga(p->size_control_fpga),
 	  moduleName(p->ModuleName),show_address(p->show_address),dma_available(p->dma_available),dma_size(p->dma_size),ACP(p->ACP),Reconfigurable(p->Reconfigurable),
-	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand)
+	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand),
+      hello(params->hello_object)
 	  
 {
     _status = Idle;
@@ -148,6 +149,7 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
 	dma_read_begin=0;
 	already_reset=0;
 	configured=0;
+    panic_if(!hello, "FpgaCPuObject must have a non-null HelloObject");
 	if (dma_available)
 	{	
 		//now the size of DMA can be set by register in the function setFPGAReg()
@@ -1507,6 +1509,8 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                             for (auto it:TaskHashes){
                                 cout<<it.first<<"  "<<it.second<<endl;
                             }
+                            // Just making some ticks
+                            hello.scheduleEvent();
                             // TaskHashes = sort
                             // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
