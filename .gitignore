@@ -3,3 +3,4 @@ m5out/*
 *.pyc
 parsetab.py
 .vscode
+*.out

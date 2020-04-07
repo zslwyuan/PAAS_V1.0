@@ -67,7 +67,7 @@ class FpgaCPU : public BaseSimpleCPU
 
   public:
 
-  const HelloObject* hello;
+    HelloObject* hello;
 	
 	int noL1 = 0;
 

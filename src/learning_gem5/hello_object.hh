@@ -8,6 +8,7 @@ class HelloObject : public SimObject
 {
   private:
     void processEvent();
+  public:
     void scheduleEvent();
 
     EventWrapper<HelloObject, &HelloObject::processEvent> event;
