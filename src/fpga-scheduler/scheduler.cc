@@ -15,22 +15,30 @@ Scheduler::startup()
 }
 
 void
-Scheduler::processEvent()
-{
-    timesLeft--;
-    DPRINTF(Scheduler, "Scheduler world! Processing the event! %d left\n", timesLeft);
+Scheduler::setCPU(FpgaCPU *_cpu){
+  this->cpu = _cpu;
+}
 
-    if (timesLeft <= 0) {
-        DPRINTF(Scheduler, "Done firing!\n");
-    } else {
-        cpu->schedule(event, cpu->clockEdge());
-    }
+void
+Scheduler::shortestJob()
+{ 
+
+  this.TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
+      return a.second < b.second;
+  });
+
+}
+
+void
+Scheduler::insertProcess()
+{
+    TaskHashes.push_back(make_pair(val, size));
 }
 
 void
 Scheduler::scheduleEvent()
 {
-    cpu->schedule(event, cpu->clockEdge());
+    cpu->schedule(this.schedulerEvent, cpu->clockEdge());
 }
 
 Scheduler*

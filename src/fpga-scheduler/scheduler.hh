@@ -9,14 +9,17 @@ class Scheduler : public SimObject
 {
   private:
     FpgaCPU *cpu;
-    void processEvent();
+    // Array to queue the TaskHashes which requests the FPGA
+    std::list< std::pair<uint64_t, uint64_t> > TaskHashes;
+    virtual void processEvent();
   public:
     void scheduleEvent();
-    void setCPU(FpgaCPU *_cpu){
-      this->cpu = _cpu;
-    }
+    void insertProcess();
+    // TODO More scheduling algorithms
+    void shortestJob();
+    void setCPU(FpgaCPU *_cpu);
 
-    EventWrapper<Scheduler, &Scheduler::processEvent> event;
+    EventWrapper<Scheduler, &Scheduler::processEvent> schedulerEvent;
 
     /// Latency between times we fire the event.
     Tick latency;

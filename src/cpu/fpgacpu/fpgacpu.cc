@@ -49,15 +49,7 @@ using namespace std;
 using namespace TheISA;
 
 
-void shortestJob(list<pair<uint64_t,uint64_t>> &TaskHashes)
-{ 
 
-  TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
-      return a.second < b.second;
-});
-
- 
-}
 // following part is for communication between two processes
 // ------------------------------------------------------------------------------------
 
@@ -98,6 +90,21 @@ void FpgaCPU::deleteShare()
 //The above part is for the communication between two processes
 
 
+//Scheduler part
+void
+FpgaCPU::fpgaScheduler::processEvent()
+{
+    timesLeft--;
+    DPRINTF(Scheduler, "Scheduler world! Processing the event! %d left\n", timesLeft);
+
+    if (timesLeft <= 0) {
+        DPRINTF(Scheduler, "Done firing!\n");
+    } else {
+        cpu->schedule(event, cpu->clockEdge());
+    }
+}
+
+//Scheduler part end
 void
 FpgaCPU::init()
 {
@@ -1512,8 +1519,6 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                         else {
                             DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
                             , val, size);
-                            TaskHashes.push_back(make_pair(val, size));
-                            shortestJob(TaskHashes);
                             for (auto it:TaskHashes){
                                 cout<<it.first<<"  "<<it.second<<endl;
                             }
