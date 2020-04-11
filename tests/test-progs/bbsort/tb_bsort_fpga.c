@@ -40,5 +40,6 @@ int main()
     printf("%d \n", number_array[i]);
    }
    p0[8] = 0; 
+   printf("\n\n\ntest-ended\n\n\n\n");
   return 0;
 }

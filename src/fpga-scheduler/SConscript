@@ -1,0 +1,6 @@
+Import('*')
+
+SimObject('Scheduler.py')
+Source('scheduler.cc')
+
+DebugFlag('Scheduler')

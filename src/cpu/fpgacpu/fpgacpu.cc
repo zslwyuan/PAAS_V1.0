@@ -136,7 +136,7 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
       dcachePort(this), controlPort(this,p),dmaPort(this,p->system), ifetch_pkt(NULL), dcache_pkt(NULL),
       previousCycle(0),fetchEvent(this,false,-51), releaseEvent(this), dequeueEvent(this),baseaddress_control_fpga(p->baseaddress_control_fpga),size_control_fpga(p->size_control_fpga),
 	  moduleName(p->ModuleName),show_address(p->show_address),dma_available(p->dma_available),dma_size(p->dma_size),ACP(p->ACP),Reconfigurable(p->Reconfigurable),
-	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand),hello(p->hello_object)
+	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand),scheduler(p->scheduler_object)
 	  
 {
     _status = Idle;
@@ -148,7 +148,8 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
 	dma_read_begin=0;
 	already_reset=0;
 	configured=0;
-    panic_if(!hello, "FpgaCPuObject must have a non-null HelloObject");
+    scheduler->setCPU(this);
+    panic_if(!scheduler, "FpgaCPuObject must have a non-null schedulerObject");
 	if (dma_available)
 	{	
 		//now the size of DMA can be set by register in the function setFPGAReg()
@@ -768,21 +769,28 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
             shared->text[num_input_fpga+num_output_fpga] = 10101;
 			shared->written = 1;
 			_status = Idle;
+            DPRINTF(Accel, "Is this the last?\n");
 		//	exitSimLoop("as the end of simulation, FPGA is terminated. exit()\n");
 			return;
         }
 	else shared->text[num_input_fpga+num_output_fpga] = 0;
-	if (kill(fpid,0)<0)
-		exitSimLoop("The process of FPGA is terminated unexceptedly\n");
+	if (kill(fpid,0)<0){
+		exitSimLoop("The process of FPGA is terminated unexceptedly\n", clockEdge(Cycles(1)));
+		DPRINTF(Accel, "Did not exit\n");
+	}
    	schedule(fetchEvent, clockEdge(Cycles(1)));// insert another procedure of fetch at next cycle.
 	if (dma_available)
 	{
 		if (dma_write_begin&&fpgadma->all_done)
 			dma_write_done=1;
 	}
-    if (_status == Idle)
+    if (_status == Idle){
+        DPRINTF(SimpleCPU, "At status=Idle?\n");
+        return;}
+	if (!OccupyFPGA) {
+        DPRINTF(SimpleCPU, "At not occupyFPGA ?\n"); 
         return;
-	if (!OccupyFPGA) {return;}
+        }
 
     InputChanged = 0;
     OutputChanged = 0;
@@ -888,6 +896,7 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
         inputArray[bit_WriteReady] = 0;
         WriteReady = 0;
     }
+    DPRINTF(Accel, "At the end of fetch\n");
 }
 
 
@@ -1428,7 +1437,7 @@ void
 FpgaCPU::dequeue()
 {
     assert(!packetQueue.empty());
-    DPRINTF(Accel, "Trying to dequeue \n");
+    // DPRINTF(SimpleCPU, "Trying to dequeue \n");
     DeferredPacket deferred_pkt = packetQueue.front();
 
     retryResp = !controlPort.sendTimingResp(deferred_pkt.pkt);
@@ -1509,7 +1518,8 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                                 cout<<it.first<<"  "<<it.second<<endl;
                             }
                             // Just making some ticks
-                            hello->scheduleEvent();
+                            scheduler->scheduleEvent();
+                            // updateCycleCounts(); //NITK Added this line
                             // TaskHashes = sort
                             // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
@@ -1563,12 +1573,19 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 	}	
 	if (/*_status == BaseSimpleCPU::Idle || */(OccupyFPGA>0&&regid==8))
 	{
-		if (fetchEvent.scheduled()) deschedule(fetchEvent);
+		if (fetchEvent.scheduled()) {
+            DPRINTF(Accel, "Descheduling the fetchevent \n");
+            deschedule(fetchEvent);
+        }
 		configuration_finished=0;
-		if (!Reconfigurable)
-			activateContext(0);
-		else
-			schedule(reconfigurationEvent, curTick()+Reconfiguration_time);
+		if (!Reconfigurable){
+            DPRINTF(Accel, "Not reconfigurable \n");
+            activateContext(0);
+        }
+		else{
+            DPRINTF(Accel, "Reconfigurable \n");
+            schedule(reconfigurationEvent, curTick()+Reconfiguration_time);
+        }
 	}
 }
 
