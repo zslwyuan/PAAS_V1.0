@@ -89,22 +89,6 @@ void FpgaCPU::deleteShare()
 //----------------------------------------------------------------------------------------
 //The above part is for the communication between two processes
 
-
-//Scheduler part
-void
-FpgaCPU::fpgaScheduler::processEvent()
-{
-    timesLeft--;
-    DPRINTF(Scheduler, "Scheduler world! Processing the event! %d left\n", timesLeft);
-
-    if (timesLeft <= 0) {
-        DPRINTF(Scheduler, "Done firing!\n");
-    } else {
-        cpu->schedule(event, cpu->clockEdge());
-    }
-}
-
-//Scheduler part end
 void
 FpgaCPU::init()
 {
@@ -1519,9 +1503,12 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                         else {
                             DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
                             , val, size);
+                            scheduler->insertProcess(val, size);
+                           /*
                             for (auto it:TaskHashes){
                                 cout<<it.first<<"  "<<it.second<<endl;
                             }
+                            */
                             // Just making some ticks
                             scheduler->scheduleEvent();
                             // updateCycleCounts(); //NITK Added this line
@@ -1552,13 +1539,12 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 		case 8: {
             OccupyFPGA = val;
             printf("occupy and configure FPGA with bitstream %lu\n",val);
-            DPRINTF(Accel, "\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
-            TaskHashes.empty(), TaskHash, TaskHashes.front().first, val);
-            if (val == 0 && !TaskHashes.empty()){
+            // DPRINTF(Accel, "\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
+            // TaskHashes.empty(), TaskHash, TaskHashes.front().first, val);
+            if (val == 0 && !scheduler->is_TaskHashesEmpty()){
                 // while(TaskHash);
-                uint64_t temp=TaskHashes.front().first;
+                uint64_t temp=scheduler->popProcess();
                 printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",temp);
-                TaskHashes.pop_front();
                 TaskHash = temp;
             }
             break;

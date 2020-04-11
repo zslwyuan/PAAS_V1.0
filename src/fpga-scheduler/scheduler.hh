@@ -11,13 +11,15 @@ class Scheduler : public SimObject
     FpgaCPU *cpu;
     // Array to queue the TaskHashes which requests the FPGA
     std::list< std::pair<uint64_t, uint64_t> > TaskHashes;
-    virtual void processEvent();
+    void processEvent();
   public:
     void scheduleEvent();
-    void insertProcess();
+    uint64_t popProcess();
+    void insertProcess(uint64_t, uint64_t);
     // TODO More scheduling algorithms
-    void shortestJob();
+    void shortestJobFirst();
     void setCPU(FpgaCPU *_cpu);
+    bool is_TaskHashesEmpty();
 
     EventWrapper<Scheduler, &Scheduler::processEvent> schedulerEvent;
 

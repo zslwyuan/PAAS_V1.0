@@ -66,13 +66,8 @@ class FpgaCPU : public BaseSimpleCPU
 {
 
   public:
-
-  class fpgaScheduler: public Scheduler
-  {
-    public:
-      void processEvent();
-  }
-  fpgaScheduler* scheduler;
+  
+  Scheduler* scheduler;
 	
 	int noL1 = 0;
 

@@ -2,7 +2,7 @@
 #include "fpga-scheduler/scheduler.hh"
 
 Scheduler::Scheduler(SchedulerParams *params) :
-    SimObject(params), event(*this), latency(params->time_to_process), timesLeft(10)
+    SimObject(params), schedulerEvent(*this), latency(params->time_to_process), timesLeft(10)
 {
     DPRINTF(Scheduler, "Created the Scheduler object\n");
 }
@@ -20,25 +20,44 @@ Scheduler::setCPU(FpgaCPU *_cpu){
 }
 
 void
-Scheduler::shortestJob()
+Scheduler::shortestJobFirst()
 { 
 
-  this.TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
+  TaskHashes.sort([](pair<uint64_t,uint64_t> const& a, pair<uint64_t,uint64_t> const& b) {
       return a.second < b.second;
   });
 
 }
 
 void
-Scheduler::insertProcess()
+Scheduler::insertProcess(uint64_t val, uint64_t size)
 {
     TaskHashes.push_back(make_pair(val, size));
+}
+
+uint64_t Scheduler::popProcess()
+{
+    uint64_t hash = TaskHashes.front().first;
+    TaskHashes.pop_front();
+    return hash;
 }
 
 void
 Scheduler::scheduleEvent()
 {
-    cpu->schedule(this.schedulerEvent, cpu->clockEdge());
+    cpu->schedule(schedulerEvent, cpu->clockEdge());
+}
+
+bool
+Scheduler::is_TaskHashesEmpty()
+{
+    return TaskHashes.empty();
+}
+
+void
+Scheduler::processEvent()
+{
+    this->shortestJobFirst();
 }
 
 Scheduler*
