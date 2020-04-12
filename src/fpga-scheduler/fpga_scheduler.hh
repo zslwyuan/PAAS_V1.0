@@ -1,11 +1,11 @@
 #ifndef __SCHEDULER_FPGA_SCHEDULER_OBJECT_HH__
 #define __SCHEDULER_FPGA_SCHEDULER_OBJECT_HH__
 
-#include "params/Scheduler.hh"
+#include "params/FPGAScheduler.hh"
 #include "sim/sim_object.hh"
 #include "cpu/fpgacpu/fpgacpu.hh"
 
-class Scheduler : public SimObject
+class FPGAScheduler : public SimObject
 {
   private:
     FpgaCPU *cpu;
@@ -20,10 +20,10 @@ class Scheduler : public SimObject
     void shortestJobFirst();
     void setCPU(FpgaCPU *_cpu);
     bool is_TaskHashesEmpty();
-    EventWrapper<Scheduler, &Scheduler::processEvent> schedulerEvent;
+    EventWrapper<FPGAScheduler, &FPGAScheduler::processEvent> schedulerEvent;
     // inProcTime+sorting+outProcTime
     Tick latency;
-    Scheduler(SchedulerParams *p);
+    FPGAScheduler(FPGASchedulerParams *p);
     void startup();
 };
 

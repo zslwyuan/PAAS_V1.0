@@ -57,7 +57,7 @@
 #include "cpu/simple/exec_context.hh"
 #include <string>
 #include <signal.h>
-#include "fpga-scheduler/scheduler.hh"
+#include "fpga-scheduler/fpga_scheduler.hh"
 #define TEXT_SZ 100
 
 using namespace std;
@@ -67,7 +67,7 @@ class FpgaCPU : public BaseSimpleCPU
 
   public:
   
-  Scheduler* scheduler;
+  FPGAScheduler* scheduler;
 	
 	int noL1 = 0;
 

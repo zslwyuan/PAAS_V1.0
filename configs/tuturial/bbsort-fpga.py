@@ -38,7 +38,7 @@ numThreads = 1
 
 process1 = LiveProcess()
 process1.pid = 1100;
-process1.cmd = ['tests/test-progs/bbsort/bbsort-fpga']
+process1.cmd = ['tests/test-progs/bbsort-2cpu/bbsort-fpga']
 
 (CPUClass, test_mem_mode, FutureClass) = Simulation.setCPUClass(options)
 CPUClass.numThreads = numThreads
@@ -55,6 +55,8 @@ system.fpga = [FpgaCPU() for i in xrange(options.num_fpgas)]
 # time_to_process = Time to process one process 
 # (inProcTime+sorting+outProcTime)
 system.fpga[0].scheduler_object = Scheduler(time_to_process = '1ps')
+system.fpga[0].Reconfigurable = 1
+system.fpga[0].Reconfiguration_time = "1us"
 system.voltage_domain = VoltageDomain(voltage = options.sys_voltage)
 system.clk_domain = SrcClockDomain(clock =  options.sys_clock,
                              voltage_domain = system.voltage_domain)

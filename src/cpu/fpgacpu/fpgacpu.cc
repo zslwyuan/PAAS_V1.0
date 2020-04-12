@@ -155,7 +155,7 @@ void
 FpgaCPU::reconfiguration()
 {
     scheduler->scheduleEvent();
-	// activateContext(0);
+	activateContext(0);
 }
 
 FpgaCPU::~FpgaCPU()
@@ -888,7 +888,7 @@ FpgaCPU::fetch()  //FPGACPU-special==========================actually FPGA has n
         inputArray[bit_WriteReady] = 0;
         WriteReady = 0;
     }
-    DPRINTF(Accel, "At the end of fetch\n");
+    // DPRINTF(Accel, "At the end of fetch\n");
 }
 
 
@@ -1497,6 +1497,8 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
             uint64_t size = val<<32;
             size = size>>32;
             val = tempval;
+            DPRINTF(Accel, "size is %lu \n", size);
+            scheduler->insertProcess(val, size);
                         if (!TaskHash&&val) {
                             TaskHash=val;
                             printf("FPGA occupied by TaskHash %lu\n",val);
@@ -1504,7 +1506,7 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                         else {
                             DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
                             , val, size);
-                            scheduler->insertProcess(val, size);
+                            // scheduler->insertProcess(val, size);
                             // Just making some ticks
                             // scheduler->scheduleEvent();
                             // TaskHashes = sort
