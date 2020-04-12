@@ -154,7 +154,8 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
 void
 FpgaCPU::reconfiguration()
 {
-	activateContext(0);
+    scheduler->scheduleEvent();
+	// activateContext(0);
 }
 
 FpgaCPU::~FpgaCPU()
@@ -1504,14 +1505,8 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
                             DPRINTF(Accel, "***********************Instead of rejecting Let %lu wait with size %lu (Ajumal)\n"
                             , val, size);
                             scheduler->insertProcess(val, size);
-                           /*
-                            for (auto it:TaskHashes){
-                                cout<<it.first<<"  "<<it.second<<endl;
-                            }
-                            */
                             // Just making some ticks
-                            scheduler->scheduleEvent();
-                            // updateCycleCounts(); //NITK Added this line
+                            // scheduler->scheduleEvent();
                             // TaskHashes = sort
                             // printf("Reject FPGA TaskHash id %lu, currently FPGA occupied by TaskHash %lu\n",val, TaskHash);
                         }
@@ -1539,10 +1534,7 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 		case 8: {
             OccupyFPGA = val;
             printf("occupy and configure FPGA with bitstream %lu\n",val);
-            // DPRINTF(Accel, "\n isTaskHashesEmpty=%d    oldTH=%lu  newTH=%lu CurrVal@Reg8=%lu\n", 
-            // TaskHashes.empty(), TaskHash, TaskHashes.front().first, val);
             if (val == 0 && !scheduler->is_TaskHashesEmpty()){
-                // while(TaskHash);
                 uint64_t temp=scheduler->popProcess();
                 printf("FPGA occupied by TaskHash %lu from TaskHashes list \n",temp);
                 TaskHash = temp;
@@ -1571,7 +1563,8 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 		configuration_finished=0;
 		if (!Reconfigurable){
             DPRINTF(Accel, "Not reconfigurable \n");
-            activateContext(0);
+            scheduler->scheduleEvent();
+            // activateContext(0);
         }
 		else{
             DPRINTF(Accel, "Reconfigurable \n");

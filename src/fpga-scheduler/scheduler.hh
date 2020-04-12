@@ -20,17 +20,10 @@ class Scheduler : public SimObject
     void shortestJobFirst();
     void setCPU(FpgaCPU *_cpu);
     bool is_TaskHashesEmpty();
-
     EventWrapper<Scheduler, &Scheduler::processEvent> schedulerEvent;
-
-    /// Latency between times we fire the event.
+    // inProcTime+sorting+outProcTime
     Tick latency;
-
-    /// Number of times to fire before we stop firing
-    int timesLeft;  
-
     Scheduler(SchedulerParams *p);
-
     void startup();
 };
 
