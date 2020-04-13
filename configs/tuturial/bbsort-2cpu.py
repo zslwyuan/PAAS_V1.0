@@ -59,6 +59,7 @@ system = System(cpu = [DerivO3CPU() for i in xrange(np)],
                 cache_line_size = 64)
 
 system.fpga = [FpgaCPU() for i in xrange(options.num_fpgas)]
+system.fpga[0].scheduler_object = FPGAScheduler(time_to_process = '1ps')
 system.voltage_domain = VoltageDomain(voltage = options.sys_voltage)
 system.clk_domain = SrcClockDomain(clock =  options.sys_clock,
                              voltage_domain = system.voltage_domain)

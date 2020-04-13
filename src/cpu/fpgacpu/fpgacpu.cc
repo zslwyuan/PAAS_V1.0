@@ -1578,6 +1578,7 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 void
 FpgaCPU::scheduleProcesses()
 {
+    scheduler->deleteProcess();
     DPRINTF(Accel, "Activating the thread context \n");
     activateContext(0);
 }
