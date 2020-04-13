@@ -54,9 +54,9 @@ system.fpga = [FpgaCPU() for i in xrange(options.num_fpgas)]
 # Assign the hello object to the fpga
 # time_to_process = Time to process one process 
 # (inProcTime+sorting+outProcTime)
-system.fpga[0].scheduler_object = Scheduler(time_to_process = '1ps')
-system.fpga[0].Reconfigurable = 1
-system.fpga[0].Reconfiguration_time = "1us"
+system.fpga[0].scheduler_object = FPGAScheduler(time_to_process = '3us')
+# system.fpga[0].Reconfigurable = 1
+# system.fpga[0].Reconfiguration_time = "3us"
 system.voltage_domain = VoltageDomain(voltage = options.sys_voltage)
 system.clk_domain = SrcClockDomain(clock =  options.sys_clock,
                              voltage_domain = system.voltage_domain)

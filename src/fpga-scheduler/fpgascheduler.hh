@@ -11,16 +11,15 @@ class FPGAScheduler : public SimObject
     FpgaCPU *cpu;
     // Array to queue the TaskHashes which requests the FPGA
     std::list< std::pair<uint64_t, uint64_t> > TaskHashes;
-    void processEvent();
   public:
-    void scheduleEvent();
+    void deleteProcess();
     uint64_t popProcess();
+    Tick getLatency();
     void insertProcess(uint64_t, uint64_t);
     // TODO More scheduling algorithms
     void shortestJobFirst();
     void setCPU(FpgaCPU *_cpu);
     bool is_TaskHashesEmpty();
-    EventWrapper<FPGAScheduler, &FPGAScheduler::processEvent> schedulerEvent;
     // inProcTime+sorting+outProcTime
     Tick latency;
     FPGAScheduler(FPGASchedulerParams *p);

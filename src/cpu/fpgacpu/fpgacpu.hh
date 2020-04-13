@@ -57,7 +57,7 @@
 #include "cpu/simple/exec_context.hh"
 #include <string>
 #include <signal.h>
-#include "fpga-scheduler/fpga_scheduler.hh"
+#include "fpga-scheduler/fpgascheduler.hh"
 #define TEXT_SZ 100
 
 using namespace std;
@@ -579,7 +579,9 @@ class FpgaCPU : public BaseSimpleCPU
 	int Reconfigurable;	
 	Tick Reconfiguration_time;
 	void reconfiguration();
+  void scheduleProcesses();
 	EventWrapper<FpgaCPU, &FpgaCPU::reconfiguration> reconfigurationEvent;
+  EventWrapper<FpgaCPU, &FpgaCPU::scheduleProcesses> schedulerEvent;
 	int Protocol_shakehand;
 };
 

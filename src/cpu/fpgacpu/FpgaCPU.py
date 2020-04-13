@@ -51,7 +51,7 @@ class FpgaCPU(BaseSimpleCPU):
     Reconfiguration_time = Param.Latency("0ns","Reconfiguration time of FPGA")
     Protocol_shakehand = Param.Unsigned(0,"whether FPGA generate a finish signal when it receive the signal from gem5 system")
     # scheduler object for scheduling
-    scheduler_object = Param.Scheduler("Tick creator for scheduling process")
+    scheduler_object = Param.FPGAScheduler("Tick creator for scheduling process")
 
     def __init__(self):
         BaseSimpleCPU.__init__(self)

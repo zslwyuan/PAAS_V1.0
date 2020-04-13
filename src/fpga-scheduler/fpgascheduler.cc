@@ -1,8 +1,8 @@
 #include "debug/FPGAScheduler.hh"
-#include "fpga-scheduler/fpga_scheduler.hh"
+#include "fpga-scheduler/fpgascheduler.hh"
 
 FPGAScheduler::FPGAScheduler(FPGASchedulerParams *params) :
-    SimObject(params), schedulerEvent(*this), latency(params->time_to_process)
+    SimObject(params), latency(params->time_to_process)
 {
     DPRINTF(FPGAScheduler, "Created the FPGAScheduler object\n");
 }
@@ -48,11 +48,10 @@ uint64_t FPGAScheduler::popProcess()
 }
 
 void
-FPGAScheduler::scheduleEvent()
+FPGAScheduler::deleteProcess()
 {
     TaskHashes.pop_front();
     DPRINTF(FPGAScheduler, "Scheduling the FPGAScheduler event\n");
-    schedule(schedulerEvent, clockEdge(Cycles(latency)));
 }
 
 bool
@@ -61,11 +60,10 @@ FPGAScheduler::is_TaskHashesEmpty()
     return TaskHashes.empty();
 }
 
-void
-FPGAScheduler::processEvent()
+Tick 
+FPGAScheduler::getLatency()
 {
-    DPRINTF(FPGAScheduler, "Calls the activateContext function\n");
-    this->cpu->activateContext(0);
+    return this->latency;
 }
 
 FPGAScheduler*

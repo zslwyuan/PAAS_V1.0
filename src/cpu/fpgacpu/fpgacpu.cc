@@ -127,7 +127,7 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
       dcachePort(this), controlPort(this,p),dmaPort(this,p->system), ifetch_pkt(NULL), dcache_pkt(NULL),
       previousCycle(0),fetchEvent(this,false,-51), releaseEvent(this), dequeueEvent(this),baseaddress_control_fpga(p->baseaddress_control_fpga),size_control_fpga(p->size_control_fpga),
 	  moduleName(p->ModuleName),show_address(p->show_address),dma_available(p->dma_available),dma_size(p->dma_size),ACP(p->ACP),Reconfigurable(p->Reconfigurable),
-	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),Protocol_shakehand(p->Protocol_shakehand),scheduler(p->scheduler_object)
+	  Reconfiguration_time(p->Reconfiguration_time),reconfigurationEvent(this),schedulerEvent(this),Protocol_shakehand(p->Protocol_shakehand),scheduler(p->scheduler_object)
 	  
 {
     _status = Idle;
@@ -154,8 +154,8 @@ FpgaCPU::FpgaCPU(FpgaCPUParams *p)
 void
 FpgaCPU::reconfiguration()
 {
-    scheduler->scheduleEvent();
-	activateContext(0);
+    schedule(schedulerEvent, curTick()+scheduler->getLatency());
+	// activateContext(0);
 }
 
 FpgaCPU::~FpgaCPU()
@@ -1565,7 +1565,7 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
 		configuration_finished=0;
 		if (!Reconfigurable){
             DPRINTF(Accel, "Not reconfigurable \n");
-            scheduler->scheduleEvent();
+            schedule(schedulerEvent, curTick()+scheduler->getLatency());
             // activateContext(0);
         }
 		else{
@@ -1573,6 +1573,13 @@ FpgaCPU::setFPGAReg(uint64_t regid, uint64_t val, PacketPtr pkt)
             schedule(reconfigurationEvent, curTick()+Reconfiguration_time);
         }
 	}
+}
+
+void
+FpgaCPU::scheduleProcesses()
+{
+    DPRINTF(Accel, "Activating the thread context \n");
+    activateContext(0);
 }
 
 uint64_t

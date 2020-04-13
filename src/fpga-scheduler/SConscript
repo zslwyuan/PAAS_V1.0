@@ -1,6 +1,6 @@
 Import('*')
 
 SimObject('FPGAScheduler.py')
-Source('fpga_scheduler.cc')
+Source('fpgascheduler.cc')
 
 DebugFlag('FPGAScheduler')
